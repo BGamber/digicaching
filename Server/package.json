@@ -1,0 +1,14 @@
+{
+  "name": "digicaching-server",
+  "version": "0",
+  "description": "The backend files for digicaching.",
+  "main": "index.js",
+  "repository": "https://github.com/BGamber/digicaching",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "cors": "^2.8.4",
+    "dotenv-safe": "^5.0.1",
+    "express": "^4.16.3"
+  }
+}

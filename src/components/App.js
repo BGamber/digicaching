@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import ProfileScreen from './components/ProfileScreen';
-import Footer from './components/Footer';
+import ProfileScreen from './ProfileScreen';
+import Footer from './Footer';
 import store from './store';
 import './index.css';
 
