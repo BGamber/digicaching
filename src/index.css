@@ -2,4 +2,15 @@ body {
   margin: 0;
   width: 100vw;
   height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  padding: .1rem;
+  display: inline-block;
+}
+a:hover {
+  background: rgba(100, 132, 200, 0.6);
 }

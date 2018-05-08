@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-
-let CollectionList = (itemsList) => {
-  itemsList.map((item) => {
-    <li className="collection-list-item">
-      {item}
-    </li>
-  })
-}
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 let Footer = () => {
   return (
-    <main className="user-profile">
-      <div className="collection-display">
-        FOOTER (links, etc.)
-      </div>
-    </main>
+    <footer className="footer">
+    <Link to="/profile">
+    <div>
+     Profile
+    </div>
+  </Link>
+  <Link to="/create-profile">
+    <div>
+     Register
+    </div>
+  </Link>
+    </footer>
   );
 };
 

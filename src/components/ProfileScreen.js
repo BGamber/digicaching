@@ -35,7 +35,7 @@ class ProfileScreen extends Component {
           <header>
             <img src={avatarUrl} alt="" className="avatar" />
             <div className="user-name">
-              <h2>User Name</h2>
+              <h2>{ this.props.user.name }</h2>
             </div>
           </header>
           <div className="collection-display">
@@ -52,7 +52,7 @@ class ProfileScreen extends Component {
           </div>
         </main>)
     }
-    return  profileContent ;
+    return <div><h3>User Profile:</h3><p>{profileContent}</p></div>  ;
   }
 };
 
