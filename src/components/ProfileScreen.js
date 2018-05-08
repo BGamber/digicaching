@@ -6,8 +6,9 @@ import { getCurrentProfile } from '../actions/profileActions';
 let avatarUrl = '../img/default_avatar.png';
 
 let CollectionList = ({ itemsList }) => {
-  let list = itemsList.map(item => <li className="collection-list-item">
-    {item}
+  let list = itemsList.map(item => <li className="collection-list-item"
+  key={ item.id } >
+    {item.name}: {item.description}
   </li>
   );
   return list;
