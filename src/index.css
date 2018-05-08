@@ -41,3 +41,27 @@ h2 {
   color: white;
   font-family: 'Josefin Sans', sans-serif;
 }
+
+/*------------------*/
+/*-----FOOTER-------*/
+/*------------------*/
+
+.navbar {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  width:100wh;
+  height: 50px;
+  list-style: none;
+  padding: 0;
+  background: rgb(253, 129, 139);
+  font-size: 40px;
+  justify-content: space-between;
+}
+
+.ion-android-contact,
+.ion-map,
+.ion-aperture {
+  margin: 20px 40px;
+  color: white;
+}
