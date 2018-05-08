@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
+import '../index.css';
+
 
 let MapScreen = () => {
   return (
