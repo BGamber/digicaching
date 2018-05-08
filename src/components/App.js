@@ -5,11 +5,9 @@ import { Provider } from 'react-redux';
 import MainScreen from './MainScreen';
 import LoginPage from './main-login';
 import CreateAccount from './CreateAccount';
-
-import Footer from './Footer';
 import store from '../store';
 
-let App = () => {
+let App = () => 
   <Provider store={store}>
     <div className="App">
       <Router>
@@ -22,6 +20,5 @@ let App = () => {
       </Router>
     </div>
   </Provider>
-}
 
 export default App;
