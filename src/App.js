@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import ProfileScreen from './components/ProfileScreen';
 import Footer from './components/Footer';
 import store from './store';
-import './styles.css';
+import './index.css';
 
 let App = () =>
   <Provider store={store}>
