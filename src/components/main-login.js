@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import SignIn from './SignIn';
-import CreateAccount from './CreateAccount';
 import BasicTemplate from './BasicTemplate';
+import '../index.css';
 
 class LoginPage extends Component {
     constructor(props){
@@ -56,14 +55,12 @@ class LoginPage extends Component {
                         type="email" 
                         className="user-input" 
                         placeholder='Email' 
-                        validate error="wrong" 
                         success="right" required
                         onChange={(event) => this.setState({ email: event.target.value })}/>
                     <input 
                         type="password"
                         className="user-input"  
                         placeholder="Password"
-                        validate error="wrong" 
                         success="right" required
                         onChange={(event) => this.setState({ password: event.target.value })}/>
                     <button 

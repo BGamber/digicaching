@@ -4,15 +4,10 @@ require("dotenv-safe").config();
 const express = require("express");
 const cors = require("cors");
 
+const { getUserById } = require("./database");
 
 const app = express();
 let Router = express.Router;
-
-let getUser = ((req, res) => {
-
-  console.log('getUser: ', req.params);
-  res.send("Users");
-});
 
 let getItems = ((req, res) => {
   console.log(req.params);
@@ -31,7 +26,7 @@ let getCaches = ((req, res) => {
 });
 
 const api = new Router();
-api.get("/users/:id?", getUser);
+api.get("/users/:id?", getUserById);
 api.get("/items/:id?", getItems);
 api.get("/collections/:id?", getCollections);
 api.get("/caches/:id?", getCaches);

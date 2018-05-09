@@ -3,13 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/googlemaps": "^3.30.8",
+    "@types/markerclustererplus": "^2.1.33",
+    "@types/react": "^16.3.13",
     "eslint-plugin-react": "^7.7.0",
     "pg-promise": "^8.4.3",
+    "google-distance-matrix": "^1.1.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-google-maps": "^9.4.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
+    "recompose": "^0.27.0",
     "redux": "^4.0.0"
   },
   "scripts": {

@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import Map from "./Map";
 
 import MainScreen from './MainScreen';
 import LoginPage from './main-login';
 import CreateAccount from './CreateAccount';
-
-import Footer from './Footer';
 import store from '../store';
 
-let App = () => { return <Provider store={store}>
-  <div className="App">
+let App = () => 
+  <Provider store={store}>
+    <div className="App">
       <Router>
         <div>
           <Route exact path="/login-page" component={LoginPage} />
@@ -20,6 +20,5 @@ let App = () => { return <Provider store={store}>
       </Router>
     </div>
   </Provider>
-};
 
 export default App;
