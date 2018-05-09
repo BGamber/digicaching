@@ -1,6 +1,9 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { findUserByEmail } = require('./database');
+const {
+  findUserByEmail,
+  postNewUser
+} = require('./database');
 
 let checkToken = async (req, res, next) => {
   let { authorization: Bearertoken } = req.headers;
@@ -42,7 +45,17 @@ let userLogin = async (req, res) => {
 };
 
 let userRegister = async (req, res) => {
-  res.send("You went to Register!");
+  let {
+    username,
+    email,
+    password
+  } = req.body;
+  let hashPass = await bcrypt.hash(password, 10);
+
+  let insertPromise = postNewUser(username, email, hashPass);
+  insertPromise
+    .then(() => res.send("Success"))
+    .catch(err => res.status(422).send(JSON.stringify(err)));
 };
 
 module.exports = {
