@@ -49,28 +49,31 @@ class LoginPage extends Component {
         return(
             <div className="main-login">
                 <BasicTemplate />
-                <h2>Sign in</h2>
                 <form onSubmit={this.handleSubmit} className="sign-in-form">
-                    <input 
-                        type="email" 
-                        className="user-input" 
-                        placeholder='Email' 
-                        success="right" required
-                        onChange={(event) => this.setState({ email: event.target.value })}/>
-                    <input 
-                        type="password"
-                        className="user-input"  
-                        placeholder="Password"
-                        success="right" required
-                        onChange={(event) => this.setState({ password: event.target.value })}/>
-                    <button 
-                        type="submit" 
-                        className="Login-page-button" 
-                        onClick={(event) => this.handleClick(event)}>Sign in</button>
-                    <h2>New player</h2>
-                    <button 
-                        className="Login-page-button" 
-                        onClick={() => this.props.history.push('/create-account')}>Create account</button>
+                    <div className="login-input">
+                        <input 
+                            type="email" 
+                            className="user-input" 
+                            placeholder='Email' 
+                            success="right" required
+                            onChange={(event) => this.setState({ email: event.target.value })}/>
+                        <input 
+                            type="password"
+                            className="user-input"  
+                            placeholder="Password"
+                            success="right" required
+                            onChange={(event) => this.setState({ password: event.target.value })}/>
+                    </div>
+                    <div className="login-buttons">
+                        <button 
+                            type="submit" 
+                            className="login-page-button submit-button" 
+                            onClick={(event) => this.handleClick(event)}>Sign in</button>
+                        {/* <p className="new-user-link">Don't have an account yet? Sign up </p> */}
+                        <button 
+                            className="login-page-button" 
+                            onClick={() => this.props.history.push('/create-account')}>New user?</button>
+                    </div>
                 </form>
             </div>
         )
