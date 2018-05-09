@@ -1,21 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import ProfileScreen from './ProfileScreen';
-import CreateProfileScreen from './CreateProfileScreen';
+
+import MainScreen from './MainScreen';
+import LoginPage from './main-login';
+import CreateAccount from './CreateAccount';
+
 import Footer from './Footer';
 import store from '../store';
-import '../index.css';
 
-let App = () =>
-  <Provider store={store}>
-    <Router>
-      <div className="App">
-        <Route exact path="/profile" component={ProfileScreen} />
-        <Route exact path="/create-profile" component={CreateProfileScreen} />   
-        <Footer />
-      </div>
-    </Router>
-  </Provider>;
+let App = () => { return <Provider store={store}>
+  <div className="App">
+      <Router>
+        <div>
+          <Route exact path="/login-page" component={LoginPage} />
+          <Route path="/create-account" exact component={CreateAccount} />  
+          <Route path="/main" component={MainScreen} />
+        </div>
+      </Router>
+    </div>
+  </Provider>
+};
 
 export default App;

@@ -1,20 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Route, Switch, NavLink} from 'react-router-dom';
 
 let Footer = () => {
   return (
-    <footer className="footer">
-    <Link to="/profile">
-    <div>
-     Profile
-    </div>
-  </Link>
-  <Link to="/create-profile">
-    <div>
-     Register
-    </div>
-  </Link>
-    </footer>
+    <nav className="navbar">
+        <ul>
+            <li><NavLink to="/main/profile"><i className="ion-android-contact"></i></NavLink></li>
+            <li><NavLink to="/main/map"><i className="ion-map"></i></NavLink></li>
+            <li><NavLink to="/main/collections"><i className="ion-aperture"></i></NavLink></li>
+        </ul>
+    </nav>
   );
 };
 

@@ -1,6 +1,14 @@
+/* font-family: 'Righteous', cursive;
+font-family: 'Josefin Sans', sans-serif; */
+
 body {
   margin: 0;
-  width: 100vw;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #cfd7ff 0%,#9baefb 60%,rgb(134, 168, 255) 100%);
+}
+
+.App {
   height: 100vh;
   box-sizing: border-box;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -13,4 +21,34 @@ a {
 }
 a:hover {
   background: rgba(100, 132, 200, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  color: rgb(230, 230, 230);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 27px;
+}
+
+.Login-page-button {
+  background: radial-gradient(ellipse at bottom, rgb(253, 129, 139, 0.7), rgb(253, 129, 139));
+  /* background: linear-gradient(40deg,#fa9f55,#fc6262); */
+  border: none;
+  width: 220px;
+  height: 45px;
+  font-size: 20px;
+  border-radius: 20px;
+  padding: 5px;
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
 }
