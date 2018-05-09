@@ -58,7 +58,7 @@ class CreateAccount extends Component {
                     <input 
                         type="password"
                         className="user-input2"  
-                        placeholder='Confirm-Password'
+                        placeholder='Confirm Password'
                         name="confirmPassword" required/>
                     {/* <input 
                         type="file"
@@ -76,7 +76,7 @@ class CreateAccount extends Component {
                             type="submit">Submit</button>
                         <button 
                             className="login-page-button " 
-                            onClick={() => this.props.history.push('/login-page')}>Go back</button>
+                            onClick={() => this.props.history.push('/login-page')}>Go Back</button>
                     </div>
                 </div>
             </form>

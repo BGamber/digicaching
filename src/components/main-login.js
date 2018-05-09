@@ -68,11 +68,11 @@ class LoginPage extends Component {
                         <button 
                             type="submit" 
                             className="login-page-button submit-button" 
-                            onClick={(event) => this.handleClick(event)}>Sign in</button>
+                            onClick={(event) => this.handleClick(event)}>Sign In</button>
                         {/* <p className="new-user-link">Don't have an account yet? Sign up </p> */}
                         <button 
                             className="login-page-button" 
-                            onClick={() => this.props.history.push('/create-account')}>New user?</button>
+                            onClick={() => this.props.history.push('/create-account')}>New User?</button>
                     </div>
                 </form>
             </div>

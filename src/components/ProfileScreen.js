@@ -29,7 +29,7 @@ class ProfileScreen extends Component {
     if (profile === null || loading) {
       profileContent = <div>
         <h3>...Loading...</h3>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="...loading..."/></div>
+        <img className="loading-photo" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="...loading..."/></div>
     } else {
     profileContent =  (
         <main className="user-profile">

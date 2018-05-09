@@ -11,7 +11,7 @@ const MyMapComponent = compose(
     "ujjPUIGKdyao2Kqitzr1kiRg&v=3",
     loadingElement: <div style={{ height: "100%" }} />,
     containerElement: <div style={{ height: "400px" }} />,
-    mapElement: <div style={{ height: "100%" }} />,
+    mapElement: <div style={{ height: "93.2vh" }} />,
   }),
   withScriptjs,
   withGoogleMap
