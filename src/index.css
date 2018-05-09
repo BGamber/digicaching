@@ -10,10 +10,7 @@ body {
 
 .App {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  overflow: scroll;  
 }
 
 .main-login {
@@ -45,6 +42,14 @@ h2 {
 /*------------------*/
 /*-----FOOTER-------*/
 /*------------------*/
+
+.navber-div{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+
 
 .navbar {
   display: flex;
