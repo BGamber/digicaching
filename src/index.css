@@ -1,4 +1,4 @@
-/* font-family: 'Righteous', cursive;
+s/* font-family: 'Righteous', cursive;
 font-family: 'Josefin Sans', sans-serif; */
 
 body {
@@ -10,6 +10,21 @@ body {
 
 .App {
   height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  padding: .1rem;
+  display: inline-block;
+}
+a:hover {
+  background: rgba(100, 132, 200, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: scroll;  
 }
 
