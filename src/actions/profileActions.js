@@ -2,7 +2,7 @@ import { GET_PROFILE, PROFILE_LOADING } from './action-types';
 
 export let getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
-  fetch('./api/profile')
+  fetch('./api/user')
     .then((res) => {
       if (!res.ok) {
         dispatch({
