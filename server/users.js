@@ -55,7 +55,10 @@ let userRegister = async (req, res) => {
   let insertPromise = postNewUser(username, email, hashPass);
   insertPromise
     .then(() => res.send("Success"))
-    .catch(err => res.status(422).send(JSON.stringify(err)));
+    .catch(err => {
+      res.setHeader("Content-Type", "application/json");
+      res.status(422).send(JSON.stringify(err));
+    });
 };
 
 module.exports = {
