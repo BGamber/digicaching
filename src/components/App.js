@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import Map from "./Map";
 
 import MainScreen from './MainScreen';
 import LoginPage from './main-login';
