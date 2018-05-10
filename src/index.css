@@ -76,6 +76,38 @@ h2 {
   font-family: 'Josefin Sans', sans-serif;
 }
 
+main.user-profile {
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: space-around;
+}
+.collection-display {
+  border: 1px #ccc solid;
+  padding: 2rem;
+}
+.collection-display ul {
+  list-style: none;
+}
+.collection-display ul li {
+  padding: .5rem;
+  margin: .4rem;
+}
+.collection-display ul li div {
+  width: 100px;
+  height: 100px;
+  vertical-align: middle;
+  margin: .4rem;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  display: inline-block;
+}
+collection-list-item>div {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
 .submit-button {
   border-right: 1px solid grey;
 }
