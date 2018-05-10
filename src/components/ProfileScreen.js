@@ -18,7 +18,7 @@ class ProfileScreen extends Component {
         return res.json();
       }
     )
-    .then(data => this.props.getCurrentProfileWrapped(data) );
+    .then(data => this.props.setCurrentProfile(data) );
   }
 
   render() {
@@ -74,10 +74,10 @@ let mapStateToProps = state => ({
 
 let mapDispatchToProps = (dispatch) => {
 
-  let getCurrentProfileWrapped = (id) => {
+  let setCurrentProfile = (id) => {
     dispatch(getCurrentProfile(id));
   };
-  return { getCurrentProfileWrapped };
+  return { setCurrentProfile };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);
