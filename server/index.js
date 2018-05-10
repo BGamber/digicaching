@@ -10,26 +10,15 @@ const {
   createToken
 } = require("./users");
 
-const { getUserById } = require("./database");
+const {
+  getUserById,
+  getItems,
+  getCollections,
+  getCaches
+} = require("./database");
 
 const app = express();
 let Router = express.Router;
-
-let getItems = ((req, res) => {
-  console.log(req.params);
-  res.send("Items");
-});
-
-let getCollections = ((req, res) => {
-  console.log(req.params);
-  res.send("Collections");
-});
-
-let getCaches = ((req, res) => {
-  console.log(req.params);
-  console.log(req.query);
-  res.send("Caches");
-});
 
 let auth = new Router();
 auth.post("/login", userLogin);

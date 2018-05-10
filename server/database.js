@@ -14,10 +14,26 @@ let getUserByName = async name => {
   return user;
 };
 
-let getUserById = async (req,res) => {
+let getUserById = async (req, res) => {
   let queryString = "SELECT email, name, image_url, password FROM users WHERE id = $1;";
   let user = await db.one(queryString, req.params.id);
-  res.send( user );
+  res.send(user);
+};
+
+let getItems = (req, res) => {
+  console.log(req.params);
+  res.send("Items");
+};
+
+let getCollections = (req, res) => {
+  console.log(req.params);
+  res.send("Collections");
+};
+
+let getCaches = (req, res) => {
+  console.log(req.params);
+  console.log(req.query);
+  res.send("Caches");
 };
 
 let postNewUser = (name, email, hashPass) => {
