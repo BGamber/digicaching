@@ -41,7 +41,8 @@ class LoginPage extends Component {
         if (res.status === 200) {
           res.json().then(({token}) => {
             this.props.setToken(token);
-            if (prevPath) {
+            if (prevPath && prevPath !== "/login" && prevPath !==
+            "/create-account") {
               this.props.history.replace(prevPath);
             } else {
               this.props.history.replace("/map");
