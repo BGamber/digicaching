@@ -9,9 +9,6 @@ const BasicTemplate = () =>{
             </div>
         </div>
     )
-
-
-    </div>
   );
 };
 
