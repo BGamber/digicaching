@@ -32,9 +32,9 @@ let createToken = user =>
 
 let userLogin = async (req, res) => {
   let { email, password } = req.body;
-
+  let user;
   try {
-    let user = await getUserByEmail(email);
+    user = await getUserByEmail(email);
   } catch (err) {
     res.status(401).send("User Not Found");
   }
