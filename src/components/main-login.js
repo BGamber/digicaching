@@ -17,7 +17,7 @@ class LoginPage extends Component {
     }
 
     handleClick = e => {
-        let baseUrl = 'http://localhost:5000/login'
+        let baseUrl = '/login'
         let payload = {
             'email': this.state.email,
             'password': this.state.password
