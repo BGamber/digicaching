@@ -9,6 +9,7 @@ let Footer = () => {
         <div><NavLink to="/main/profile"><i className="ion-android-contact"></i></NavLink></div>
         <div><NavLink to="/main/map"><i className="ion-map"></i></NavLink></div>
         <div><NavLink to="/main/collections"><i className="ion-aperture"></i></NavLink></div>
+        <div><NavLink to="/main/friends-lookup"><i className="ion-person-add"></i></NavLink></div>
       </nav>
     </div>
   );
