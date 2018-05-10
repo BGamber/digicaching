@@ -29,7 +29,7 @@ class CreateAccount extends Component {
 
             )
         }
-        
+
     }
 
 
@@ -40,43 +40,44 @@ class CreateAccount extends Component {
                 <BasicTemplate />
                 {/* <h1>Create new account:</h1>  */}
                 <div className="create-account">
-                    <input 
+                    <input
                         type="text"
-                        className="user-input2"  
+                        className="user-input2"
                         placeholder='User Name'
                         name="userName" required/>
                     <input
-                        type="email" 
-                        className="user-input2"  
+                        type="email"
+                        className="user-input2"
                         placeholder='Email'
                         name="email" required/>
-                    <input 
+                    <input
                         type="password"
-                        className="user-input2"  
+                        className="user-input2"
                         placeholder='Password'
                         name="password" required/>
-                    <input 
+                    <input
                         type="password"
-                        className="user-input2"  
+                        className="user-input2"
                         placeholder='Confirm Password'
                         name="confirmPassword" required/>
-                    {/* <input 
+                    {/* <input
                         type="file"
                         className="user-input-photo"
                         onChange={(event) => {
                             let file = event.target.files[0];
                             let url = URL.createObjectURL(file);
-                            console.log(file) 
+                            console.log(file)
                             this.setState({ image: url }) }} />
                         {console.log(this.state.image)}
                     <img alt="profile-img" src={this.state.image} />  */}
                     <div className="create-profile-buttons">
-                        <button 
-                            className="login-page-button submit-button" 
+                        <button
+                            className="login-page-button submit-button"
                             type="submit">Submit</button>
-                        <button 
-                            className="login-page-button " 
-                            onClick={() => this.props.history.push('/')}>Go Back</button>
+                        <button
+                            className="login-page-button "
+                            onClick={() => this.props.history.push('/login')}>
+                            Go Back</button>
                     </div>
                 </div>
             </form>
