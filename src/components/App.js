@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route , Switch} from "react-router-dom";
 import { Provider } from "react-redux";
 
 import MainScreen from "./MainScreen";
@@ -12,9 +12,11 @@ let App = () =>
     <div className="App">
       <Router>
         <div>
-          <Route exact path="/" component={MainScreen} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route path="/create-account" exact component={CreateAccount} />
+          <Switch>
+            <Route exact path="/login" component={LoginPage} />
+            <Route path="/create-account" exact component={CreateAccount} />
+            <Route path="/" component={MainScreen} />
+          </Switch>
         </div>
       </Router>
     </div>

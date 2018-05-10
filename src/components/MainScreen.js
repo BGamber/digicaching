@@ -14,11 +14,11 @@ let MainScreen = () => {
       <div className="content-container">
         <LoginRedirect/>
         <Switch>
-          <Route exact path='/profile' component={ProfileScreen}/>
-          <Route exact path='/(map)?' component={MyMapComponent} />
-          <Route exact path='/collections' component={Collections} />
-          <Route exact path='/friends-lookup' component={FriendsLookup} />
-          <Route exact path='/search' component={SearchPage} />
+          <Route path='/profile' component={ProfileScreen}/>
+          <Route path='/(map)?' component={MyMapComponent} />
+          <Route path='/collections' component={Collections} />
+          <Route path='/friends-lookup' component={FriendsLookup} />
+          <Route path='/search' component={SearchPage} />
 
           {/* <Route exact path='/main/something/:somthing render={ (props) => {
                     let profileUserId = props.match.params.userid

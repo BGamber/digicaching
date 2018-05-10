@@ -34,7 +34,7 @@ let userLogin = async (req, res) => {
   let { email, password } = req.body;
   let user = await getUserByEmail(email);
 
-  let isValid = await bcrypt.compare(password, user.pass);
+  let isValid = await bcrypt.compare(password, user.password);
   if (isValid) {
     let token = createToken(user);
     res.setHeader("Content-Type", "application/json");

@@ -1,15 +1,16 @@
-const pgp = require('pg-promise')();
+const pgp = require("pg-promise")();
 const db = pgp(process.env.DATABASE_URL);
 pgp.pg.defaults.ssl = true;
 
 let getUserByEmail = async email => {
-  let queryString = 'SELECT id, username, pass FROM users WHERE email = $1;';
+  let queryString = "SELECT id, name, password FROM users WHERE email = $1;";
   let user = await db.one(queryString, [email]);
+  console.log(user);
   return user;
 };
 
 let getUserByName = async name => {
-  let queryString = 'SELECT id, username FROM users WHERE name ILIKE $1;';
+  let queryString = "SELECT id, name FROM users WHERE name ILIKE $1;";
   let user = await db.query(queryString, [name]);
   return user;
 };
@@ -44,5 +45,10 @@ let postNewUser = (name, email, hashPass) => {
 
 module.exports = {
   getUserById,
-  postNewUser
+  postNewUser,
+  getItems,
+  getUserByEmail,
+  getCollections,
+  getCaches,
+  getUserByName
 };
