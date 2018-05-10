@@ -1,31 +1,25 @@
-import { combineReducers } from 'redux';
-import { GET_PROFILE, PROFILE_LOADING } from '../actions/action-types';
+import profileReducer from "./profileReducer";
+import currentPositionReducer from "./currentPositionReducer";
 
 const initialState = {
   profile: null,
   loading: false
-}
+};
 
-const profileReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case PROFILE_LOADING: 
-      return {
-        ...state, loading: true
-      };
-    case GET_PROFILE:
-    return {
-      ...state, 
-      profile: action.payload,
-      loading: false
+let reducers ={
+  [profileReducer]:profileReducer,
+  [currentPositionReducer]:currentPositionReducer
+};
+
+let mainReducer = (state = initialState, action) => {
+  let newState = state;
+  Object.keys(reducers).forEach( (prefix) => {
+    if (action.type.startsWith(prefix)){
+      newState = reducers[prefix](state, action);
     }
-    default: return state;
-  }
-}
+  });
+  return newState;
 
-const allReducers = {
-  profile: profileReducer
-}
-
-let mainReducer = combineReducers(allReducers);
+};
 
 export default mainReducer;

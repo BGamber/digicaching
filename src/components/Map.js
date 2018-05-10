@@ -1,9 +1,39 @@
 import React from "react";
-import { compose, withProps } from "recompose";
+import { compose, withProps, lifecycle } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker as Cache}
   from "react-google-maps";
 import { MarkerClusterer } from
   "react-google-maps/lib/components/addons/MarkerClusterer";
+import {connect} from "react-redux";
+import currentPosition from "../actions/currentPositionAction";
+
+let mapStateToProps = ({caches, currentLat, currentLng}) => {
+  return {caches, currentLat, currentLng};
+};
+
+let mapDispatchtoProps = (dispatch) => {
+  let setCurrentPostition = (Lat, Lng) => {
+    dispatch(currentPosition(Lat, Lng));
+  };
+  return {setCurrentPostition};
+};
+
+let connection = connect(mapStateToProps, mapDispatchtoProps);
+
+let locationManagmentHooks = lifecycle({
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(({coords:{latitude, longitude}}) => {
+      this.props.setCurrentPostition(latitude, longitude);
+    });
+    let watch = navigator.geolocation.watchPosition(({coords:{latitude, longitude}}) => {
+      this.props.setCurrentPostition(latitude, longitude);
+    });
+    this.setState({watch});
+  },
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.state.watch);
+  }
+});
 
 const MyMapComponent = compose(
   withProps({
@@ -14,7 +44,9 @@ const MyMapComponent = compose(
     mapElement: <div style={{ height: "93.2vh" }} />,
   }),
   withScriptjs,
-  withGoogleMap
+  withGoogleMap,
+  connection,
+  locationManagmentHooks
 )(({caches=[]}) => {
 
   return <GoogleMap

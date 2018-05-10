@@ -1,24 +1,23 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import Map from "./Map";
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Provider } from "react-redux";
 
-import MainScreen from './MainScreen';
-import LoginPage from './main-login';
-import CreateAccount from './CreateAccount';
-import store from '../store';
+import MainScreen from "./MainScreen";
+import LoginPage from "./main-login";
+import CreateAccount from "./CreateAccount";
+import store from "../store";
 
-let App = () => 
+let App = () =>
   <Provider store={store}>
     <div className="App">
       <Router>
         <div>
           <Route exact path="/" component={LoginPage} />
-          <Route path="/create-account" exact component={CreateAccount} />  
+          <Route path="/create-account" exact component={CreateAccount} />
           <Route path="/main" component={MainScreen} />
         </div>
       </Router>
     </div>
-  </Provider>
+  </Provider>;
 
 export default App;
