@@ -48,7 +48,6 @@ const MyMapComponent = compose(
   connection,
   locationManagmentHooks
 )(({caches=[]}) => {
-  console.log("map");
   return <GoogleMap
     defaultZoom={15}
     defaultCenter={{ lat: 33.848460, lng: -84.37360 }}
