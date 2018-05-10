@@ -3,7 +3,7 @@ const db = pgp(process.env.DATABASE_URL);
 pgp.pg.defaults.ssl = true;
 
 let getUserByEmail = async email => {
-  let queryString = "SELECT id, name, pass FROM users WHERE email = $1;";
+  let queryString = "SELECT id, name, password FROM users WHERE email = $1;";
   let user = await db.one(queryString, [email]);
   return user;
 };
