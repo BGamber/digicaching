@@ -1,10 +1,11 @@
-const pgp = require('pg-promise')();
+const pgp = require("pg-promise")();
 const db = pgp(process.env.DATABASE_URL);
 pgp.pg.defaults.ssl = true;
 
 let getUserByEmail = async email => {
   let queryString = "SELECT id, name, password FROM users WHERE email = $1;";
   let user = await db.one(queryString, [email]);
+  console.log(user);
   return user;
 };
 

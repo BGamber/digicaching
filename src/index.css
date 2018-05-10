@@ -100,6 +100,10 @@ h2 {
   color: white;
   font-family: 'Josefin Sans', sans-serif;
 }
+.login-page-button a{
+    color:inherit;
+    text-decoration: none;
+}
 
 .submit-button {
   border-right: 1px solid grey;
@@ -196,7 +200,7 @@ h2 {
 
 .navbar {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   align-items: center;
   height: 6.8vh;
   list-style: none;
