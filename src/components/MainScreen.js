@@ -7,6 +7,7 @@ import MyMapComponent from "./Map";
 import Collections from "./CollectionScreen";
 import FriendsLookup from "./friends-lookup";
 import SearchPage from "./SearchPage";
+<<<<<<< HEAD
 import LoginRedirect from "./LoginRedirect";
 
 let MainScreen = () => {
@@ -22,6 +23,21 @@ let MainScreen = () => {
           <Route exact path='/search' component={SearchPage} />
 
 
+=======
+
+let MainScreen = () => {   
+  return(
+    <div className='route-container'>
+      <div className="content-container">
+        <Switch>
+          <Route exact path='/main/profile' component={ProfileScreen}/>
+          <Route exact path='/main/map' component={MyMapComponent} />
+          <Route exact path='/main/collections' component={Collections} />
+          <Route exact path='/main/friends-lookup' component={FriendsLookup} />
+          <Route exact path='/main/search' component={SearchPage} />
+                
+                
+>>>>>>> master
           {/* <Route exact path='/main/something/:somthing render={ (props) => {
                     let profileUserId = props.match.params.userid
                     return <ProfilePage profileUserId={profileUserId}/>

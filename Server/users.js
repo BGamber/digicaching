@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const {
-  findUserByEmail,
+  getUserByEmail,
   postNewUser
 } = require('./database');
 
@@ -32,7 +32,7 @@ let createToken = user =>
 
 let userLogin = async (req, res) => {
   let { email, password } = req.body;
-  let user = await findUserByEmail(email);
+  let user = await getUserByEmail(email);
 
   let isValid = await bcrypt.compare(password, user.pass);
   if (isValid) {
