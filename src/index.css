@@ -1,5 +1,9 @@
 /* font-family: 'Righteous', cursive;
-font-family: 'Josefin Sans', sans-serif; */
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'UnifrakturMaguntia', cursive;
+font-family: 'Pirata One', cursive;
+font-family: 'UnifrakturCook', cursive;
+font-family: 'New Rocker', cursive; */
 
 body {
   margin: 0;
@@ -21,9 +25,28 @@ body {
   justify-content: center;
 }
 
+.big-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .logo {
-  width: 300px;
-  margin-top: 20px;
+  display: none;
+}
+
+.app-name {
+  color: rgb(165, 143, 23);
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 100px;
+  margin: 200px 0 30px 0;
+}
+
+.logo1 {
+  width: 250px;
+  position: absolute;
+  top: 10px;
+  /* margin-top: 20px; */
 }
 
 .login-input {
@@ -239,7 +262,15 @@ collection-list-item>div {
 
 
 /*------------------*/
-/*------SEARCH------*/
+/*------QUERIES-----*/
 /*------------------*/
 
-
+@media only screen and (max-width: 600px) {
+  .big-logo {
+    display: none;
+  }
+  .logo {
+    display: block;
+    width: 280px;
+  }
+}
