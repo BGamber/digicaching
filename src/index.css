@@ -98,6 +98,10 @@ h2 {
   color: white;
   font-family: 'Josefin Sans', sans-serif;
 }
+.login-page-button a{
+    color:inherit;
+    text-decoration: none;
+}
 
 main.user-profile {
   padding-bottom: 80px;
@@ -163,7 +167,7 @@ collection-list-item>div {
 
 .navbar {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   align-items: center;
   width:100wh;
   height: 6.8vh;

@@ -1,5 +1,6 @@
 import profileReducer from "./profileReducer";
 import currentPositionReducer from "./currentPositionReducer";
+import userReducer from "./userReducer";
 
 const initialState = {
   profile: null,
@@ -8,7 +9,8 @@ const initialState = {
 
 let reducers ={
   [profileReducer]:profileReducer,
-  [currentPositionReducer]:currentPositionReducer
+  [currentPositionReducer]:currentPositionReducer,
+  [userReducer]:userReducer
 };
 
 let mainReducer = (state = initialState, action) => {

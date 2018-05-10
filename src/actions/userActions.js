@@ -1,9 +1,10 @@
-import { GET_ERRORS, SET_CURRENT_USER } from './types';
-import { SET_CURRENT_USER } from './action-types';
+const setTokenConst = "TOKEN";
+export const userConst = "ACTIVE_USER_";
 
-export const setCurrentUser = decoded => {
-  return {
-    type: SET_CURRENT_USER,
-    payload: decoded
-  };
+let setActiveUserToken = (token) => {
+  return {type:userConst + setTokenConst, token:token};
 };
+
+setActiveUserToken.toString = () => userConst + setTokenConst;
+
+export default setActiveUserToken;
