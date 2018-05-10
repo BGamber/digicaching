@@ -25,11 +25,11 @@ let MainScreen = () => {
                     return <ProfilePage profileUserId={profileUserId}/>
                 }} /> */}
 
-        </Switch>
-      </div>
-      <Footer />
-    </div>
-  );
-};
+            </Switch>
+            </div>
+            <Footer />
+        </div>
+    )
+}
 
 export default MainScreen;

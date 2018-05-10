@@ -4,7 +4,7 @@ import "../index.css";
 
 let Footer = () => {
   return (
-    <div className="navber-div">
+    <div className="navbar-div">
       <nav className="navbar">
         <div><NavLink to="/profile"><i className="ion-android-contact"></i></NavLink></div>
         <div><NavLink to="/map"><i className="ion-map"></i></NavLink></div>
