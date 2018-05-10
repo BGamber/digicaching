@@ -4,7 +4,7 @@ import "../index.css";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
-let dispatchToProps = (dispatch)
+let dispatchToProps = (dispatch);
 
 class LoginPage extends Component {
   constructor(props){

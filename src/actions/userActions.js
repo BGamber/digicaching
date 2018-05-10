@@ -1,4 +1,4 @@
-const setTokenConst = "TOKEN"
+const setTokenConst = "TOKEN";
 export const userConst = "ACTIVE_USER_";
 
 let setActiveUserToken = (token) => {
