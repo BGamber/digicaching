@@ -3,7 +3,6 @@ import currentPositionReducer from "./currentPositionReducer";
 import userReducer from "./userReducer";
 
 const initialState = {
-  profile: null,
   loading: false
 };
 
