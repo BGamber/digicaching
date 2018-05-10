@@ -1,6 +1,5 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
-
 import Footer from "./Footer";
 import ProfileScreen from "./ProfileScreen";
 import MyMapComponent from "./Map";

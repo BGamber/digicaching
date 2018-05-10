@@ -3,8 +3,14 @@ import BasicTemplate from "./BasicTemplate";
 import "../index.css";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import setActiveUserToken from "../actions/userActions";
 
-let dispatchToProps = (dispatch);
+let mapDispatchToProps = (dispatch) => {
+  let setToken = (token) => {
+    dispatch(setActiveUserToken(token));
+  };
+  return {setToken};
+};
 
 class LoginPage extends Component {
   constructor(props){
@@ -15,7 +21,6 @@ class LoginPage extends Component {
     };
   }
   submitLogin(){
-    console.log("Hello");
     let baseUrl = "auth/login";
     let payload = {
       "email": this.state.email,
@@ -35,7 +40,7 @@ class LoginPage extends Component {
       .then(res => {
         if (res.status === 200) {
           res.json().then(({token}) => {
-            localStorage.setItem("jwt", token);
+            this.props.setToken(token);
             if (prevPath) {
               this.props.history.replace(prevPath);
             } else {
@@ -87,6 +92,6 @@ class LoginPage extends Component {
   }
 }
 
+let connectedLoginPage = connect(null, mapDispatchToProps)(LoginPage);
 
-
-export default LoginPage;
+export default connectedLoginPage;
