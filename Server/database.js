@@ -8,6 +8,13 @@ let getUserById = async (req,res) => {
   res.send( user );
 };
 
+let postNewUser = (name, email, hashPass) => {
+  let queryString = "INSERT INTO users (name, email, password) VALUES ($1, $2, $3);";
+  let insert = db.none(queryString, [name, email, hashPass]);
+  return insert;
+}
+
 module.exports = {
-  getUserById
+  getUserById,
+  postNewUser
 };

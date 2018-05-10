@@ -1,4 +1,4 @@
-s/* font-family: 'Righteous', cursive;
+/* font-family: 'Righteous', cursive;
 font-family: 'Josefin Sans', sans-serif; */
 
 body {
@@ -14,20 +14,6 @@ body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-a {
-  text-decoration: none;
-  padding: .1rem;
-  display: inline-block;
-}
-a:hover {
-  background: rgba(100, 132, 200, 0.6);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: scroll;  
-}
-
 .main-login {
   display: flex;
   flex-direction: column;
@@ -35,21 +21,57 @@ a:hover {
   justify-content: center;
 }
 
+.logo {
+  width: 300px;
+  margin-top: 20px;
+}
+
+.login-input {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.user-input {
+  opacity: 0.3;
+  padding: 8px;
+  font-size: 22px;
+  border-radius: 5px;
+  margin: 5px 0;
+  height: 40px;
+  width: 330px;
+}
+
+.sign-in-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.login-buttons {
+  display: flex;
+  margin-top: 5px;
+}
+
+
 h2 {
   color: rgb(230, 230, 230);
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 27px;
+  font-size: 35px;
 }
 
-.Login-page-button {
+.login-page-button {
   background: radial-gradient(ellipse at bottom, rgb(253, 129, 139, 0.7), rgb(253, 129, 139));
   /* background: linear-gradient(40deg,#fa9f55,#fc6262); */
   border: none;
-  width: 220px;
-  height: 45px;
+  width: 160px;
+  height: 50px;
   font-size: 20px;
-  border-radius: 20px;
   padding: 5px;
+  margin: 5px 0;
   color: white;
   font-family: 'Josefin Sans', sans-serif;
 }
@@ -86,6 +108,26 @@ collection-list-item>div {
   align-items: center;
 }
 
+.submit-button {
+  border-right: 1px solid grey;
+}
+
+/*------------------*/
+/*---PROFILE-PAGE---*/
+/*------------------*/
+
+.loading-photo {
+  width: 200px;
+
+}
+
+
+
+
+
+
+
+
 /*------------------*/
 /*-----FOOTER-------*/
 /*------------------*/
@@ -96,24 +138,101 @@ collection-list-item>div {
   width: 100%;
 }
 
-
-
 .navbar {
   display: flex;
   flex-direction: row; 
   align-items: center;
   width:100wh;
-  height: 50px;
+  height: 6.8vh;
   list-style: none;
   padding: 0;
   background: rgb(253, 129, 139);
-  font-size: 40px;
+  font-size: 35px;
   justify-content: space-between;
 }
 
 .ion-android-contact,
 .ion-map,
-.ion-aperture {
-  margin: 20px 40px;
+.ion-aperture,
+.ion-person-add {
+  margin: 20px 15px;
   color: white;
+}
+
+.ion-android-contact:hover,
+.ion-map:hover,
+.ion-aperture:hover,
+.ion-person-add:hover {
+  color: rgb(160, 160, 160);
+}
+
+/*------------------*/
+/*--CREATE-ACCOUNT--*/
+/*------------------*/
+
+.create-account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-input2 {
+  opacity: 0.3;
+  padding: 12px;
+  font-size: 22px;
+  border-radius: 5px;
+  width: 320px;
+  margin: 5px 0;
+  height: 32px;
+}
+
+/* .user-input-photo {
+  opacity: 0.3;
+  border-radius: 5px;
+  width: 300px;
+  margin: 5px 0;
+  height: 32px;
+  margin-left: 100px;
+} */
+
+/*------------------*/
+/*--FRIENDS-LOOKUP--*/
+/*------------------*/
+
+.friends {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 93.2vh;
+}
+
+.friend-input {
+  opacity: 0.3;
+  padding: 12px;
+  font-size: 22px;
+  border-radius: 5px;
+  width: 320px;
+  margin: 17px 0;
+  height: 32px;
+}
+
+.lookup-title {
+  color: rgb(95, 95, 95);
+  margin: 0px;
+}
+
+/*------------------*/
+/*------SEARCH------*/
+/*------------------*/
+
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-results {
+  color: rgb(95, 95, 95);
 }

@@ -38,9 +38,10 @@ profile = {
     if (profile === null || loading) {
       profileContent = <div>
         <h3>...Loading...</h3>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="...loading..."/></div>;
-    } else {      
-    profileContent = <main className="user-profile">
+        <img className="loading-photo" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="...loading..."/></div>
+    } else {
+    profileContent =  (
+        <main className="user-profile">
           <header>
             <img src={avatarUrl} alt="" className="avatar" />
             <div className="user-name">
