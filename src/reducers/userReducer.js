@@ -12,8 +12,6 @@ let reducers = {
 
 let userReducer = (state, action) => {
   let type = action["type"];
-  console.log(reducers);
-  console.log(type);
   return reducers[type](state,action);
 };
 
