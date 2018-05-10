@@ -40,7 +40,7 @@ profile = {
         <h3>...Loading...</h3>
         <img className="loading-photo" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="...loading..."/></div>
     } else {
-    profileContent =  (
+    profileContent =  
         <main className="user-profile">
           <header>
             <img src={avatarUrl} alt="" className="avatar" />
