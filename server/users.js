@@ -32,15 +32,20 @@ let createToken = user =>
 
 let userLogin = async (req, res) => {
   let { email, password } = req.body;
-  let user = await getUserByEmail(email);
 
-  let isValid = await bcrypt.compare(password, user.pass);
+  try {
+    let user = await getUserByEmail(email);
+  } catch (err) {
+    res.status(401).send("User Not Found");
+  }
+
+  let isValid = await bcrypt.compare(password, user.password);
   if (isValid) {
     let token = createToken(user);
     res.setHeader("Content-Type", "application/json");
     res.send(JSON.stringify({ token }));
   } else {
-    res.sendStatus(401, "Missing/Incorrect Password");
+    res.status(401).send("Missing/Incorrect Password");
   }
 };
 
