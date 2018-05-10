@@ -6,16 +6,6 @@ import { MarkerClusterer } from
   "react-google-maps/lib/components/addons/MarkerClusterer";
 import {connect} from "react-redux";
 import currentPosition from "../actions/currentPositionAction";
-import moment from "moment";
-
-let now = moment().toISOString();
-let yesterday = moment();
-yesterday = yesterday.subtract(1,"days").toISOString();
-
-let defaultCaches = [{longitude:-84.37277,latitude:33.847279,createdOn:now, name:"Farm Burger", id:"31648bf2-537c-11e8-9809-a81e84057a84"},
-  {latitude:33.848460,longitude:-84.37360, name:"ATV",createdOn:yesterday, id:"4ffd4fa6-537f-11e8-bfe7-a81e84057a84" }];
-
-
 
 let mapStateToProps = ({caches, currentLat, currentLng}) => {
   return {caches, currentLat, currentLng};
@@ -57,7 +47,7 @@ const MyMapComponent = compose(
   withGoogleMap,
   connection,
   locationManagmentHooks
-)(({caches=defaultCaches}) => {
+)(({caches=[]}) => {
 
   return <GoogleMap
     defaultZoom={15}
