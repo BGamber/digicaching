@@ -1,28 +1,34 @@
-import { GET_PROFILE, PROFILE_LOADING } from './action-types';
+const PROFILE_GET = "PROFILE_GET";
+const PROFILE_LOADING = "PROFILE_LOADING";
 
-export let getCurrentProfile = () => dispatch => {
-  dispatch(setProfileLoading());
-  fetch('./api/user')
-    .then((res) => {
-      if (!res.ok) {
-        dispatch({
-          type: GET_PROFILE,
-          payload: {}
-        })
-      } else {
-        (res => res.json())
-        .then(data =>
+export let getCurrentProfile = () => {
+  return (dispatch) => {
+    dispatch(setProfileLoading());
+    fetch("./api/user")
+      .then((res) => {
+        if (!res.ok) {
           dispatch({
-            type: GET_PROFILE,
-            payload: res.data
-          })
-        )
-      }
-    })
-  }
+            type: PROFILE_GET,
+            payload: {}
+          });
+        } else {
+          (res => res.json())
+            .then(data =>
+              dispatch({
+                type: PROFILE_GET,
+                payload: data
+              })
+            );
+        }
+      });
+  };
+};
+export let setProfileLoading = () => {
+  return {
+    type: PROFILE_LOADING
+  };
+};
 
-  export let setProfileLoading = () => {
-    return {
-      type: PROFILE_LOADING
-    }
-  }
+setProfileLoading.toString = () => PROFILE_LOADING;
+
+getCurrentProfile.toString = () => PROFILE_GET;
