@@ -47,6 +47,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use("/api", checkToken, api);
 app.use("/auth", auth);
+app.use("/api", api);
 app.use("/", (req, res, next) => {
   let file = process.env.PUBLICDIR + req.url;
   res.sendFile(process.env.PUBLICDIR + req.url);
