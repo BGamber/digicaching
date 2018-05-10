@@ -3,14 +3,14 @@ const db = pgp(process.env.DATABASE_URL);
 pgp.pg.defaults.ssl = true;
 
 let getUserByEmail = async email => {
-  let queryString = `SELECT id, username, pass FROM users WHERE email = '${email}';`;
-  let user = await db.one(queryString);
+  let queryString = 'SELECT id, username, pass FROM users WHERE email = $1;';
+  let user = await db.one(queryString, [email]);
   return user;
 };
 
 let getUserByName = async name => {
-  let queryString = `SELECT id, username FROM users WHERE name = '${name}';`;
-  let user = await db.one(queryString);
+  let queryString = 'SELECT id, username FROM users WHERE name ILIKE $1;';
+  let user = await db.query(queryString, [name]);
   return user;
 };
 
