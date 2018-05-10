@@ -1,4 +1,4 @@
-import setUserToken, {userConst} from "../actions/userActions";
+import setUserToken, {setTokenConst} from "../actions/userActions";
 
 let setUserTokenReducer = (state,action) => {
   let token = action["token"];
@@ -12,13 +12,11 @@ let reducers = {
 
 let userReducer = (state, action) => {
   let type = action["type"];
-  console.log(reducers);
-  console.log(type);
   return reducers[type](state,action);
 };
 
 
 setUserTokenReducer.toString = () => setUserToken;
-userReducer.toString = () => userConst;
+userReducer.toString = () => setTokenConst;
 
 export default userReducer;
