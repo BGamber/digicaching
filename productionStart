@@ -1,0 +1,5 @@
+#! /usr/bin/env sh
+
+yarn build;
+cd Server;
+node index.js;
