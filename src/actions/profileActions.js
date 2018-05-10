@@ -1,10 +1,10 @@
 const PROFILE_GET = "PROFILE_GET";
 const PROFILE_LOADING = "PROFILE_LOADING";
 
-export let getCurrentProfile = () => {
+export let getCurrentProfile = (id) => {
   return (dispatch) => {
     dispatch(setProfileLoading());
-    fetch("./api/user")
+    fetch(`./api/users/${id}`)
       .then((res) => {
         if (!res.ok) {
           dispatch({
