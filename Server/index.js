@@ -45,7 +45,7 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded());
-app.use("/api", api);
+app.use("/api", checkToken, api);
 app.use("/auth", auth);
 app.use("/", (req, res, next) => {
   let file = process.env.PUBLICDIR + req.url;
