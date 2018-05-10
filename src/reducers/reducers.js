@@ -1,8 +1,26 @@
-import { combineReducers } from 'redux';
+import profileReducer from "./profileReducer";
+import currentPositionReducer from "./currentPositionReducer";
+import userReducer from "./userReducer";
 
-const allReducers = {
-}
+const initialState = {
+  loading: false
+};
 
-let mainReducer = combineReducers(allReducers);
+let reducers ={
+  [profileReducer]:profileReducer,
+  [currentPositionReducer]:currentPositionReducer,
+  [userReducer]:userReducer
+};
+
+let mainReducer = (state = initialState, action) => {
+  let newState = state;
+  Object.keys(reducers).forEach( (prefix) => {
+    if (action.type.startsWith(prefix)){
+      newState = reducers[prefix](state, action);
+    }
+  });
+  return newState;
+
+};
 
 export default mainReducer;

@@ -1,23 +1,55 @@
 import React from "react";
-import { compose, withProps } from "recompose";
+import { compose, withProps, lifecycle } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker as Cache}
   from "react-google-maps";
 
 import { MarkerClusterer } from
   "react-google-maps/lib/components/addons/MarkerClusterer";
+import {connect} from "react-redux";
+import currentPosition from "../actions/currentPositionAction";
 import CacheInfoBox from "./CacheInfoBox";
+
+let mapStateToProps = ({caches, currentLat, currentLng}) => {
+  return {caches, currentLat, currentLng};
+};
+
+let mapDispatchtoProps = (dispatch) => {
+  let setCurrentPostition = (Lat, Lng) => {
+    dispatch(currentPosition(Lat, Lng));
+  };
+  return {setCurrentPostition};
+};
+
+let connection = connect(mapStateToProps, mapDispatchtoProps);
+
+let locationManagmentHooks = lifecycle({
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(({coords:{latitude, longitude}}) => {
+      this.props.setCurrentPostition(latitude, longitude);
+    });
+    let watch = navigator.geolocation.watchPosition(({coords:{latitude, longitude}}) => {
+      this.props.setCurrentPostition(latitude, longitude);
+    });
+    this.setState({watch});
+  },
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.state.watch);
+  }
+});
+
 const MyMapComponent = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7Sm"+
     "ujjPUIGKdyao2Kqitzr1kiRg&v=3.exp",
     loadingElement: <div style={{ height: "100%" }} />,
     containerElement: <div style={{ height: "400px" }} />,
-    mapElement: <div style={{ height: "100%" }} />,
+    mapElement: <div style={{ height: "93.2vh" }} />,
   }),
   withScriptjs,
-  withGoogleMap
-)(({caches=[], activeCache="4ffd4fa6-537f-11e8-bfe7-a81e84057a84"}) => {
-
+  withGoogleMap,
+  connection,
+  locationManagmentHooks
+)(({caches=[]}, activeCache) => {
   return <GoogleMap
     defaultZoom={15}
     defaultCenter={{ lat: 33.848460, lng: -84.37360 }}

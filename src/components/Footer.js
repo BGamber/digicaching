@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
-
-let CollectionList = (itemsList) => {
-  itemsList.map((item) => {
-    <li className="collection-list-item">
-      {item}
-    </li>
-  })
-}
+import React from "react";
+import {NavLink} from "react-router-dom";
+import "../index.css";
 
 let Footer = () => {
   return (
-    <main className="user-profile">
-      <div className="collection-display">
-        FOOTER (links, etc.)
-      </div>
-    </main>
+    <div className="navbar-div">
+      <nav className="navbar">
+        <div><NavLink to="/profile"><i className="ion-android-contact"></i></NavLink></div>
+        <div><NavLink to="/map"><i className="ion-map"></i></NavLink></div>
+        <div><NavLink to="/collections"><i className="ion-aperture"></i></NavLink></div>
+        <div><NavLink to="/friends-lookup"><i className="ion-person-add"></i></NavLink></div>
+      </nav>
+    </div>
   );
 };
 

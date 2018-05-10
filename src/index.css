@@ -1,5 +1,318 @@
+/* font-family: 'Righteous', cursive;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'UnifrakturMaguntia', cursive;
+font-family: 'Pirata One', cursive;
+font-family: 'UnifrakturCook', cursive;
+font-family: 'New Rocker', cursive; */
+
 body {
   margin: 0;
-  width: 100vw;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #cfd7ff 0%,#9baefb 60%,rgb(134, 168, 255) 100%);
+}
+
+.App {
   height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-image: url('http://localhost:3000/coverPhoto.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment:fixed;
+  margin: auto;
+}
+
+.main-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.big-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-name {
+  color: rgb(165, 143, 23);
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 100px;
+  margin: 200px 0 30px 0;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; 
+}
+
+.logo1 {
+  width: 250px;
+  position: absolute;
+  top: 10px;
+  /* margin-top: 20px; */
+}
+
+.login-input {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.user-input {
+  opacity: 0.6;
+  padding: 8px;
+  font-size: 22px;
+  border-radius: 5px;
+  margin: 5px 0;
+  height: 40px;
+  width: 330px;
+}
+
+.sign-in-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.login-buttons {
+  display: flex;
+  margin-top: 5px;
+}
+
+
+h2 {
+  color: rgb(230, 230, 230);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 35px;
+}
+
+.login-page-button {
+  background: radial-gradient(ellipse at bottom, rgb(253, 129, 139, 0.7), rgb(253, 129, 139));
+  /* background: linear-gradient(40deg,#fa9f55,#fc6262); */
+  border: none;
+  width: 160px;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px;
+  margin: 5px 0;
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.login-page-button a{
+    color:inherit;
+    text-decoration: none;
+}
+
+.submit-button {
+  border-right: 1px solid grey;
+}
+
+/*------------------*/
+/*---PROFILE-PAGE---*/
+/*------------------*/
+/* 
+.loading-photo {
+  width: 200px;
+} */
+
+.upper-profile-div{
+  height: 600px;
+  background-image: url('http://localhost:3000/7z6cSaI-lord-of-the-rings-wallpaper-hd.jpg');
+  background-size: cover;
+  background-position: center;
+  /* background-attachment:fixed; */
+}
+
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.photo-choose {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 500px;
+  left: 50px;
+}
+
+#upload-photo {
+  opacity: 0;
+}
+
+.upload-profile {
+  border: 1px solid white;
+  background: radial-gradient(ellipse at bottom, rgb(253, 129, 139, 0.7), rgb(253, 129, 139));
+  padding: 10px;
+  width: 230px;
+  text-align: center;
+}
+
+.profile-photo {
+  width: 250px;
+  height: 250px;
+  border: 1px solid white;
+  background: radial-gradient(ellipse at bottom, rgba(255, 245, 246, 0.7), rgb(255, 255, 255));
+  position: absolute;
+  left: 50px;
+  top: 250px;
+}
+
+.left-and-right {
+  display: flex;
+}
+
+.left-profile-side {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  background: linear-gradient( rgb(104, 104, 104), rgb(218, 211, 211));
+  border: 2px solid white;
+}
+
+.right-profile-side {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  border: 1px solid white;
+  background: linear-gradient( rgb(104, 104, 104), rgb(255, 255, 255));
+}
+
+.left-values {
+  height: 25%;
+}
+
+
+/*------------------*/
+/*-----FOOTER-------*/
+/*------------------*/
+
+.navbar-div{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 6.8vh;
+  list-style: none;
+  padding: 0;
+  background: rgb(253, 129, 139);
+  font-size: 35px;
+  justify-content: space-between;
+}
+
+.ion-android-contact,
+.ion-map,
+.ion-aperture,
+.ion-person-add {
+  margin: 20px 15px;
+  color: white;
+}
+
+.ion-android-contact:hover,
+.ion-map:hover,
+.ion-aperture:hover,
+.ion-person-add:hover {
+  color: rgb(160, 160, 160);
+}
+
+/*------------------*/
+/*--CREATE-ACCOUNT--*/
+/*------------------*/
+
+.create-account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-input2 {
+  opacity: 0.6;
+  padding: 12px;
+  font-size: 22px;
+  border-radius: 5px;
+  width: 320px;
+  margin: 5px 0;
+  height: 32px;
+}
+
+/* .user-input-photo {
+  opacity: 0.3;
+  border-radius: 5px;
+  width: 300px;
+  margin: 5px 0;
+  height: 32px;
+  margin-left: 100px;
+} */
+
+/*------------------*/
+/*--FRIENDS-LOOKUP--*/
+/*------------------*/
+
+.friends {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 93.2vh;
+}
+
+.friend-input {
+  opacity: 0.6;
+  padding: 12px;
+  font-size: 22px;
+  border-radius: 5px;
+  width: 320px;
+  margin: 17px 0;
+  height: 32px;
+}
+
+.lookup-title {
+  color: rgb(165, 143, 23);
+  margin: 0px;
+}
+
+/*------------------*/
+/*------SEARCH------*/
+/*------------------*/
+
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-results {
+  color: rgb(95, 95, 95);
+}
+
+
+/*------------------*/
+/*------QUERIES-----*/
+/*------------------*/
+
+@media only screen and (max-width: 1000px) {
+  
+
+}
+
+
+@media only screen and (max-width: 600px) {
+  
+  .app-name {
+    font-size: 55px;
+    margin: 220px 0 30px 0;
+  }
+
+  
 }
