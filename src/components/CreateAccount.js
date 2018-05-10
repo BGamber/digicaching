@@ -76,7 +76,7 @@ class CreateAccount extends Component {
                             type="submit">Submit</button>
                         <button 
                             className="login-page-button " 
-                            onClick={() => this.props.history.push('/login-page')}>Go Back</button>
+                            onClick={() => this.props.history.push('/')}>Go Back</button>
                     </div>
                 </div>
             </form>

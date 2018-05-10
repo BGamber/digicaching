@@ -13,7 +13,7 @@ let App = () =>
     <div className="App">
       <Router>
         <div>
-          <Route exact path="/login-page" component={LoginPage} />
+          <Route exact path="/" component={LoginPage} />
           <Route path="/create-account" exact component={CreateAccount} />  
           <Route path="/main" component={MainScreen} />
         </div>
