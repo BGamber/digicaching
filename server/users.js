@@ -59,7 +59,7 @@ let userRegister = async (req, res) => {
 
   let insertPromise = postNewUser(username, email, hashPass);
   insertPromise
-    .then(() => res.send("Success"))
+    .then(() => { userLogin(req, res); })
     .catch(err => {
       res.setHeader("Content-Type", "application/json");
       res.status(422).send(JSON.stringify(err));
