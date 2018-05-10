@@ -4,7 +4,7 @@ const PROFILE_LOADING = "PROFILE_LOADING";
 export let getCurrentProfile = (id) => {
   return (dispatch) => {
     dispatch(setProfileLoading());
-    fetch(`./api/users/${id}`)
+    fetch(`/api/users/${id}`)
       .then((res) => {
         if (!res.ok) {
           dispatch({
@@ -12,13 +12,13 @@ export let getCurrentProfile = (id) => {
             payload: {}
           });
         } else {
-          (res => res.json())
+          (res => res.json()
             .then(data =>
               dispatch({
                 type: PROFILE_GET,
                 payload: data
               })
-            );
+            ))
         }
       });
   };

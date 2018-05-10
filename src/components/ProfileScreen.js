@@ -11,11 +11,16 @@ let avatarUrl = '../img/default_avatar.png';
 class ProfileScreen extends Component {
   async componentDidMount() {
     // let itemsList = await getInventory();
-    this.props.getCurrentProfile('096780a6-3347-410c-98d4-48db176ce9b1');
+let uid = '096780a6-3347-410c-98d4-48db176ce9b1';
+    let profileData = this.props.getCurrentProfileWrapped(uid);
+
+    this.setState({profileData});
+
+    console.log('profileData: ', {profileData});
   }
 
   render() {
-    console.log('this.props.profile: ', this.props.profile);
+    console.log('this.props: ', this.props);
     
     let testDataItemsList = [{
       name:'robot body',
@@ -25,7 +30,7 @@ class ProfileScreen extends Component {
   },{id:2, name:'battery', description:'A lithium battery', image_url:'http://cdn2.bigcommerce.com/server4400/ccf39/products/1423/images/5032/BR_C__18316.1368217244.1280.1280.jpg?c=2'}];
     // let { user } = this.props.auth; // CHECK IF USER IS LOGGED IN
     
-    let { profile, loading } = this.props.profile;
+    let { profile, loading } = this.props;
 profile = {
   "email": "joe@shmoe.net",
   "name": "joeshmoe",
@@ -72,6 +77,12 @@ let mapStateToProps = state => ({
   auth: state.auth
 });
 
-let mapDispatchToProps = (dispatch) => ({ getCurrentProfile });
+let mapDispatchToProps = (dispatch) => {
+  let id = '096780a6-3347-410c-98d4-48db176ce9b1';
+  let getCurrentProfileWrapped = (id) => { 
+    dispatch( getCurrentProfile(id) );
+  };
+  return {getCurrentProfileWrapped};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);
