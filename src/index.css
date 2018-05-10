@@ -1,0 +1,276 @@
+/* font-family: 'Righteous', cursive;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'UnifrakturMaguntia', cursive;
+font-family: 'Pirata One', cursive;
+font-family: 'UnifrakturCook', cursive;
+font-family: 'New Rocker', cursive; */
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #cfd7ff 0%,#9baefb 60%,rgb(134, 168, 255) 100%);
+}
+
+.App {
+  height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.main-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.big-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  display: none;
+}
+
+.app-name {
+  color: rgb(165, 143, 23);
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 100px;
+  margin: 200px 0 30px 0;
+}
+
+.logo1 {
+  width: 250px;
+  position: absolute;
+  top: 10px;
+  /* margin-top: 20px; */
+}
+
+.login-input {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.user-input {
+  opacity: 0.3;
+  padding: 8px;
+  font-size: 22px;
+  border-radius: 5px;
+  margin: 5px 0;
+  height: 40px;
+  width: 330px;
+}
+
+.sign-in-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.login-buttons {
+  display: flex;
+  margin-top: 5px;
+}
+
+
+h2 {
+  color: rgb(230, 230, 230);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 35px;
+}
+
+.login-page-button {
+  background: radial-gradient(ellipse at bottom, rgb(253, 129, 139, 0.7), rgb(253, 129, 139));
+  /* background: linear-gradient(40deg,#fa9f55,#fc6262); */
+  border: none;
+  width: 160px;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px;
+  margin: 5px 0;
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+main.user-profile {
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: space-around;
+}
+.collection-display {
+  border: 1px #ccc solid;
+  padding: 2rem;
+}
+.collection-display ul {
+  list-style: none;
+}
+.collection-display ul li {
+  padding: .5rem;
+  margin: .4rem;
+}
+.collection-display ul li div {
+  width: 100px;
+  height: 100px;
+  vertical-align: middle;
+  margin: .4rem;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  display: inline-block;
+}
+collection-list-item>div {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.submit-button {
+  border-right: 1px solid grey;
+}
+
+/*------------------*/
+/*---PROFILE-PAGE---*/
+/*------------------*/
+
+.loading-photo {
+  width: 200px;
+
+}
+
+
+
+
+
+
+
+
+/*------------------*/
+/*-----FOOTER-------*/
+/*------------------*/
+
+.navber-div{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  width:100wh;
+  height: 6.8vh;
+  list-style: none;
+  padding: 0;
+  background: rgb(253, 129, 139);
+  font-size: 35px;
+  justify-content: space-between;
+}
+
+.ion-android-contact,
+.ion-map,
+.ion-aperture,
+.ion-person-add {
+  margin: 20px 15px;
+  color: white;
+}
+
+.ion-android-contact:hover,
+.ion-map:hover,
+.ion-aperture:hover,
+.ion-person-add:hover {
+  color: rgb(160, 160, 160);
+}
+
+/*------------------*/
+/*--CREATE-ACCOUNT--*/
+/*------------------*/
+
+.create-account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-input2 {
+  opacity: 0.3;
+  padding: 12px;
+  font-size: 22px;
+  border-radius: 5px;
+  width: 320px;
+  margin: 5px 0;
+  height: 32px;
+}
+
+/* .user-input-photo {
+  opacity: 0.3;
+  border-radius: 5px;
+  width: 300px;
+  margin: 5px 0;
+  height: 32px;
+  margin-left: 100px;
+} */
+
+/*------------------*/
+/*--FRIENDS-LOOKUP--*/
+/*------------------*/
+
+.friends {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 93.2vh;
+}
+
+.friend-input {
+  opacity: 0.3;
+  padding: 12px;
+  font-size: 22px;
+  border-radius: 5px;
+  width: 320px;
+  margin: 17px 0;
+  height: 32px;
+}
+
+.lookup-title {
+  color: rgb(95, 95, 95);
+  margin: 0px;
+}
+
+/*------------------*/
+/*------SEARCH------*/
+/*------------------*/
+
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-results {
+  color: rgb(95, 95, 95);
+}
+
+
+/*------------------*/
+/*------QUERIES-----*/
+/*------------------*/
+
+@media only screen and (max-width: 600px) {
+  .big-logo {
+    display: none;
+  }
+  .logo {
+    display: block;
+    width: 280px;
+  }
+}
