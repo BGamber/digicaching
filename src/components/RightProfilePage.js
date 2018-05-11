@@ -11,8 +11,11 @@ class RightProfilePage extends Component {
   render(){
     return (
       <div className="right-profile-side">
-        <div className="my-inventory">
-          <h4>My inventory</h4>
+        <div className="my-inventory left-values">
+          <h4>Inventory</h4>
+        </div>
+        <div className="logout">
+          <p>Log Out</p>
         </div>
     </div>
     );

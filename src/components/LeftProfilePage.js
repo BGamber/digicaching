@@ -11,17 +11,21 @@ class LeftProfilePage extends Component {
   render(){
     return (
       <div className="left-profile-side">
-        <div className="friends left-values">
-          <p>amount of friends</p>
+        <div className="user-name left-values">
+          <p>User Name:</p>
+          <p>Izik5415</p>
+        </div>
+        <div className="friends-list left-values">
+          <p>Friends</p>
+          <p>(300)</p>
         </div>
         <div className="ranking left-values">
-          <p>amount of friends</p>
+          <p>World Ranking</p>
+          <p>(320)</p>
         </div>
         <div className="points left-values">
-          <p>amount of friends</p>  
-        </div>
-        <div className="logout left-values">
-          <p>amount of friends</p>
+          <p>Personal Score</p>
+          <p>2000493</p>  
         </div>
       </div>
     );

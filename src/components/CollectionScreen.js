@@ -10,8 +10,65 @@ class Collections extends Component {
 
   render(){
     return (
-      <div>
-          
+      <div className="collections">
+        <h1 className="collections-header">Collections</h1>
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          {/* <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" />
+          <img className="collection-img" src="doors.jpeg" /> */}
       </div>
     );
   }
