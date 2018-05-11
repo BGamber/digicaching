@@ -14,10 +14,10 @@ class UpperProfilePage extends Component {
         <img className="profile-photo" alt="profile" src={this.state.coverImage} />
         <div className="photo-choose">
           <label class="upload-profile" for="upload-photo">Choose Cover</label>
-            <input type="file" name="photo" id="upload-photo" onChange={(event) => {
-              let file = event.target.files[0];
-              let url = URL.createObjectURL(file);
-              this.setState({ coverImage: url }) }} />
+          <input type="file" name="photo" id="upload-photo" onChange={(event) => {
+            let file = event.target.files[0];
+            let url = URL.createObjectURL(file);
+            this.setState({ coverImage: url }) }} />
         </div>
       </div>
     );
