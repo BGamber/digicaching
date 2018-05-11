@@ -9,7 +9,7 @@ import Footer from './Footer';
 import '../index.css';
 
 
-class ProfileScreen extends Component {
+class ProfilePage extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -39,4 +39,4 @@ let mapStateToProps = state => ({
 
 let mapDispatchToProps = (dispatch) => ({ getCurrentProfile });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
