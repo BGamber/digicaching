@@ -16,13 +16,13 @@ let getUserByName = async name => {
 };
 
 let getUserById = async (req, res) => {
-  let queryString = "SELECT email, name, image_url, password FROM users" + (req.params.id !== undefined ? " WHERE id = $1" : "") +";";
+  let queryString = "SELECT id, email, name, image_url FROM users" + (req.params.id !== undefined ? " WHERE id = $1" : "") +";";
   let users = await db.query(queryString, [req.params.id]);
   res.send(users);
 };
 
 let getItems = async (req, res) => {
-  let queryString = "SELECT name, description, image_url FROM items" + (req.params.id !== undefined ? " WHERE id = $1" : "") +";";
+  let queryString = "SELECT id, name, description, image_url FROM items" + (req.params.id !== undefined ? " WHERE id = $1" : "") +";";
   let items = await db.query(queryString, [req.params.id]);
   res.send(items);
 };
