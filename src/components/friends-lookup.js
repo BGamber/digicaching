@@ -6,7 +6,7 @@ let FriendsLookup = () => {
         <h1 className="lookup-title">Find A Friend: </h1>
         <input type="text" className="friend-input" placeholder="User Name" />
         <button 
-          className="login-page-button" 
+          className="friend-button-search" 
           type="submit">Search</button>
     </div>
   );
