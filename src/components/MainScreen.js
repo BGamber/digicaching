@@ -15,16 +15,35 @@ let MainScreen = () => {
       <div className="content-container">
         <LoginRedirect/>
         <Switch>
+<<<<<<< HEAD
           <Route path='/profile' component={ProfilePage}/>
+=======
+          <Route path='/profile' component={ProfileScreen}/>
+>>>>>>> master
           <Route path='/collections' component={Collections} />
           <Route path='/friends-lookup' component={FriendsLookup} />
           <Route path='/search' component={SearchPage} />
           <Route path='/(map)?' component={MyMapComponent} />
+<<<<<<< HEAD
         </Switch>
         </div>
         <Footer />
     </div>
   )
 }
+=======
+
+          {/* <Route exact path='/main/something/:somthing render={ (props) => {
+                    let profileUserId = props.match.params.userid
+                    return <ProfilePage profileUserId={profileUserId}/>
+                }} /> */}
+
+        </Switch>
+      </div>
+      <Footer />
+    </div>
+  );
+};
+>>>>>>> master
 
 export default MainScreen;

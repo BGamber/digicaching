@@ -21,7 +21,7 @@ class LoginPage extends Component {
     };
   }
   submitLogin(){
-    let baseUrl = "auth/login";
+    let baseUrl = `${process.env.REACT_APP_BACKEND}/auth/login`;
     let payload = {
       "email": this.state.email,
       "password": this.state.password
