@@ -6,6 +6,7 @@ import { MarkerClusterer } from
   "react-google-maps/lib/components/addons/MarkerClusterer";
 import {connect} from "react-redux";
 import currentPosition from "../actions/currentPositionAction";
+import PropTypes from "prop-types";
 
 let mapStateToProps = ({caches, currentLat, currentLng}) => {
   return {caches, currentLat, currentLng};
@@ -22,7 +23,7 @@ let connection = connect(mapStateToProps, mapDispatchtoProps);
 
 let locationManagmentHooks = lifecycle({
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(({coords:{latitude, longitude}}) => {
+    navigator.geolocation.getCurrentPosition(({coords:{latitude,longitude}}) => {
       this.props.setCurrentPostition(latitude, longitude);
     });
     let watch = navigator.geolocation.watchPosition(({coords:{latitude, longitude}}) => {
@@ -35,6 +36,26 @@ let locationManagmentHooks = lifecycle({
   }
 });
 
+let mapComponent = ({caches=[], currentLat=33.848460, currentLng=-84.37360}) => {
+  return <GoogleMap
+    defaultZoom={15}
+    defaultCenter={{ lat: currentLat, lng: currentLng }}
+  >
+    <MarkerClusterer>
+      <Cache position={{ lat: -34.397, lng: 150.644 }} title="Test" />
+      {caches.map( ({latitude:lat,longitude:lng, id, name}) => {
+        return <Cache position={{lat, lng}} title={name} key={id}/>;
+      })}
+    </MarkerClusterer>
+  </GoogleMap>;
+};
+
+mapComponent.propTypes = {
+  caches: PropTypes.array,
+  currentLat: PropTypes.number,
+  currentLng: PropTypes.number,
+};
+
 const MyMapComponent = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAd627TYIzdl4hWGQ6aikUkXho3nwHOetQ&v=3",
@@ -46,18 +67,9 @@ const MyMapComponent = compose(
   withGoogleMap,
   connection,
   locationManagmentHooks
-)(({caches=[]}) => {
-  return <GoogleMap
-    defaultZoom={15}
-    defaultCenter={{ lat: 33.848460, lng: -84.37360 }}
-  >
-    <MarkerClusterer>
-      <Cache position={{ lat: -34.397, lng: 150.644 }} title="Test" />
-      {caches.map( ({latitude:lat,longitude:lng, id, name}) => {
-        return <Cache position={{lat, lng}} title={name} key={id}/>;
-      })}
-    </MarkerClusterer>
-  </GoogleMap>;
-});
+)(mapComponent);
+
+
+
 
 export default MyMapComponent;

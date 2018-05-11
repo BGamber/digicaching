@@ -15,21 +15,21 @@ let MainScreen = () => {
         <LoginRedirect/>
         <Switch>
           <Route path='/profile' component={ProfileScreen}/>
-          <Route path='/(map)?' component={MyMapComponent} />
           <Route path='/collections' component={Collections} />
           <Route path='/friends-lookup' component={FriendsLookup} />
           <Route path='/search' component={SearchPage} />
+          <Route path='/(map)?' component={MyMapComponent} />
 
           {/* <Route exact path='/main/something/:somthing render={ (props) => {
                     let profileUserId = props.match.params.userid
                     return <ProfilePage profileUserId={profileUserId}/>
                 }} /> */}
 
-            </Switch>
-            </div>
-            <Footer />
-        </div>
-    )
-}
+        </Switch>
+      </div>
+      <Footer />
+    </div>
+  );
+};
 
 export default MainScreen;

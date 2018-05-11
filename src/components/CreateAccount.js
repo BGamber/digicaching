@@ -28,7 +28,7 @@ class CreateAccount extends Component {
     if(password.value !== confirmPassword.value){
       alert("Your passwords don't match");
     } else {
-      let url = "/auth/register";
+      let url = `${process.env.REACT_APP_BACKEND}/auth/register`;
       let post = {
         name: userName.value,
         email: email.value,
