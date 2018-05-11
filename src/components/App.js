@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import MainScreen from './MainScreen';
 import LoginPage from './main-login';
 import CreateAccount from './CreateAccount';
-import ProfileScreen from './profilePage';
 import store from '../store';
 
 let App = () => 

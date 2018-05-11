@@ -119,7 +119,7 @@ h2 {
 
 .upper-profile-div{
   height: 600px;
-  background-image: url('http://localhost:3000/7z6cSaI-lord-of-the-rings-wallpaper-hd.jpg');
+  background-image: url('/world_map-wide.jpg');
   background-size: cover;
   background-position: center;
   /* background-attachment:fixed; */
