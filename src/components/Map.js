@@ -1,6 +1,6 @@
 import React from "react";
 import { compose, withProps, lifecycle } from "recompose";
-import { withScriptjs, withGoogleMap, GoogleMap, Marker as Cache}
+import { withScriptjs, withGoogleMap, GoogleMap, Marker}
   from "react-google-maps";
 import { MarkerClusterer } from
   "react-google-maps/lib/components/addons/MarkerClusterer";
@@ -41,10 +41,11 @@ let mapComponent = ({caches=[], currentLat=33.848460, currentLng=-84.37360}) => 
     defaultZoom={15}
     defaultCenter={{ lat: currentLat, lng: currentLng }}
   >
+    <Marker position={{lat:currentLat, lng:currentLng}} icon="/UserLocation.png"/>
     <MarkerClusterer>
-      <Cache position={{ lat: -34.397, lng: 150.644 }} title="Test" />
+      <Marker position={{ lat: -34.397, lng: 150.644 }} title="Test" />
       {caches.map( ({latitude:lat,longitude:lng, id, name}) => {
-        return <Cache position={{lat, lng}} title={name} key={id}/>;
+        return <Marker position={{lat, lng}} title={name} key={id}/>;
       })}
     </MarkerClusterer>
   </GoogleMap>;
