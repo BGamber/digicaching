@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCurrentProfile, setCurrentUser } from '../actions/profileActions';
+import { setCurrentUserProfile, setCurrentUser } from '../actions/profileActions';
 import store from '../store';
 import UpperProfilePage from './UpperProfilePage';
 import LeftProfilePage from './LeftProfilePage';
@@ -18,14 +18,20 @@ class ProfilePage extends Component {
   }
 
   render(){
+    let user = {
+      name:'MrUser',
+      friendsCount:99,
+      ranking:17,
+      score:42443
+    }
     return(
       <div className="profile-page">
         
 
 
-        <UpperProfilePage />
+        <UpperProfilePage/>
         <div className="left-and-right">
-        <LeftProfilePage />
+        <LeftProfilePage user={user}  />
         <RightProfilePage />
         </div>
         <Footer />
@@ -39,6 +45,6 @@ let mapStateToProps = state => ({
   auth: state.auth
 });
 
-let mapDispatchToProps = (dispatch) => ({ getCurrentProfile });
+let mapDispatchToProps = (dispatch) => ({ setCurrentUserProfile });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
