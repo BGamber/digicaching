@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../img/default_avatar.png";
-import { getCurrentProfile, setCurrentUser } from "../actions/profileActions";
+import { getCurrentProfile } from "../actions/profileActions";
 import CollectionList from "./CollectionList";
 
 let avatarUrl = "../img/default_avatar.png";
@@ -22,7 +22,7 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    console.log("this.props: ", this.props);
+    console.log("this.props::: ", this.props);
 
     let testDataItemsList = [{
       name: "robot body",

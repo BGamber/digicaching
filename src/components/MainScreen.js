@@ -1,25 +1,26 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
 import Footer from "./Footer";
-// import ProfileScreen from "./ProfileScreen";
+import ProfileScreen from "./ProfileScreen";
 import ProfilePage from './profilePage';
 import MyMapComponent from "./Map";
 import Collections from "./CollectionScreen";
 import FriendsLookup from "./friends-lookup";
 import SearchPage from "./SearchPage";
-import LoginRedirect from "./LoginRedirect";
+// import MagicLoader from "./loaders/MagicLoader";
 
 let MainScreen = () => {
   return(
     <div className='route-container'>
       <div className="content-container">
-        <LoginRedirect/>
+        {/* <LoginRedirect/> */}
         <Switch>
-          <Route path='/profile' component={ProfilePage}/>
+          <Route path='/profile' exact component={ProfilePage}/>
           <Route path='/collections' component={Collections} />
           <Route path='/friends-lookup' component={FriendsLookup} />
           <Route path='/search' component={SearchPage} />
-          <Route path='/(map)?' component={MyMapComponent} />
+          <Route path='/(map)?' exact component={MyMapComponent} />
+          <Route path='/tester' exact component={ProfileScreen} />
         </Switch>
       </div>
       <Footer />

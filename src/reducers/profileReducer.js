@@ -23,8 +23,10 @@ let profileReducer = (state=profile, action) => {
     };
   case "SET":
     return action.payload
-  }
+  default:
   return state;
+  }
+  
 };
 
 

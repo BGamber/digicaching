@@ -8,7 +8,6 @@ import RightProfilePage from './RightProfilePage';
 import Footer from './Footer';
 import '../index.css';
 
-
 class ProfilePage extends Component {
   constructor(props){
     super(props);
@@ -21,10 +20,13 @@ class ProfilePage extends Component {
   render(){
     return(
       <div className="profile-page">
+        
+
+
         <UpperProfilePage />
         <div className="left-and-right">
-          <LeftProfilePage />
-          <RightProfilePage />
+        <LeftProfilePage />
+        <RightProfilePage />
         </div>
         <Footer />
       </div>

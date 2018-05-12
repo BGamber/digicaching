@@ -6,13 +6,16 @@
     "@types/googlemaps": "^3.30.8",
     "@types/markerclustererplus": "^2.1.33",
     "@types/react": "^16.3.13",
+    "dat-gui": "^0.5.0",
     "eslint-plugin-react": "^7.7.0",
     "google-distance-matrix": "^1.1.1",
+    "konva": "^2.0.3",
     "moment": "^2.22.1",
     "pg-promise": "^8.4.3",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-google-maps": "^9.4.5",
+    "react-konva": "^1.7.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
@@ -26,5 +29,4 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
-
 }
