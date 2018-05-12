@@ -16,13 +16,15 @@ let getUserByName = async name => {
 };
 
 let getUserById = async (req, res) => {
-  let queryString = "SELECT id, email, name, image_url FROM users" + (req.params.id !== undefined ? " WHERE id = $1" : "") +";";
+  let queryString = "SELECT email, name, image_url, password FROM users" +
+    (req.params.id !== undefined ? " WHERE id = $1" : "") + ";";
   let users = await db.query(queryString, [req.params.id]);
   res.send(users);
 };
 
 let getItems = async (req, res) => {
-  let queryString = "SELECT id, name, description, image_url FROM items" + (req.params.id !== undefined ? " WHERE id = $1" : "") +";";
+  let queryString = "SELECT name, description, image_url FROM items" +
+    (req.params.id !== undefined ? " WHERE id = $1" : "") + ";";
   let items = await db.query(queryString, [req.params.id]);
   res.send(items);
 };
@@ -41,6 +43,14 @@ let getCaches = (req, res) => {
 let postNewUser = (name, email, hashPass) => {
   let queryString = "INSERT INTO users (name, email, password) VALUES ($1, $2, $3);";
   let insert = db.none(queryString, [name, email, hashPass]);
+  return insert;
+};
+
+let postNewCache = (cache) => {
+  let { item_id, longitude, latitude } = cache;
+  let queryString = "INSERT INTO caches (item_id, longitude, latitude, location) " +
+    "VALUES ($1, $2, $3, ST_POINT($2, $3));"
+  let insert = db.none(queryString, [item_id, longitude, latitude]);
   return insert;
 };
 
