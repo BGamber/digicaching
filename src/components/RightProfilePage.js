@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
+import InventoryList from './InventoryList';
 
-class RightProfilePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      profileImage: ''
-    }
-  }
+let RightProfilePage = (props) => (
+  <div className="right-profile-side">
+    <div className="my-inventory left-values">
+      <h4>Inventory</h4>
+      <InventoryList items={props.userInventory} />
 
-  render(){
-    return (
-      <div className="right-profile-side">
-        <div className="my-inventory left-values">
-          <h4>Inventory</h4>
-        </div>
-        <div className="logout">
-          <p>Log Out</p>
-        </div>
     </div>
-    );
-  }
-};
+    <div className="logout">
+      <p>Log Out</p>
+    </div>
+  </div>
+);
 
 export default RightProfilePage;
