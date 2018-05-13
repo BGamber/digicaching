@@ -5,8 +5,7 @@ let RightProfilePage = (props) => (
   <div className="right-profile-side">
     <div className="my-inventory left-values">
       <h4>Inventory</h4>
-      <InventoryList items={props.userInventory} />
-
+      <InventoryList userId={props.userId} />
     </div>
     <div className="logout">
       <p>Log Out</p>
