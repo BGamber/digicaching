@@ -30,8 +30,10 @@ let getItems = async (req, res) => {
 };
 
 let getCollections = (req, res) => {
-  console.log(req.params);
-  res.send("Collections");
+  let queryString = "SELECT item_id, quantity FROM inventories" +
+    (req.params.id !== undefined ? " WHERE user_id = $1" : "") + ";";
+  let items = await db.query(queryString, [req.params.id]);
+  res.send(inventories);
 };
 
 let getCaches = (req, res) => {

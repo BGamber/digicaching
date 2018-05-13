@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import InventoryList from './InventoryList';
 
 let RightProfilePage = (props) => (

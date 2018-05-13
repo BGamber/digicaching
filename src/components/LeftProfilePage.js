@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 let LeftProfilePage = (props) => (
   <div className="left-profile-side">
