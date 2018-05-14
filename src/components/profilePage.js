@@ -10,6 +10,7 @@ import '../index.css';
 class ProfilePage extends Component {
   async componentDidMount() {
     console.log('this.props.users: ', this.props.users);
+    console.log('this.props.users.id: ', this.props.users[0].id);
     // let itemsList = await getUserInventories();
 
     let tempUserInfo = {
@@ -18,9 +19,9 @@ class ProfilePage extends Component {
       ranking: 18,
       score: 42444
     }
-    let uid = "096780a6-3347-410c-98d4-48db176ce9b1";
+    // let uid = "096780a6-3347-410c-98d4-48db176ce9b1";
 
-    fetch(`${process.env.REACT_APP_BACKEND}/api/users/${uid}`)
+    fetch(`${process.env.REACT_APP_BACKEND}/api/users/${this.props.users[0].id}`)
       .then((res) => {
         res.json()
           .then((data) => {
@@ -30,14 +31,14 @@ class ProfilePage extends Component {
 
           })
       })
-    this.props.setCurrentProfile(uid);
+    // this.props.setCurrentProfile(uid);
   }
 
   render() {
-    let uid = "096780a6-3347-410c-98d4-48db176ce9b1";
-    let currentUser =
-      this.props.users.find(user => user.id === uid);
-    console.log('this.uid: ', uid);
+    // let uid = "096780a6-3347-410c-98d4-48db176ce9b1";
+    let currentUser = this.props.users;
+    //   this.props.users.find(user => user.id === uid);
+    // console.log('this.uid: ', uid);
 
     console.log('currentUser:::: ', currentUser);
     
