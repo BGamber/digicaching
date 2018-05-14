@@ -1,15 +1,18 @@
 import profileReducer from "./profileReducer";
 import currentPositionReducer from "./currentPositionReducer";
 import userReducer from "./userReducer";
+import uiReducer from "./uiReducer";
 
 const initialState = {
-  loading: false
+  loading: false,
+  trackUser: true
 };
 
 let reducers ={
   [profileReducer]:profileReducer,
   [currentPositionReducer]:currentPositionReducer,
-  [userReducer]:userReducer
+  [userReducer]:userReducer,
+  [uiReducer]: uiReducer
 };
 
 let mainReducer = (state = initialState, action) => {
