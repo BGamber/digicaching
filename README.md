@@ -25,7 +25,7 @@ Retrieves data for one or all items.
 Retrieves data for one or all collections.
 
 `/api/caches/(id)?loc=userLongitude,userLatitude&bounds=West,East,North,South`
-Retrieves data for one or all caches. Providing _location_ query param and series of bounding box coordinates retrieves all caches inside that region. If id is included, distance to that specific cache is included. Cache id query is prioritized over bounding box query.
+Retrieves data for one or all caches. Requires _loc_ query param for current user location to calculate distance. Providing _bounds_ query param and series of bounding box coordinates retrieves all caches inside that region. Cache id query is prioritized over bounding box query.
 ```
 {
   id: [UUID],
@@ -34,7 +34,6 @@ Retrieves data for one or all caches. Providing _location_ query param and serie
   openedon: [timestamp or null],
   longitude: [float],
   latitude: [float],
-  _if ID included:_
   distance: [float (meter distance)]
 }
 ```
