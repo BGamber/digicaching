@@ -15,7 +15,8 @@ const {
   getItems,
   getInventories,
   getCollections,
-  getCaches
+  getCaches,
+  claimCache
 } = require("./database");
 
 const app = express();
@@ -31,6 +32,7 @@ api.get("/items/:id?", getItems);
 api.get("/inventories/:id?", getInventories);
 api.get("/collections/:id?", getCollections);
 api.get("/caches/:id?", getCaches);
+api.put("/caches/:id/claim", claimCache);
 
 app.use(cors());
 
