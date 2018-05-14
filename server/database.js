@@ -5,7 +5,6 @@ pgp.pg.defaults.ssl = true;
 let getUserByEmail = async email => {
   let queryString = "SELECT id, name, password FROM users WHERE email = $1;";
   let user = await db.one(queryString, [email]);
-  console.log(user);
   return user;
 };
 
@@ -16,17 +15,24 @@ let getUserByName = async name => {
 };
 
 let getUserById = async (req, res) => {
-  let queryString = "SELECT email, name, image_url, password FROM users" +
+  let queryString = "SELECT id, email, name, image_url FROM users" +
     (req.params.id !== undefined ? " WHERE id = $1" : "") + ";";
   let users = await db.query(queryString, [req.params.id]);
-  res.send(users);
+  let queryString2 = "SELECT u.name, u.image_url FROM users u " +
+    "JOIN friends f ON u.id = f.friend_id " +
+    "WHERE f.user_id = $1;";
+  await Promise.all(users.map(async user =>
+    user.friends = await db.query(queryString2, [user.id])));
+  res.setHeader("Content-Type", "application/json");
+  res.send(JSON.stringify(users));
 };
 
 let getItems = async (req, res) => {
   let queryString = "SELECT name, description, image_url FROM items" +
     (req.params.id !== undefined ? " WHERE id = $1" : "") + ";";
   let items = await db.query(queryString, [req.params.id]);
-  res.send(items);
+  res.setHeader("Content-Type", "application/json");
+  res.send(JSON.stringify(items));
 };
 
 let getInventories = async (req, res) => {
@@ -41,10 +47,34 @@ let getCollections = (req, res) => {
   res.send("Collections");
 };
 
-let getCaches = (req, res) => {
-  console.log(req.params);
-  console.log(req.query);
-  res.send("Caches");
+let getCaches = async (req, res) => {
+  let locationParams = req.query.loc.split(",");
+  let location = locationParams.map(coord => parseFloat(coord));
+  let queryString = "SELECT c.id, i.name as item_name, i.description as item_description, i.image_url as item_image_url, c.createdon, c.openedon, c.longitude, c.latitude, " +
+    "ST_DISTANCE(ST_POINT($1, $2), c.location) as distance " +
+    "FROM caches c JOIN items i ON c.item_id = i.id ";
+  let caches;
+  if (req.params.id) {
+    queryString += "WHERE id = $3;";
+    caches = await db.query(queryString, [location[0], location[1], req.params.id]);
+  }
+  else if (req.query.bounds) {
+    let boundsParams = req.query.bounds.split(",");
+    let bounds = boundsParams.map(coord => parseFloat(coord));
+    queryString += "WHERE longitude BETWEEN $3 AND $4 AND latitude BETWEEN $5 AND $6;";
+    caches = await db.query(queryString, [
+      location[0],
+      location[1],
+      bounds[0],
+      bounds[1],
+      bounds[2],
+      bounds[3]
+    ]);
+  } else {
+    caches = await db.query(queryString + ";", [location[0], location[1]]);
+  };
+  res.setHeader("Content-Type", "application/json");
+  res.send(JSON.stringify(caches));
 };
 
 let postNewUser = (name, email, hashPass) => {
