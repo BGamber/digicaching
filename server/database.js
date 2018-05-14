@@ -29,6 +29,13 @@ let getItems = async (req, res) => {
   res.send(items);
 };
 
+let getInventories = async (req, res) => {
+  let queryString = "SELECT item_id, quantity FROM inventories" +
+    (req.params.id !== undefined ? " WHERE user_id = $1" : "") + ";";
+  let inventories = await db.query(queryString, [req.params.id]);
+  res.send(inventories);
+};
+
 let getCollections = (req, res) => {
   console.log(req.params);
   res.send("Collections");
@@ -59,6 +66,7 @@ module.exports = {
   getUserByEmail,
   getUserByName,
   getItems,
+  getInventories,
   getCollections,
   getCaches,
   postNewUser
