@@ -8,6 +8,8 @@ const initialState = {
   trackUser: true
 };
 
+
+
 let reducers ={
   [profileReducer]:profileReducer,
   [currentPositionReducer]:currentPositionReducer,
