@@ -71,9 +71,9 @@ let getCaches = async (req, res) => {
 };
 
 let claimCache = async (req, res) => {
-  // PUT - First update cache ITEM
-  // PUT - Update cache openedon
-  // PUT - Update user inventory with new item
+  // TEST DISTANCE VALIDATION: 422 ON FAIL
+  // PUT - First update cache ITEM and OPENEDON
+  // PUT - Update USER INVENTORY with new ITEM
 }
 
 let postNewUser = (name, email, hashPass) => {
