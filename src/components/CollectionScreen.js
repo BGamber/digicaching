@@ -12,63 +12,14 @@ class Collections extends Component {
     return (
       <div className="collections">
         <h1 className="collections-header">Collections</h1>
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          {/* <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" />
-          <img className="collection-img" src="doors.jpeg" /> */}
+        <ul>
+          <h4>Master Robot</h4>
+          <li><img className="collection-img" src="doors.jpeg" /></li>
+          <li><img className="collection-img" src="doors.jpeg" /></li>
+          <li><img className="collection-img" src="doors.jpeg" /></li>
+          <li><img className="collection-img" src="doors.jpeg" /></li>
+          <li><img className="collection-img" src="doors.jpeg" /></li>
+        </ul>
       </div>
     );
   }

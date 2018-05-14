@@ -214,16 +214,49 @@ h2 {
   width: 130px;
   height: 55px;
   font-size: 20px;
-  color: white;
+  cursor: pointer;
   border-radius: 5px;
   background: radial-gradient(ellipse at bottom, #5583b1 0%, #3748a8 100%);
   border: 1px solid rgb(0, 0, 0);
 }
 
-.my-inventory {
-  width: 680px;
-  height: 100px;
+.log-out-button-text {
+  color: white;
 }
+
+.links {
+  text-decoration: none;
+}
+
+.my-inventory {
+  display: flex;
+  flex-direction: column;
+  color: rgb(44, 44, 44);
+  border-bottom: 1px solid rgb(0, 0, 0);
+  background: radial-gradient(ellipse at bottom, #83878b 0%, #393c4e 100%);
+  width: 800px;
+  margin: 0 0 30px 0;
+}
+
+.inventory-title {
+  text-shadow: 1px 1px 2px rgb(70, 93, 221);
+  text-align: center;
+  font-size: 30px;
+  padding: 0 60px;
+}
+
+.showing-items {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 60px;
+  margin-top: -30px;
+}
+
+.inventory-items {
+  font-size: 25px;
+  font-weight: 600;
+}
+
 
 
 /*------------------*/
@@ -323,7 +356,7 @@ h2 {
 .friends {
   background-image: url('/frozenTree.jpeg');
   height: 100vh;
-  opacity: 0.8;
+  opacity: 0.6;
   background-size: cover;
   background-position: center;
 }
@@ -367,8 +400,8 @@ h2 {
 }
 
 .collection-img {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
 }
 
@@ -384,6 +417,63 @@ h2 {
 /*------------------*/
 /*------SEARCH------*/
 /*------------------*/
+
+/*------------------*/
+/*-----ITEM-PAGE----*/
+/*------------------*/
+
+.item-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #9b9eaa 0%,#6b7392 60%,rgb(36, 41, 54) 100%);
+}
+
+.item-name {
+  font-size: 70px;
+  font-family: 'UnifrakturMaguntia', cursive;
+  color: rgb(165, 143, 23);
+  margin: 30px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.item-img {
+  width: 300px;
+  border: 2px solid black;
+  margin: 10px;
+  box-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.item-description {
+  font-size: 25px;
+  color: rgb(0, 0, 0);
+}
+
+.items-use-for {
+  font-size: 25px;
+  color: rgb(0, 0, 0);
+}
+
+.use-for {
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+
+}
+
+.back-button {
+  width: 170px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  margin: 30px;
+  background: radial-gradient(ellipse at bottom, rgba(87, 89, 172, 0.7), rgb(45, 67, 165));
+  color: white;
+  border: 1px solid black;
+
+}
 
 
 /*------------------*/
