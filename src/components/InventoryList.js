@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 class InventoryList extends Component {
   async componentDidMount() {
-
+    console.log('compdidmt');
+    
     let uid = this.props.userId;
 
     fetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${uid}`)
@@ -36,7 +37,7 @@ class InventoryList extends Component {
     } ); 
     console.log('inventoryItemsList: ' , inventoryItemsList);
     let itemsList = inventoryItemsList.map( item => (<li key={item.id}>
-      <div className="itemImage" style={{ backgroundImage: "url(" + <item className="itemInfo"></item>.image_url + ")" }} alt={item.name}></div>
+      <div className="itemImage" style={{ backgroundImage: "url(" + item.itemInfo.image_url + ")" }} alt={item.name}></div>
       <span>{item.itemInfo.name} ({item.itemQuantity})</span>
     </li>)
     );
