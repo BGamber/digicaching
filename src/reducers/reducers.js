@@ -32,8 +32,8 @@ const initialState = {
   loading: false,
   trackUser:true
 }
+let reducers ={
 
-let reducers = {
   [profileReducer]:profileReducer,
   [currentPositionReducer]:currentPositionReducer,
   [userReducer]:userReducer,
