@@ -2,7 +2,7 @@ const PROFILE_GET = "PROFILE_GET";
 const PROFILE_LOADING = "PROFILE_LOADING";
 
 export let getCurrentUserProfile = (user) => ({
-  type: 'SET',
+  type: 'GET',
   payload: user
 });
 export let setProfileLoading = () => {

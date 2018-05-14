@@ -16,8 +16,6 @@ let profileReducer = (state=profile, action) => {
       users: action.payload,
       loading: false
     };
-    case "SET":
-    return action.payload;
 
   default:
     return state;
