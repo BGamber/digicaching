@@ -16,15 +16,24 @@ let getUserByName = async name => {
 };
 
 let getUserById = async (req, res) => {
-  let queryString = "SELECT email, name, image_url, password FROM users" + (req.params.id !== undefined ? " WHERE id = $1" : "") +";";
+  let queryString = "SELECT email, name, image_url, password FROM users" +
+    (req.params.id !== undefined ? " WHERE id = $1" : "") + ";";
   let users = await db.query(queryString, [req.params.id]);
   res.send(users);
 };
 
 let getItems = async (req, res) => {
-  let queryString = "SELECT name, description, image_url FROM items" + (req.params.id !== undefined ? " WHERE id = $1" : "") +";";
+  let queryString = "SELECT name, description, image_url FROM items" +
+    (req.params.id !== undefined ? " WHERE id = $1" : "") + ";";
   let items = await db.query(queryString, [req.params.id]);
   res.send(items);
+};
+
+let getInventories = async (req, res) => {
+  let queryString = "SELECT item_id, quantity FROM inventories" +
+    (req.params.id !== undefined ? " WHERE user_id = $1" : "") + ";";
+  let inventories = await db.query(queryString, [req.params.id]);
+  res.send(inventories);
 };
 
 let getCollections = (req, res) => {
@@ -44,11 +53,20 @@ let postNewUser = (name, email, hashPass) => {
   return insert;
 };
 
+let postNewCache = (cache) => {
+  let { item_id, longitude, latitude } = cache;
+  let queryString = "INSERT INTO caches (item_id, longitude, latitude, location) " +
+    "VALUES ($1, $2, $3, ST_POINT($2, $3));"
+  let insert = db.none(queryString, [item_id, longitude, latitude]);
+  return insert;
+};
+
 module.exports = {
   getUserById,
   getUserByEmail,
   getUserByName,
   getItems,
+  getInventories,
   getCollections,
   getCaches,
   postNewUser

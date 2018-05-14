@@ -1,7 +1,7 @@
-const PROFILE_GET = "PROFILE_GET";
+const PROFILE_SET = "PROFILE_SET";
 const PROFILE_LOADING = "PROFILE_LOADING";
 
-export let getCurrentProfile = (user) => ({
+export let setCurrentUserProfile = (user) => ({
   type: 'SET',
   payload: user
 });
@@ -13,4 +13,4 @@ export let setProfileLoading = () => {
 
 setProfileLoading.toString = () => PROFILE_LOADING;
 
-getCurrentProfile.toString = () => PROFILE_GET;
+setCurrentUserProfile.toString = () => PROFILE_SET;

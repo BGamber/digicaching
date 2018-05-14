@@ -8,7 +8,6 @@ let mapStateToProps = ({activeUserToken}) => {
 };
 
 let loginRedirect = ({location:{pathname:path}, activeUserToken }) => {
-  console.log(activeUserToken);
   if (!activeUserToken) {
     return <Redirect to={{pathname:"/login",
       state:{prevPath:path}}}/>;

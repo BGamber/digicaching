@@ -13,6 +13,7 @@ const {
 const {
   getUserById,
   getItems,
+  getInventories,
   getCollections,
   getCaches
 } = require("./database");
@@ -27,13 +28,15 @@ auth.post("/register", userRegister);
 let api = new Router();
 api.get("/users/:id?", getUserById);
 api.get("/items/:id?", getItems);
+api.get("/inventories/:id?", getInventories);
 api.get("/collections/:id?", getCollections);
 api.get("/caches/:id?", getCaches);
 
 app.use(cors());
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/auth", auth);
 app.use("/api", checkToken, api);
 app.use("/", (req, res, next) => {

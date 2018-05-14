@@ -16,7 +16,7 @@ body {
   height: 100vh;
   box-sizing: border-box;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-image: url('http://localhost:3000/coverPhoto.jpg');
+  background-image: url('/coverPhoto.jpg');
   background-size: cover;
   background-position: center;
   background-attachment:fixed;
@@ -119,9 +119,10 @@ h2 {
 
 .upper-profile-div{
   height: 600px;
-  background-image: url('http://localhost:3000/7z6cSaI-lord-of-the-rings-wallpaper-hd.jpg');
+  background-image: url('/black-lord-of-the-rings-wallpaper-simple-white-abyss-sample-adjustable-background-motive.jpg');
   background-size: cover;
   background-position: center;
+  border-bottom: 2px solid black;
   /* background-attachment:fixed; */
 }
 
@@ -129,7 +130,7 @@ h2 {
 .profile-page {
   display: flex;
   flex-direction: column;
-  background: white;
+  background: radial-gradient(ellipse at bottom, #495666 0%, #222538 100%);
 }
 
 .photo-choose {
@@ -145,17 +146,22 @@ h2 {
 }
 
 .upload-profile {
-  border: 1px solid white;
-  background: radial-gradient(ellipse at bottom, rgb(253, 129, 139, 0.7), rgb(253, 129, 139));
+  border: 1px solid rgb(122, 88, 14, 0.7);
+  background: radial-gradient(ellipse at bottom, rgba(87, 89, 172, 0.7), rgb(45, 67, 165));
+  color: white;
   padding: 10px;
   width: 230px;
   text-align: center;
 }
 
+.upload-profile:hover {
+  color: black;
+}
+
 .profile-photo {
   width: 250px;
   height: 250px;
-  border: 1px solid white;
+  border: 1px solid black;
   background: radial-gradient(ellipse at bottom, rgba(255, 245, 246, 0.7), rgb(255, 255, 255));
   position: absolute;
   left: 50px;
@@ -164,26 +170,72 @@ h2 {
 
 .left-and-right {
   display: flex;
+  flex-direction: column;
+  height: auto;
 }
 
 .left-profile-side {
   display: flex;
   flex-direction: column;
-  width: 35%;
-  background: linear-gradient( rgb(104, 104, 104), rgb(218, 211, 211));
-  border: 2px solid white;
+  height: 650px;
+  width: 800px;
+  margin: 40px auto;
+  
 }
 
 .right-profile-side {
   display: flex;
   flex-direction: column;
-  width: 65%;
-  border: 1px solid white;
-  background: linear-gradient( rgb(104, 104, 104), rgb(255, 255, 255));
+  align-items: center;
+  width: 50%;
+  margin: 40px auto;
 }
 
 .left-values {
-  height: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30px;
+  font-weight: 600;
+  color: rgb(44, 44, 44);
+  text-shadow: 1px 1px 2px rgb(70, 93, 221);
+  padding: 30px 60px;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  background: radial-gradient(ellipse at bottom, #83878b 0%, #393c4e 100%);
+  margin: 20px 0;
+  height: 300px;
+}
+
+.logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 70px;
+  width: 130px;
+  height: 55px;
+  font-size: 20px;
+  color: white;
+  border-radius: 5px;
+  background: radial-gradient(ellipse at bottom, #5583b1 0%, #3748a8 100%);
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.my-inventory {
+  width: 680px;
+  height: 100px;
+}
+
+
+.inventoryList .itemImage {
+  height: 70px;
+  width: 70px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  display: inline-block;
+  margin: .15rem;
+  background-color: transparent;
+  background-position: center;
 }
 
 
@@ -205,7 +257,7 @@ h2 {
   height: 6.8vh;
   list-style: none;
   padding: 0;
-  background: rgb(253, 129, 139);
+  background: radial-gradient(ellipse at bottom, rgba(87, 89, 172, 0.7), rgb(45, 67, 165));
   font-size: 35px;
   justify-content: space-between;
 }
@@ -222,7 +274,7 @@ h2 {
 .ion-map:hover,
 .ion-aperture:hover,
 .ion-person-add:hover {
-  color: rgb(160, 160, 160);
+  color: rgb(255, 202, 89);
 }
 
 /*------------------*/
@@ -267,7 +319,7 @@ h2 {
 }
 
 .friend-input {
-  opacity: 0.6;
+  opacity: 0.8;
   padding: 12px;
   font-size: 22px;
   border-radius: 5px;
@@ -277,14 +329,17 @@ h2 {
 }
 
 .lookup-title {
-  color: rgb(165, 143, 23);
+  color: rgb(71, 61, 216);
   margin: 0px;
 }
 
-/*------------------*/
-/*------SEARCH------*/
-/*------------------*/
-
+.friends {
+  background-image: url('/frozenTree.jpeg');
+  height: 100vh;
+  opacity: 0.8;
+  background-size: cover;
+  background-position: center;
+}
 
 .search-results {
   display: flex;
@@ -295,6 +350,54 @@ h2 {
 .top-results {
   color: rgb(95, 95, 95);
 }
+
+.friend-button-search {
+  background: radial-gradient(ellipse at bottom, rgba(87, 89, 172, 0.7), rgb(45, 67, 165));
+  border: none;
+  width: 160px;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px;
+  margin: 5px 0;
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+
+/*------------------*/
+/*-----FRIENDS------*/
+/*------------------*/
+
+
+
+/*------------------*/
+/*----COLLECTION----*/
+/*------------------*/
+
+.collections {
+  height: 100vh;
+  background: linear-gradient(to bottom, #cfd7ff 0%,#9baefb 60%,rgb(134, 168, 255) 100%);
+}
+
+.collection-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.collections-header {
+  color: rgb(165, 143, 23);
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 90px;
+  text-align: center;
+  margin: 30px 0;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+
+/*------------------*/
+/*------SEARCH------*/
+/*------------------*/
 
 
 /*------------------*/
