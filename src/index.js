@@ -6,6 +6,6 @@ import store from "./store";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
-window.addEventListener("unload", () => {
+window.addEventListener("beforeunload", () => {
   localStorage.setItem("savedState", JSON.stringify(store.getState()));
 });
