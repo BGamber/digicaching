@@ -78,10 +78,17 @@ let getCaches = async (req, res) => {
 };
 
 let claimCache = async (req, res) => {
-  // TEST DISTANCE VALIDATION: 422 ON FAIL
   let { longitude, latitude } = req.body;
-  // PUT - First update cache ITEM and OPENEDON
-  // PUT - Update USER INVENTORY with new ITEM
+  let { distancecheck } = await db.one("SELECT (ST_DISTANCE(ST_POINT($1, $2), location) < 50) as distancecheck " +
+    "FROM caches WHERE id = $3;", [longitude, latitude, req.params.id]);
+  if (distancecheck) {
+    // NOTE: Add claims table to pair User ID with Cache ID upon opening
+    // PUT - First update cache ITEM and OPENEDON
+    // PUT - Update USER INVENTORY with new ITEM
+    res.send("Claim!");
+  } else {
+    res.status(422).send("Not Close Enough to Claim");
+  };
 }
 
 let postNewUser = (name, email, hashPass) => {
