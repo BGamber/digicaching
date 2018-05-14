@@ -15,9 +15,14 @@ let getUserByName = async name => {
 };
 
 let getUserById = async (req, res) => {
-  let queryString = "SELECT email, name, image_url, password FROM users" +
+  let queryString = "SELECT id, email, name, image_url FROM users" +
     (req.params.id !== undefined ? " WHERE id = $1" : "") + ";";
   let users = await db.query(queryString, [req.params.id]);
+  let queryString2 = "SELECT u.name, u.image_url FROM users u " +
+    "JOIN friends f ON u.id = f.friend_id " +
+    "WHERE f.user_id = $1;";
+  await Promise.all(users.map(async user =>
+    user.friends = await db.query(queryString2, [user.id])));
   res.setHeader("Content-Type", "application/json");
   res.send(JSON.stringify(users));
 };
