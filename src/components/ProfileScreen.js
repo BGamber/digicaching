@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../img/default_avatar.png";
-import { getCurrentProfile, setCurrentUser } from "../actions/profileActions";
+import { setCurrentUserProfile } from "../actions/profileActions";
 import CollectionList from "./CollectionList";
 
 let avatarUrl = "../img/default_avatar.png";
@@ -11,18 +11,22 @@ class ProfileScreen extends Component {
   async componentDidMount() {
     // let itemsList = await getInventory();
     let uid = "096780a6-3347-410c-98d4-48db176ce9b1";
-    // let profileData = this.props.getCurrentProfileWrapped(uid);
+    // let profileData = this.props.setCurrentUserProfileWrapped(uid);
     fetch(`${process.env.REACT_APP_BACKEND}/api/users/${uid}`)
       .then((res) => {
-        // console.log('res ', res.json());
-        return res.json();
-      }
+        res.json()
+        .then((data) => {
+          console.log('data: ', data); 
+          console.log('this.props: ', this.props);
+          
+          this.props.setCurrentProfile(data)}
       )
-      .then(data => this.props.setCurrentProfile(data) );
-  }
+       
+  })
+}
 
   render() {
-    console.log("this.props: ", this.props);
+    console.log("this.props::: ", this.props);
 
     let testDataItemsList = [{
       name: "robot body",
@@ -40,12 +44,14 @@ class ProfileScreen extends Component {
         <h3>...Loading...</h3>
         <img className="loading-photo" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="...loading..." /></div>;
     } else {
+      console.log('this.props.profile: ', this.props.profile);
+      
       profileContent =
         <main className="user-profile">
           <header>
             <img src={avatarUrl} alt="" className="avatar" />
             <div className="user-name">
-              <h2>{this.props.profile.name}</h2>
+              <h2>{this.props.profile?this.props.profile.name:'Name'}</h2>
             </div>
           </header>
           <div className="collection-display">
@@ -75,7 +81,7 @@ let mapStateToProps = state => ({
 let mapDispatchToProps = (dispatch) => {
 
   let setCurrentProfile = (id) => {
-    dispatch(getCurrentProfile(id));
+    dispatch(setCurrentUserProfile(id));
   };
   return { setCurrentProfile };
 };
