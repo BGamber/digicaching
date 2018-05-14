@@ -1,0 +1,14 @@
+
+.trackingButton {
+    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
+    border-color: rgb(255, 255, 255);
+    border-color: rgba(255, 255, 255, 0);
+    left: 1%;
+    position: absolute;
+    top:10%;
+}
+
+.trackingIcon {
+    max-height: 30px;
+}

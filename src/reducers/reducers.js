@@ -1,6 +1,7 @@
 import profileReducer from "./profileReducer";
 import currentPositionReducer from "./currentPositionReducer";
 import userReducer from "./userReducer";
+import uiReducer from "./uiReducer";
 import inventoriesReducer from "./inventoriesReducer";
 
 const initialState = {
@@ -28,14 +29,16 @@ const initialState = {
     id: 3, description: "An inanimate robot shell",
     image_url: "https://i.pinimg.com/564x/13/80/93/138093cf8d0bf3594a1f8aab166036a1.jpg"
   }, { id: 2, name: "battery", description: "A lithium battery", image_url: "https://cdn2.bigcommerce.com/server4400/ccf39/products/1423/images/5032/BR_C__18316.1368217244.1280.1280.jpg?c=2" }],
-  loading: false
-};
+  loading: false,
+  trackUser:true
+}
 
 let reducers = {
   [profileReducer]:profileReducer,
   [currentPositionReducer]:currentPositionReducer,
   [userReducer]:userReducer,
   [inventoriesReducer]:inventoriesReducer
+  [uiReducer]: uiReducer
 };
 
 let mainReducer = (state = initialState, action) => {
