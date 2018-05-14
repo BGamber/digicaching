@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setCurrentUserProfile } from '../actions/profileActions';
+import { getCurrentUserProfile } from '../actions/profileActions';
 import UpperProfilePage from './UpperProfilePage';
 import LeftProfilePage from './LeftProfilePage';
 import RightProfilePage from './RightProfilePage';
@@ -13,7 +13,7 @@ class ProfilePage extends Component {
     console.log('this.props.users[0].id: ', this.props.users[0].id);
     let authToken = this.props.auth;
     console.log('authToken: ', authToken);
-
+// robby: fc5f6791-8046-4bd9-a197-3318b1284be4
     fetch(`${process.env.REACT_APP_BACKEND}/api/users/${this.props.users[0].id}`, {
       "headers": {
         "authorization": "Bearer "+authToken
@@ -24,8 +24,9 @@ class ProfilePage extends Component {
           .then((data) => {
             console.log('data: ', data);
             console.log('this.props: ', this.props);
-            this.props.setCurrentProfile(data);
-
+            this.props.getCurrentProfile(data);
+            console.log('data: ',data);
+            
           })
       })
   }
@@ -53,10 +54,10 @@ let mapStateToProps = state => ({
 });
 
 let mapDispatchToProps = (dispatch) => {
-  let setCurrentProfile = (user) => {
-    dispatch(setCurrentUserProfile(user))
+  let getCurrentProfile = (user) => {
+    dispatch(getCurrentUserProfile(user))
   };
-  return { setCurrentProfile };
+  return { getCurrentProfile };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
