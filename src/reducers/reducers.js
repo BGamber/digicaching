@@ -1,18 +1,18 @@
 import profileReducer from "./profileReducer";
 import currentPositionReducer from "./currentPositionReducer";
 import userReducer from "./userReducer";
-
-const initialState = {
-  loading: false
-};
+import uiReducer from "./uiReducer";
+import inventoriesReducer from "./inventoriesReducer";
 
 let reducers ={
   [profileReducer]:profileReducer,
   [currentPositionReducer]:currentPositionReducer,
-  [userReducer]:userReducer
+  [userReducer]:userReducer,
+  [inventoriesReducer]:inventoriesReducer,
+  [uiReducer]: uiReducer
 };
 
-let mainReducer = (state = initialState, action) => {
+let mainReducer = (state, action) => {
   let newState = state;
   Object.keys(reducers).forEach( (prefix) => {
     if (action.type.startsWith(prefix)){
