@@ -50,9 +50,9 @@ let getCollections = (req, res) => {
 let getCaches = async (req, res) => {
   let locationParams = req.query.loc.split(",");
   let location = locationParams.map(coord => parseFloat(coord));
-  let queryString = "SELECT id, item_id, createdon, openedon, longitude, latitude, " +
-    "ST_DISTANCE(ST_POINT($1, $2), location) as distance " +
-    "FROM caches ";
+  let queryString = "SELECT c.id, i.name as item_name, i.description as item_description, i.image_url as item_image_url, c.createdon, c.openedon, c.longitude, c.latitude, " +
+    "ST_DISTANCE(ST_POINT($1, $2), c.location) as distance " +
+    "FROM caches c JOIN items i ON c.item_id = i.id ";
   let caches;
   if (req.params.id) {
     queryString += "WHERE id = $3;";
