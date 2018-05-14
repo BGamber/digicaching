@@ -29,7 +29,9 @@ Retrieves data for one or all caches. Requires _loc_ query param for current use
 ```
 {
   id: [UUID],
-  item_id: [Integer (ID of Item)],
+  item_name: [string],
+  item_description: [string],
+  item_image_url: [string]
   createdon: [timestamp],
   openedon: [timestamp or null],
   longitude: [float],
