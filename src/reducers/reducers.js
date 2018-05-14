@@ -6,6 +6,8 @@ const initialState = {
   loading: false
 };
 
+
+
 let reducers ={
   [profileReducer]:profileReducer,
   [currentPositionReducer]:currentPositionReducer,
