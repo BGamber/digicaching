@@ -10,7 +10,6 @@ import PropTypes from "prop-types";
 
 import ToggleTrackingButton from "./UserTrackingButton";
 import {setUserTracking} from "../actions/uiActions";
-import {toggleUserTracking} from "../actions/uiActions";
 
 let mapStateToProps = ({caches, currentLat, currentLng, trackUser}) => {
   return {caches, currentLat, currentLng, trackUser};
