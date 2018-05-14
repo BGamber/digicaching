@@ -70,6 +70,12 @@ let getCaches = async (req, res) => {
   res.send(JSON.stringify(caches));
 };
 
+let claimCache = async (req, res) => {
+  // PUT - First update cache ITEM
+  // PUT - Update cache openedon
+  // PUT - Update user inventory with new item
+}
+
 let postNewUser = (name, email, hashPass) => {
   let queryString = "INSERT INTO users (name, email, password) VALUES ($1, $2, $3);";
   let insert = db.none(queryString, [name, email, hashPass]);
