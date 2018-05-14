@@ -31,7 +31,7 @@ class ProfilePage extends Component {
   }
 
   render() {
-    let currentUser = this.props.users;
+    let currentUser = this.props.users[0];
     console.log('currentUser:::: ', currentUser);
     return (
       <div className="profile-page" >

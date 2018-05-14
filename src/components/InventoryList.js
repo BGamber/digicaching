@@ -14,8 +14,7 @@ class InventoryList extends Component {
           .then((data) => {
             console.log('data: ', data);
             console.log('this.props: ', this.props);
-            this.props.setCurrentProfile(data);
-
+            this.props.setInventories(data);
           })
       })
     this.props.setInventories(uid);
@@ -40,9 +39,7 @@ class InventoryList extends Component {
       <div className="itemImage" style={{ backgroundImage: "url(" + item.itemInfo.image_url + ")" }} alt={item.name}></div>
       <span>{item.itemInfo.name} ({item.itemQuantity})</span>
     </li>)
-    );
-      // return itemsList;
-    
+    );    
     console.log('itemsList: ', itemsList);
 
     return (
