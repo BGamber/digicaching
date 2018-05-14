@@ -72,6 +72,7 @@ let getCaches = async (req, res) => {
 
 let claimCache = async (req, res) => {
   // TEST DISTANCE VALIDATION: 422 ON FAIL
+  let { longitude, latitude } = req.body;
   // PUT - First update cache ITEM and OPENEDON
   // PUT - Update USER INVENTORY with new ITEM
 }
@@ -97,5 +98,6 @@ module.exports = {
   getItems,
   getCollections,
   getCaches,
+  claimCache,
   postNewUser
 };
