@@ -79,6 +79,20 @@ let getCaches = async (req, res) => {
   res.send(JSON.stringify(caches));
 };
 
+let claimCache = async (req, res) => {
+  let { longitude, latitude } = req.body;
+  let { distancecheck } = await db.one("SELECT (ST_DISTANCE(ST_POINT($1, $2), location) < 50) as distancecheck " +
+    "FROM caches WHERE id = $3;", [longitude, latitude, req.params.id]);
+  if (distancecheck) {
+    // NOTE: Add claims table to pair User ID with Cache ID upon opening
+    // PUT - First update cache ITEM and OPENEDON
+    // PUT - Update USER INVENTORY with new ITEM
+    res.send("Claim!");
+  } else {
+    res.status(422).send("Not Close Enough to Claim");
+  };
+}
+
 let postNewUser = (name, email, hashPass) => {
   let queryString = "INSERT INTO users (name, email, password) VALUES ($1, $2, $3);";
   let insert = db.none(queryString, [name, email, hashPass]);
@@ -101,5 +115,6 @@ module.exports = {
   getInventories,
   getCollections,
   getCaches,
+  claimCache,
   postNewUser
 };
