@@ -58,7 +58,7 @@ let mapComponent = ({caches=[], currentLat=33.848460, currentLng=-84.37360,
         icon="/UserLocation.svg"/>
       <MarkerClusterer>
         <Marker position={{ lat: -34.397, lng: 150.644 }} title="Test" />
-        {caches.map( ({latitude:lat,longitude:lng, id, name}) => {
+        {caches.map( ({latitude:lat,longitude:lng, id, name, createdOn}) => {
           if (activeCache === id){
             return <CacheInfoBox key={id} createdOn={createdOn} lat={lat}
               lng={lng} name={name}/>;
@@ -79,7 +79,8 @@ mapComponent.propTypes = {
 
 const MyMapComponent = compose(
   withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAd627TYIzdl4hWGQ6aikUkXho3nwHOetQ&v=3",
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAd627TYIz"+
+    "dl4hWGQ6aikUkXho3nwHOetQ&v=3",
     loadingElement: <div style={{ height: "100%" }} />,
     containerElement: <div style={{ height: "400px" }} />,
     mapElement: <div style={{ height: "93.2vh" }} />,
