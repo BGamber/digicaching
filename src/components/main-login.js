@@ -3,13 +3,18 @@ import BasicTemplate from "./BasicTemplate";
 import "../index.css";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import setActiveUserToken from "../actions/userActions";
+import setActiveUserToken, {setActiveUserID} from "../actions/userActions";
+import {decode} from "jsonwebtoken";
 
 let mapDispatchToProps = (dispatch) => {
   let setToken = (token) => {
     dispatch(setActiveUserToken(token));
   };
-  return {setToken};
+
+  let setID = (id) => {
+    dispatch(setActiveUserID(id));
+  };
+  return {setToken, setID};
 };
 
 class LoginPage extends Component {
@@ -41,6 +46,8 @@ class LoginPage extends Component {
         if (res.status === 200) {
           res.json().then(({token}) => {
             this.props.setToken(token);
+            let {userId} = decode(token);
+            this.props.setID(userId);
             if (prevPath && prevPath !== "/login" && prevPath !==
             "/create-account") {
               this.props.history.replace(prevPath);
@@ -51,7 +58,7 @@ class LoginPage extends Component {
         }
       })
       .catch(error => {
-        console.log(error);
+        console.trace(error);
       });
   }
   render() {
@@ -62,7 +69,10 @@ class LoginPage extends Component {
     return(
       <div className="main-login">
         <BasicTemplate />
-        <form className="sign-in-form">
+        <form className="sign-in-form" onSubmit={(event) => {
+          event.preventDefault();
+          this.submitLogin()
+        }}>
           <div className="login-input">
             <input
               type="email"
