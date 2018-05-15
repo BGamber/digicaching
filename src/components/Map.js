@@ -64,7 +64,8 @@ let mapComponent = ({caches=[], currentLat=33.848460,
       defaultZoom={15}
       defaultCenter={{ lat: currentLat, lng: currentLng }}
       {...trackUser ? {center:{lat:currentLat,lng:currentLng}} : {}} key="Map"
-      onDragStart={disableTracking}
+      onDragStart={disableTracking} onBoundsChanged={ () => {
+      }}
     >
       <Marker position={{lat:currentLat, lng:currentLng}}
         icon="/UserLocation.svg" onClick={enableTracking}/>
