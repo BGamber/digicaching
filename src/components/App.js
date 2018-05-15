@@ -2,12 +2,12 @@ import React from "react";
 import { BrowserRouter as Router, Route , Switch} from "react-router-dom";
 import { Provider } from "react-redux";
 
-import MainScreen from './MainScreen';
-import LoginPage from './main-login';
-import CreateAccount from './CreateAccount';
-import store from '../store';
+import MainScreen from "./MainScreen";
+import LoginPage from "./main-login";
+import CreateAccount from "./CreateAccount";
+import store from "../store";
 
-let App = () => 
+let App = () =>
   <Provider store={store}>
     <div className="App">
       <Router>
@@ -20,6 +20,6 @@ let App = () =>
         </div>
       </Router>
     </div>
-  </Provider>
+  </Provider>;
 
 export default App;
