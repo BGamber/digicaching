@@ -8,7 +8,7 @@ let mapStateToProps = ({currentLat, currentLng}) => ({currentLat, currentLng});
 let ClaimButton = ({lat, lng, currentLat, currentLng}) => {
   let range = distanceBetween(lat,lng, currentLat, currentLng);
   if (range && range < 50) {
-    return <input type="button"></input>;
+    return <button type="button" className="claimButton">Claim Cache</button>;
   }
   else {
     return null;
