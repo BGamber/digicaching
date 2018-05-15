@@ -1,7 +1,12 @@
 
 let toggleUserTracking = (state) => {
   let {trackUser} = state;
-  return {...state, trackUser:!trackUser};
+  if (trackUser === false) {
+    return {...state, trackUser:!trackUser};
+  }
+  else {
+    return state;
+  }
 };
 
 let setUserTracking = (state, action) => {
@@ -15,9 +20,7 @@ let reducers = {
 };
 
 let uiReducer = (state, action) => {
-  console.log(action["type"]);
   let type = action["type"];
-  console.log(reducers["UI_TOGGLE_TRACKING"]);
   return reducers[type](state, action);
 
 };

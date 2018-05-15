@@ -15,6 +15,7 @@ let CacheInfoBox = ({createdOn, claimedOn, name, lat, lng}) => {
 
   return (
     <OverlayView
+<<<<<<< Updated upstream
         position={marker.position}
         mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
         getPixelPositionOffset={getPixelPositionOffset}
@@ -30,6 +31,22 @@ let CacheInfoBox = ({createdOn, claimedOn, name, lat, lng}) => {
       </OverlayView>
 
     </div>);
+=======
+      position={{lat, lng}}
+      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+      getPixelPositionOffset={getPixelPositionOffset}
+    >
+      <div className="poi">
+        <h3>{name}</h3>
+        <p className="timestamp creation">Cached created:
+          <time dateTime={createdOn}>{moment(createdOn).fromNow(0)}</time></p>
+        <p className="timestamp claim">Cached claimed:
+          <time dateTime={claimedOn}>{moment(claimedOn).fromNow(0)}</time></p>
+        <ClaimButton lat={lat} lng={lng}/>
+      </div>
+    </OverlayView>
+  );
+>>>>>>> Stashed changes
 };
 
 CacheInfoBox.propTypes = {
