@@ -24,6 +24,12 @@ let getUserById = async (req, res) => {
     "WHERE f.user_id = $1;";
   await Promise.all(users.map(async user =>
     user.friends = await db.query(queryString2, [user.id])));
+  let queryString3 = "SELECT i.name as item_name, i.description as item_description, " +
+    "i.image_url as item_image_url, inv.quantity FROM inventories inv " +
+    "JOIN items i ON inv.item_id = i.id" +
+    " WHERE user_id = $1;";
+  await Promise.all(users.map(async user =>
+    user.inventory = await db.query(queryString3, [user.id])));
   res.setHeader("Content-Type", "application/json");
   res.send(JSON.stringify(users));
 };
