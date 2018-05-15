@@ -81,7 +81,7 @@ let getCaches = async (req, res) => {
 
 let claimCache = async (req, res) => {
   let { claimedCheck } = await db.one("SELECT * FROM claims WHERE cache_id = $1;", [req.params.id]);
-  if (claimedCheck) {
+  if (!claimedCheck) {
     let { longitude, latitude } = req.body;
     let { distancecheck } = await db.one("SELECT (ST_DISTANCE(ST_POINT($1, $2), location) < 50) as distancecheck " +
       "FROM caches WHERE id = $3;", [longitude, latitude, req.params.id]);
