@@ -41,7 +41,7 @@ body {
   font-family: 'UnifrakturMaguntia', cursive;
   font-size: 100px;
   margin: 200px 0 30px 0;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; 
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .logo1 {
@@ -173,7 +173,7 @@ h2 {
   height: 650px;
   width: 800px;
   margin: 40px auto;
-  
+
 }
 
 .right-profile-side {
@@ -251,6 +251,18 @@ h2 {
 }
 
 
+.inventoryList .itemImage {
+  height: 70px;
+  width: 70px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  display: inline-block;
+  margin: .15rem;
+  background-color: transparent;
+  background-position: center;
+}
+
 
 /*------------------*/
 /*-----FOOTER-------*/
@@ -260,7 +272,7 @@ h2 {
   position: fixed;
   width: 100%;
   bottom: 0;
-  
+
 }
 
 .navbar {
@@ -597,12 +609,12 @@ hr {
     margin: 30px auto;
     padding-bottom: 30px;
   }
-  
+
   .collection-img {
     width: 130px;
     height: 130px;
   }
-  
+
   .one-part-img {
     width: 100px;
     height: 100px;
@@ -617,12 +629,12 @@ hr {
     margin: 20px auto;
     padding-bottom: 30px;
   }
-  
+
   .collection-img {
     width: 100px;
     height: 100px;
   }
-  
+
   .one-part-img {
     width: 70px;
     height: 70px;
@@ -640,23 +652,23 @@ hr {
   }
 
   .Players {
-    font-size: 80px; 
+    font-size: 80px;
   }
 
 }
 
 @media only screen and (max-width: 830px) {
-  
+
   .left-profile-side {
     height: auto;
     width: 600px;
-    margin: 20px auto; 
+    margin: 20px auto;
   }
 
   p {
     margin: 5px 0;
   }
-  
+
   .right-profile-side {
     display: flex;
     flex-direction: column;
@@ -669,12 +681,12 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 25px; 
+    font-size: 25px;
     padding: 10px 40px;
     height: auto;
     margin: 10px 0;
   }
-  
+
   .my-inventory {
     display: flex;
     flex-direction: column;
@@ -682,33 +694,33 @@ hr {
     width: 600px;
     margin: 0 0 30px 0;
   }
-  
+
   .inventory-items {
     font-size: 20px;
     font-weight: 600;
   }
 
   .Players {
-    font-size: 60px; 
+    font-size: 60px;
   }
 
   .friend-card {
     width: 80%;
   }
-  
+
 }
 
 @media only screen and (max-width: 655px) {
 
   .left-profile-side {
-    width: 360px; 
+    width: 360px;
   }
 
   .my-inventory {
     width: 360px;
     padding: 10px 0;
   }
-  
+
   .collections-header {
     font-size: 50px;
     margin: 20px 0;
@@ -718,12 +730,12 @@ hr {
     margin: 10px auto;
     padding-bottom: 20px;
   }
-  
+
   .collection-img {
     width: 80px;
     height: 80px;
   }
-  
+
   .one-part-img {
     width: 55px;
     height: 55px;
@@ -749,7 +761,7 @@ hr {
 
 
 @media only screen and (max-width: 600px) {
-  
+
   .app-name {
     font-size: 55px;
     margin: 220px 0 30px 0;
@@ -765,5 +777,5 @@ hr {
     left: 15%;
   }
 
-  
+
 }

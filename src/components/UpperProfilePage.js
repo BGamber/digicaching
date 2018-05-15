@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from "react";
 
 class UpperProfilePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      profileImage: ''
-    }
+      profileImage: ""
+    };
   }
 
   render(){
@@ -17,11 +17,11 @@ class UpperProfilePage extends Component {
           <input type="file" name="photo" id="upload-photo" onChange={(event) => {
             let file = event.target.files[0];
             let url = URL.createObjectURL(file);
-            this.setState({ coverImage: url }) }} />
+            this.setState({ coverImage: url }); }} />
         </div>
       </div>
     );
   }
-};
+}
 
 export default UpperProfilePage;
