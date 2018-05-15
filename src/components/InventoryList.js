@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 class InventoryList extends Component {
   async componentDidMount() {
-    console.log('compdidmt');
     let authToken = this.props.auth;
     let uid = this.props.userId;
 // WHAT'S THE ROUTE FOR GETINVENTORIESBYUSERID? 
@@ -16,8 +15,7 @@ class InventoryList extends Component {
       .then((res) => {
         res.json()
           .then((data) => {
-            console.log('data: ', data);
-            console.log('this.props: ', this.props);
+            console.log('inventorydata: ', data);
             this.props.setInventories(data);
           })
       })
@@ -25,9 +23,25 @@ class InventoryList extends Component {
   }
 
   render() {
+    let itemsList;
+    console.log('this.props.inventories: ', this.props.inventories);
+    
+    if (!this.props.inventories) {
+      itemsList = (
+        <div>
+          <h3>...Loading...</h3>
+          <img
+            className="loading-photo"
+            src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"
+            alt="...loading..."
+          />
+        </div>
+      );
+    } else {
+      
     let uid = this.props.userId;
     let allItemsList = this.props.items
-    console.log('allItemsList: ', allItemsList);
+    console.log('this.props.inventories-2: ', this.props.inventories);
     ;
     let filteredInventories = this.props.inventories.filter(
       inventory => inventory.user_id === uid );
@@ -38,13 +52,13 @@ class InventoryList extends Component {
       return { itemInfo:this.props.items.find( item => item.id === inventory.item_id ), itemQuantity:inventory.quantity }
     } ); 
     console.log('inventoryItemsList: ' , inventoryItemsList);
-    let itemsList = inventoryItemsList.map( item => (<li key={item.id}>
+    itemsList = (inventoryItemsList.map( item => (<li key={item.id}>
       <div className="itemImage" style={{ backgroundImage: "url(" + item.itemInfo.image_url + ")" }} alt={item.name}></div>
       <span>{item.itemInfo.name} ({item.itemQuantity})</span>
-    </li>)
+    </li>))
     );    
     console.log('itemsList: ', itemsList);
-
+};
     return (
       <div>
         <ul className="inventoryList">
@@ -52,7 +66,8 @@ class InventoryList extends Component {
         </ul>
       </div>
     )
-  };
+  
+}
 }
 
 let mapStateToProps = state => ({
