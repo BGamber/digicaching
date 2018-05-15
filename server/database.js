@@ -89,12 +89,11 @@ let claimCache = async (req, res) => {
       "FROM caches WHERE id = $3;", [longitude, latitude, req.params.id]);
     if (distancecheck) {
       let { item_id } = await db.one("SELECT item_id FROM caches WHERE id = $1", [req.params.id]);
-      // PUT - First update cache ITEM and OPENEDON
       let cacheItem = item_id;
       if (item_id === 1) {
         let randomItem = await db.one("SELECT i.id FROM items i " +
           "LEFT OUTER JOIN recipes r ON i.id = r.item_id " +
-          //"WHERE i.theme_id = 2 "
+          //"WHERE i.theme_id = {USER'S CURRENT THEME} (Send theme in request when implemented) 
           "WHERE r.ingredients IS NULL " +
           "AND i.id != 1 " +
           "ORDER BY RANDOM() LIMIT 1;");
@@ -109,25 +108,19 @@ let claimCache = async (req, res) => {
         res.send(JSON.stringify(err));
         return;
       };
-      // updateCache.catch(err => res.send(err));
-      // PUT - Update USER INVENTORY with new ITEM
       let queryString2 = "INSERT INTO inventories " +
         "(user_id, item_id, quantity) VALUES ($1, $2, 1) " +
         "ON CONFLICT ON CONSTRAINT inventories_pkey DO " +
         "UPDATE SET quantity = inventories.quantity + 1 " +
         "WHERE inventories.user_id = $1 AND inventories.item_id = $2;";
-      // let updateInventory = 
       try {
         await db.none(queryString2, [req.jwt.userId, cacheItem]);
       } catch (err) {
         res.send(JSON.stringify(err));
         return;
       };
-      // updateInventory.catch(err => res.send(err));
-      // PUT - Update CLAIMS, add user_id and cache_id
       let queryString3 = "INSERT INTO claims (user_id, cache_id) " +
         "VALUES ($1, $2);";
-      // let updateClaim = 
       try {
         await db.none(queryString3, [req.jwt.userId, req.params.id]);
       } catch (err) {
