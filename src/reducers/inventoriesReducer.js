@@ -1,9 +1,9 @@
 const INVENTORIES ="INVENTORIES_";
 
-let inventories =  {}
+let inventories =  {};
 
 let inventoriesReducer = (state=inventories, action) => {
-  let type = action.type.replace(INVENTORIES, '');
+  let type = action.type.replace(INVENTORIES, "");
   switch (type) {
   case "GET":
     return {
@@ -12,9 +12,9 @@ let inventoriesReducer = (state=inventories, action) => {
       loading: false
     };
   case "SET":
-    return action.payload
+    return action.payload;
   default:
-  return state;
+    return state;
   }
   
 };
