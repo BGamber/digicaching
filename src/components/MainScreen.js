@@ -30,4 +30,3 @@ let MainScreen = () => {
 }
 
 export default MainScreen;
-

@@ -1,0 +1,32 @@
+.infoBox {
+    background-color: rgb(87, 89, 172);
+    background-color: rgba(87, 89, 172, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    min-width: 100px;
+}
+
+/*Google maps api includes overriding class style  */
+.item_pic {
+    max-width: 200px !important;
+}
+
+.close_button {
+    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    display: inline;
+}
+
+.close_button img{
+    width: 20px;
+}
+
+.infoBox_header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
