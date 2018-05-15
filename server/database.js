@@ -90,17 +90,21 @@ let claimCache = async (req, res) => {
     if (distancecheck) {
       let { item_id } = await db.one("SELECT item_id FROM caches WHERE id = $1", [req.params.id]);
       // PUT - First update cache ITEM and OPENEDON
-      let newItem = await db.one("SELECT i.id FROM items i " +
-        "LEFT OUTER JOIN recipes r ON i.id = r.item_id " +
-        //"WHERE i.theme_id = 2 "
-        "WHERE r.ingredients IS NULL " +
-        "AND i.id != 1 " +
-        "ORDER BY RANDOM() LIMIT 1;");
+      let cacheItem = item_id;
+      if (item_id === 1) {
+        let randomItem = await db.one("SELECT i.id FROM items i " +
+          "LEFT OUTER JOIN recipes r ON i.id = r.item_id " +
+          //"WHERE i.theme_id = 2 "
+          "WHERE r.ingredients IS NULL " +
+          "AND i.id != 1 " +
+          "ORDER BY RANDOM() LIMIT 1;");
+        cacheItem = randomItem;
+      };
       let queryString = "UPDATE caches " +
         "SET item_id = $1, openedon = $2 WHERE id = $3 " +
         "AND openedon IS NULL;";
       try {
-        await db.none(queryString, [(item_id === 1 ? newItem.id : item_id), moment(), req.params.id]);
+        await db.none(queryString, [cacheItem, moment(), req.params.id]);
       } catch (err) {
         res.send(JSON.stringify(err));
         return;
@@ -114,7 +118,7 @@ let claimCache = async (req, res) => {
         "WHERE inventories.user_id = $1 AND inventories.item_id = $2;";
       // let updateInventory = 
       try {
-        await db.none(queryString2, [req.jwt.userId, (item_id === 1 ? newItem.id : item_id)]);
+        await db.none(queryString2, [req.jwt.userId, cacheItem]);
       } catch (err) {
         res.send(JSON.stringify(err));
         return;
