@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getCurrentUserProfile } from '../actions/profileActions';
-import UpperProfilePage from './UpperProfilePage';
-import LeftProfilePage from './LeftProfilePage';
-import RightProfilePage from './RightProfilePage';
-import Footer from './Footer';
-import '../index.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getCurrentUserProfile } from "../actions/profileActions";
+import UpperProfilePage from "./UpperProfilePage";
+import LeftProfilePage from "./LeftProfilePage";
+import RightProfilePage from "./RightProfilePage";
+import Footer from "./Footer";
+import "../index.css";
 import {withRouter} from "react-router-dom";
 
 class ProfilePage extends Component {
+  constructor(props){
+    super(props);
+    this.state = {};
+
+  }
+
   async componentDidMount() {
-    let userPropsId = this.props.users[0].id;
     let userRouterId = this.props.match.params.id;
     let authToken = this.props.auth;
 
@@ -23,8 +28,8 @@ class ProfilePage extends Component {
         res.json()
           .then((data) => {
             this.props.getCurrentProfile(data);
-          })
-      })
+          });
+      });
   }
 
   render() {
@@ -48,7 +53,7 @@ let mapStateToProps = ({users, activeUserToken}) => {
 
 let mapDispatchToProps = (dispatch) => {
   let getCurrentProfile = (user) => {
-    dispatch(getCurrentUserProfile(user))
+    dispatch(getCurrentUserProfile(user));
   };
   return { getCurrentProfile };
 };

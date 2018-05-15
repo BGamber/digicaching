@@ -16,8 +16,8 @@ let reducers = {
   [setIDConst]: setUserIDReducer
 };
 
-let userReducer = (state, action) => {
-  let type = action["type"];
+let userReducer = (state = {activeUserToken: localStorage.getItem("token")}, action) => {
+  let type = action.type;
   return reducers[type](state,action);
 };
 
