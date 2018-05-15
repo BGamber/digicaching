@@ -9,13 +9,15 @@ import FriendsLookup from "./friends-lookup";
 import SearchPage from "./SearchPage";
 import LoginRedirect from "./LoginRedirect";
 
+
+
 let MainScreen = () => {
   return(
     <div className='route-container'>
       <div className="content-container">
         <LoginRedirect/>
         <Switch>
-          <Route path='/profile' component={ProfilePage}/>
+          <Route path='/profile/:id' component={ProfilePage}/>
           <Route path='/collections' component={Collections} />
           <Route path='/friends-lookup' component={FriendsLookup} />
           <Route path='/search' component={SearchPage} />
@@ -28,3 +30,4 @@ let MainScreen = () => {
 }
 
 export default MainScreen;
+

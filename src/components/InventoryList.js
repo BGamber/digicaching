@@ -5,10 +5,14 @@ import { connect } from 'react-redux';
 class InventoryList extends Component {
   async componentDidMount() {
     console.log('compdidmt');
-    
+    let authToken = this.props.auth;
     let uid = this.props.userId;
-
-    fetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${uid}`)
+// WHAT'S THE ROUTE FOR GETINVENTORIESBYUSERID? 
+    fetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${uid}`, {
+      "headers": {
+        "authorization": "Bearer "+authToken
+      }
+    })
       .then((res) => {
         res.json()
           .then((data) => {
@@ -18,7 +22,6 @@ class InventoryList extends Component {
           })
       })
     this.props.setInventories(uid);
-
   }
 
   render() {
@@ -54,7 +57,8 @@ class InventoryList extends Component {
 
 let mapStateToProps = state => ({
   inventories: state.inventories,
-  items: state.items
+  items: state.items,
+  auth: state.activeUserToken
 });
 
 let mapDispatchToProps = (dispatch) => {

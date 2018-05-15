@@ -4,6 +4,7 @@ const PROFILE ="PROFILE_";
 let profile =  {}
 
 let profileReducer = (state=profile, action) => {
+  console.error('reducer4');
   let type = action.type.replace(PROFILE, "");
   switch (type) {
   case "LOADING":
@@ -12,6 +13,8 @@ let profileReducer = (state=profile, action) => {
     };
   case "GET":
     return {
+      
+      
       ...state,
       users: action.payload,
       loading: false
@@ -24,6 +27,5 @@ let profileReducer = (state=profile, action) => {
 };
 
 
-export default profileReducer;
-
 profileReducer.toString = () => PROFILE;
+export default profileReducer;

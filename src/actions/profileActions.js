@@ -1,16 +1,19 @@
 const PROFILE_GET = "PROFILE_GET";
 const PROFILE_LOADING = "PROFILE_LOADING";
 
-export let getCurrentUserProfile = (user) => ({
-  type: 'GET',
-  payload: user
-});
-export let setProfileLoading = () => {
+export let getCurrentUserProfile = (user) => {
   return {
-    type: PROFILE_LOADING
+  type: PROFILE_GET,
+  payload: user}
+};
+export let setProfileLoading = () => {
+  
+  
+  return {
+    type: 'LOADING'
   };
 };
 
 setProfileLoading.toString = () => PROFILE_LOADING;
 
-getCurrentUserProfile.toString = () => PROFILE_GET;
+getCurrentUserProfile.toString = () => PROFILE_GET; 
