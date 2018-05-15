@@ -1,41 +1,28 @@
-import setUserToken, {setTokenConst, removeUserToken, removeTokenConst} from "../actions/userActions";
-
-
-let USER = 'USER_';
+import {setTokenConst, setIDConst} from "../actions/userActions";
 
 let setUserTokenReducer = (state,action) => {
   let token = action["token"];
   return {...state, activeUserToken:token};
 };
 
-let removeUserTokenReducer = (state, action) => {
-  return {...state, activeUserToken: null}
-}
-
-
-// let reducers = {
-//   [setUserToken]:setUserTokenReducer,
-//   [removeUserToken]: removeUserTokenReducer 
-// };
-
-let userReducer = (state = {activeUserToken: localStorage.getItem("token")}, action) => {
-  let type = action.type;
-  // return reducers[type](state,action);
-  switch(type){
-    case setTokenConst:
-      return setUserTokenReducer(state,action)
-      break;
-    case removeTokenConst:
-      return removeUserTokenReducer(state,action)
-      break;
-    default:
-      return state;
-  }
+let setUserIDReducer = (state, action) => {
+  let {id} = action;
+  return {...state, activeUserID:id};
 };
 
 
-setUserTokenReducer.toString = () => setUserToken;
-userReducer.toString = () => setTokenConst;
-removeUserTokenReducer.toString = () => removeUserToken;
+let reducers = {
+  [setTokenConst]:setUserTokenReducer,
+  [setIDConst]: setUserIDReducer
+};
+
+let userReducer = (state = {activeUserToken: localStorage.getItem("token")}, action) => {
+  let type = action.type;
+  return reducers[type](state,action);
+};
+
+setUserIDReducer.toString = () => setIDConst;
+setUserTokenReducer.toString = () => setTokenConst;
+userReducer.toString = () => "ACTIVE_USER_";
 
 export default userReducer;

@@ -1,17 +1,14 @@
-export const setTokenConst = "USER_ACTIVE_TOKEN";
-export const removeTokenConst = "USER_REMOVE_TOKEN";
+export const setTokenConst = "ACTIVE_USER_TOKEN";
+export const setIDConst = "ACTIVE_USER_ID";
 
-let setActiveUserToken = (token) => {
-  localStorage.setItem('token', token);
-  return {type:setTokenConst, token:token};
-};
-
-export let removeUserToken = () => {
-  localStorage.removeItem('token');
-  return {type: removeTokenConst}
+export let setActiveUserToken = (token) => {
+  return {type:setTokenConst, token};
 };
 
 setActiveUserToken.toString = () => setTokenConst;
-removeUserToken.toString = () => removeUserToken;
 
-export default setActiveUserToken;
+export let setActiveUserID = (id) => {
+  return {type:setIDConst, id};
+};
+
+setActiveUserID.toString = () => setIDConst;

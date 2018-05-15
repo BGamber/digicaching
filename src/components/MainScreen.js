@@ -11,6 +11,8 @@ import LoginRedirect from "./LoginRedirect";
 import ItemPage from './ItemPage';
 import FriendsPage from './FriendsPage';
 
+
+
 let MainScreen = () => {
   return(
     <div className='route-container'>
@@ -18,7 +20,7 @@ let MainScreen = () => {
         <LoginRedirect/>
         <Switch>
           <Route path='/friends' component={FriendsPage}/>
-          <Route path='/profile' component={ProfilePage}/>
+          <Route path='/profile/:id' component={ProfilePage}/>
           <Route path='/collections' component={Collections} />
           <Route path='/friends-lookup' component={FriendsLookup} />
           <Route path='/search' component={SearchPage} />
