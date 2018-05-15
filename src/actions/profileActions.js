@@ -10,10 +10,10 @@ export let setProfileLoading = () => {
   
   
   return {
-    type: 'LOADING'
+    type: PROFILE_LOADING
   };
 };
 
 setProfileLoading.toString = () => PROFILE_LOADING;
 
-getCurrentUserProfile.toString = () => PROFILE_GET; 
+getCurrentUserProfile.toString = () => PROFILE_GET;
