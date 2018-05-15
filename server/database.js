@@ -57,7 +57,7 @@ let getCaches = async (req, res) => {
     "FROM caches c JOIN items i ON c.item_id = i.id ";
   let caches;
   if (req.params.id) {
-    queryString += "WHERE id = $3;";
+    queryString += "WHERE c.id = $3;";
     caches = await db.query(queryString, [location[0], location[1], req.params.id]);
   }
   else if (req.query.bounds) {
@@ -80,40 +80,60 @@ let getCaches = async (req, res) => {
 };
 
 let claimCache = async (req, res) => {
-  let { claimedCheck } = await db.one("SELECT * FROM claims WHERE cache_id = $1;", [req.params.id]);
-  if (!claimedCheck) {
+  let claimedCheck = await db.any("SELECT * FROM claims WHERE cache_id = $1;", [req.params.id]);
+  if (claimedCheck.length > 0) {
+    res.status(422).send("Cache Already Claimed By User");
+  } else {
     let { longitude, latitude } = req.body;
     let { distancecheck } = await db.one("SELECT (ST_DISTANCE(ST_POINT($1, $2), location) < 50) as distancecheck " +
       "FROM caches WHERE id = $3;", [longitude, latitude, req.params.id]);
     if (distancecheck) {
+      let { item_id } = await db.one("SELECT item_id FROM caches WHERE id = $1", [req.params.id]);
       // PUT - First update cache ITEM and OPENEDON
       let newItem = await db.one("SELECT i.id FROM items i " +
         "LEFT OUTER JOIN recipes r ON i.id = r.item_id " +
         //"WHERE i.theme_id = 2 "
         "WHERE r.ingredients IS NULL " +
+        "AND i.id != 1 " +
         "ORDER BY RANDOM() LIMIT 1;");
       let queryString = "UPDATE caches " +
-        "SET item_id = $1, openedon = $2 WHERE id = $3;";
-      let updateCache = db.none(queryString, [newItem, moment(), req.params.id]);
-      updateCache.catch(err => res.send(err));
+        "SET item_id = $1, openedon = $2 WHERE id = $3 " +
+        "AND openedon IS NULL;";
+      try {
+        await db.none(queryString, [(item_id === 1 ? newItem.id : item_id), moment(), req.params.id]);
+      } catch (err) {
+        res.send(JSON.stringify(err));
+        return;
+      };
+      // updateCache.catch(err => res.send(err));
       // PUT - Update USER INVENTORY with new ITEM
       let queryString2 = "INSERT INTO inventories " +
         "(user_id, item_id, quantity) VALUES ($1, $2, 1) " +
-        "ON CONFLICT ON CONSTRAINT user_item_pkey DO " +
+        "ON CONFLICT ON CONSTRAINT inventories_pkey DO " +
         "UPDATE SET quantity = inventories.quantity + 1 " +
         "WHERE inventories.user_id = $1 AND inventories.item_id = $2;";
-      let updateInventory = db.none(queryString2, [req.jwt.userId, newItem]);
-      updateInventory.catch(err => res.send(err));
+      // let updateInventory = 
+      try {
+        await db.none(queryString2, [req.jwt.userId, (item_id === 1 ? newItem.id : item_id)]);
+      } catch (err) {
+        res.send(JSON.stringify(err));
+        return;
+      };
+      // updateInventory.catch(err => res.send(err));
       // PUT - Update CLAIMS, add user_id and cache_id
       let queryString3 = "INSERT INTO claims (user_id, cache_id) " +
         "VALUES ($1, $2);";
-      let updateClaim = db.none(queryString3, [req.jwt.userId, req.params.id]);
+      // let updateClaim = 
+      try {
+        await db.none(queryString3, [req.jwt.userId, req.params.id]);
+      } catch (err) {
+        res.send(JSON.stringify(err));
+        return;
+      };
       res.status(200).send("Cache Claimed");
     } else {
       res.status(422).send("Not Close Enough to Claim");
     };
-  } else {
-    res.status(422).send("Cache Already Claimed By User");
   };
 };
 
