@@ -48,7 +48,6 @@ body {
   width: 250px;
   position: absolute;
   top: 10px;
-  /* margin-top: 20px; */
 }
 
 .login-input {
@@ -90,7 +89,6 @@ h2 {
 
 .login-page-button {
   background: radial-gradient(ellipse at bottom, rgb(253, 129, 139, 0.7), rgb(253, 129, 139));
-  /* background: linear-gradient(40deg,#fa9f55,#fc6262); */
   border: none;
   width: 160px;
   height: 50px;
@@ -112,10 +110,6 @@ h2 {
 /*------------------*/
 /*---PROFILE-PAGE---*/
 /*------------------*/
-/* 
-.loading-photo {
-  width: 200px;
-} */
 
 .upper-profile-div{
   height: 600px;
@@ -123,7 +117,6 @@ h2 {
   background-size: cover;
   background-position: center;
   border-bottom: 2px solid black;
-  /* background-attachment:fixed; */
 }
 
 
@@ -317,15 +310,6 @@ h2 {
   height: 32px;
 }
 
-/* .user-input-photo {
-  opacity: 0.3;
-  border-radius: 5px;
-  width: 300px;
-  margin: 5px 0;
-  height: 32px;
-  margin-left: 100px;
-} */
-
 /*------------------*/
 /*--FRIENDS-LOOKUP--*/
 /*------------------*/
@@ -349,14 +333,14 @@ h2 {
 }
 
 .lookup-title {
-  color: rgb(71, 61, 216);
+  color: rgb(22, 22, 22);
   margin: 0px;
 }
 
 .friends {
-  background-image: url('/frozenTree.jpeg');
+  background-image: url('/Forest.jpg');
   height: 100vh;
-  opacity: 0.6;
+  opacity: 1;
   background-size: cover;
   background-position: center;
 }
@@ -372,7 +356,7 @@ h2 {
 }
 
 .friend-button-search {
-  background: radial-gradient(ellipse at bottom, rgba(87, 89, 172, 0.7), rgb(45, 67, 165));
+  background: radial-gradient(ellipse at bottom, #424242 0%, #070707 100%);
   border: none;
   width: 160px;
   height: 50px;
@@ -383,40 +367,168 @@ h2 {
   font-family: 'Josefin Sans', sans-serif;
 }
 
-
-/*------------------*/
-/*-----FRIENDS------*/
-/*------------------*/
-
-
+.friend-button-search:hover {
+  color: grey;
+  cursor: pointer;
+}
 
 /*------------------*/
 /*----COLLECTION----*/
 /*------------------*/
 
-.collections {
-  height: 100vh;
-  background: linear-gradient(to bottom, #cfd7ff 0%,#9baefb 60%,rgb(134, 168, 255) 100%);
-}
-
-.collection-img {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-}
-
 .collections-header {
   color: rgb(165, 143, 23);
   font-family: 'UnifrakturMaguntia', cursive;
-  font-size: 90px;
+  font-size: 100px;
   text-align: center;
   margin: 30px 0;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
+.collections {
+  height: auto;
+  background: radial-gradient(ellipse at bottom, #83878b 0%, #393c4e 100%);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.main-collection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.parts {
+  display: flex;
+  text-align: center;
+  margin: 40px auto;
+  padding-bottom: 30px;
+}
+
+.collection-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin-top: 30px;
+  background: white;
+  padding: 5px;
+  box-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.collection-img:hover {
+  transition: 0.3s;
+  width: 150px;
+  height: 150px;
+}
+
+
+.one-part-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 20px 120px 5px 120px;
+  background: white;
+  box-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.one-part-img:hover {
+  transition: 0.3s;
+  width: 120px;
+  height: 120px;
+}
+
+hr {
+  width: 80%;
+  border-color: grey;
+}
+
 /*------------------*/
-/*------SEARCH------*/
+/*---SEARCH-FRIEND--*/
 /*------------------*/
+
+.Players {
+  color: rgb(165, 143, 23);
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 100px;
+  text-align: center;
+  margin: 30px 0;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.listOfFriends {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background: radial-gradient(ellipse at bottom, #495666 0%, #222538 100%);
+}
+
+.friend-card {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  height: auto;
+  padding: 10px;
+  margin: 20px auto;
+  background: radial-gradient(ellipse at bottom, #a4a8ac 0%, #393c4e 100%);
+  border-bottom: 2px solid black;
+}
+
+.friend-properties {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  padding: 0px 40px 20px 40px;
+
+}
+
+.friend-name {
+  font-size: 25px;
+  padding: 5px;
+}
+
+.friend-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+  box-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.add-friend-button {
+  margin: 100px 50px 100px 10px;
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  border-color: black;
+  color: white;
+  font-size: 19px;
+  background: radial-gradient(ellipse at bottom, rgba(81, 81, 90, 0.7), rgb(22, 22, 22));
+}
+
+.add-friend-button:hover {
+  color: grey;
+  cursor: pointer;
+}
+
+.back-button2 {
+  width: 170px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  margin: 30px auto;
+  background: radial-gradient(ellipse at bottom, rgba(87, 89, 172, 0.7), rgb(45, 67, 165));
+  color: white;
+  border: 1px solid black;
+}
+
+.back-button2:hover {
+  color: grey;
+  cursor: pointer;
+}
+
 
 /*------------------*/
 /*-----ITEM-PAGE----*/
@@ -472,7 +584,6 @@ h2 {
   background: radial-gradient(ellipse at bottom, rgba(87, 89, 172, 0.7), rgb(45, 67, 165));
   color: white;
   border: 1px solid black;
-
 }
 
 
@@ -480,8 +591,159 @@ h2 {
 /*------QUERIES-----*/
 /*------------------*/
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1455px) {
+
+  .parts {
+    margin: 30px auto;
+    padding-bottom: 30px;
+  }
   
+  .collection-img {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .one-part-img {
+    width: 100px;
+    height: 100px;
+    margin: 20px 60px 5px 60px;
+  }
+
+}
+
+@media only screen and (max-width: 940px) {
+
+  .parts {
+    margin: 20px auto;
+    padding-bottom: 30px;
+  }
+  
+  .collection-img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .one-part-img {
+    width: 70px;
+    height: 70px;
+    margin: 20px 40px 5px 40px;
+  }
+
+  .profile-photo {
+    position: absolute;
+    left: 35%;
+  }
+
+  .photo-choose {
+    position: absolute;
+    left: 35%;
+  }
+
+  .Players {
+    font-size: 80px; 
+  }
+
+}
+
+@media only screen and (max-width: 830px) {
+  
+  .left-profile-side {
+    height: auto;
+    width: 600px;
+    margin: 20px auto; 
+  }
+
+  p {
+    margin: 5px 0;
+  }
+  
+  .right-profile-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 20px auto;
+  }
+
+  .left-values {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 25px; 
+    padding: 10px 40px;
+    height: auto;
+    margin: 10px 0;
+  }
+  
+  .my-inventory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    margin: 0 0 30px 0;
+  }
+  
+  .inventory-items {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .Players {
+    font-size: 60px; 
+  }
+
+  .friend-card {
+    width: 80%;
+  }
+  
+}
+
+@media only screen and (max-width: 655px) {
+
+  .left-profile-side {
+    width: 360px; 
+  }
+
+  .my-inventory {
+    width: 360px;
+    padding: 10px 0;
+  }
+  
+  .collections-header {
+    font-size: 50px;
+    margin: 20px 0;
+  }
+
+  .parts {
+    margin: 10px auto;
+    padding-bottom: 20px;
+  }
+  
+  .collection-img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .one-part-img {
+    width: 55px;
+    height: 55px;
+    margin: 10px 15px 5px 15px;
+  }
+
+  h3 {
+    font-size: 15px;
+  }
+
+  .friend-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+  }
+
+  .add-friend-button {
+    margin: 20px 0;
+  }
 
 }
 
@@ -491,6 +753,16 @@ h2 {
   .app-name {
     font-size: 55px;
     margin: 220px 0 30px 0;
+  }
+
+  .profile-photo {
+    position: absolute;
+    left: 15%;
+  }
+
+  .photo-choose {
+    position: absolute;
+    left: 15%;
   }
 
   

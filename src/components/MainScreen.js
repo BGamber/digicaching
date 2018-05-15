@@ -9,6 +9,7 @@ import FriendsLookup from "./friends-lookup";
 import SearchPage from "./SearchPage";
 import LoginRedirect from "./LoginRedirect";
 import ItemPage from './ItemPage';
+import FriendsPage from './FriendsPage';
 
 let MainScreen = () => {
   return(
@@ -16,6 +17,7 @@ let MainScreen = () => {
       <div className="content-container">
         <LoginRedirect/>
         <Switch>
+          <Route path='/friends' component={FriendsPage}/>
           <Route path='/profile' component={ProfilePage}/>
           <Route path='/collections' component={Collections} />
           <Route path='/friends-lookup' component={FriendsLookup} />
