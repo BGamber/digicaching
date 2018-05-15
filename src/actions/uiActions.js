@@ -12,5 +12,5 @@ let toggleUserTracking = () => {
 
 let setActiveCache = (id) => {
   return {type:UI_SET_ACTIVE_CACHE, newCache:id};
-}
+};
 export {setUserTracking, toggleUserTracking, setActiveCache};

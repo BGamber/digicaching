@@ -55,10 +55,9 @@ let locationManagmentHooks = lifecycle({
   }
 });
 
-let mapComponent = ({caches=[{name:"ATV", id:"84f78f6c-5796-11e8-94dd-a81e84057a84",
-  latitude:33.848460, longitude:-84.37360, description:"Hello"}], currentLat=33.848460,
-currentLng=-84.37360, trackUser, disableTracking, enableTracking, setActiveCache,
-activeCache }) => {
+let mapComponent = ({caches=[], currentLat=33.848460,
+  currentLng=-84.37360, trackUser, disableTracking, enableTracking, setActiveCache,
+  activeCache }) => {
   return [
     <ToggleTrackingButton key="ToggleButton"/>,
     <GoogleMap
