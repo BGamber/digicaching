@@ -4,12 +4,21 @@ import userReducer from "./userReducer";
 import uiReducer from "./uiReducer";
 import inventoriesReducer from "./inventoriesReducer";
 
+import initialState from "../store";
+
+let reset = () => {
+  return initialState;
+};
+
+reset.toString = () => "RESET";
+
 let reducers ={
   [profileReducer]:profileReducer,
   [currentPositionReducer]:currentPositionReducer,
   [userReducer]:userReducer,
   [inventoriesReducer]:inventoriesReducer,
-  [uiReducer]: uiReducer
+  [uiReducer]: uiReducer,
+  [reset]: reset
 };
 
 let mainReducer = (state, action) => {
