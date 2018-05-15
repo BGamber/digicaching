@@ -13,10 +13,11 @@ let reducers ={
 };
 
 let mainReducer = (state, action) => {
+  console.log('aaction:',action.type);
   let newState = state;
   Object.keys(reducers).forEach( (prefix) => {
     if (action.type.startsWith(prefix)){
-      newState = reducers[prefix](state, action);
+      newState = reducers[prefix](state, action); 
     }
   });
   return newState;

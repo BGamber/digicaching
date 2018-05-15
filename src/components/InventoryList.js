@@ -5,21 +5,23 @@ import { connect } from 'react-redux';
 class InventoryList extends Component {
   async componentDidMount() {
     console.log('compdidmt');
-    
+    let authToken = this.props.auth;
     let uid = this.props.userId;
-
-    fetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${uid}`)
+// WHAT'S THE ROUTE FOR GETINVENTORIESBYUSERID? 
+    fetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${uid}`, {
+      "headers": {
+        "authorization": "Bearer "+authToken
+      }
+    })
       .then((res) => {
         res.json()
           .then((data) => {
             console.log('data: ', data);
             console.log('this.props: ', this.props);
-            this.props.setCurrentProfile(data);
-
+            this.props.setInventories(data);
           })
       })
     this.props.setInventories(uid);
-
   }
 
   render() {
@@ -40,9 +42,7 @@ class InventoryList extends Component {
       <div className="itemImage" style={{ backgroundImage: "url(" + item.itemInfo.image_url + ")" }} alt={item.name}></div>
       <span>{item.itemInfo.name} ({item.itemQuantity})</span>
     </li>)
-    );
-      // return itemsList;
-    
+    );    
     console.log('itemsList: ', itemsList);
 
     return (
@@ -57,7 +57,8 @@ class InventoryList extends Component {
 
 let mapStateToProps = state => ({
   inventories: state.inventories,
-  items: state.items
+  items: state.items,
+  auth: state.activeUserToken
 });
 
 let mapDispatchToProps = (dispatch) => {
