@@ -18,9 +18,9 @@ class ProfilePage extends Component {
   async componentDidMount() {
     let userRouterId = this.props.match.params.id;
     let authToken = this.props.auth;
-    console.log(userRouterId);
-    if (userRouterId === undefined) {
-      this.props.history.push(`/profile/${this.props.activeUserID}`);
+
+    if (!userRouterId) {
+      this.props.history.push("/friends-lookup");
     }
 
     fetch(`${process.env.REACT_APP_BACKEND}/api/users/${userRouterId}`, {

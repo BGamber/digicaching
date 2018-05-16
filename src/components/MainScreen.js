@@ -8,8 +8,8 @@ import Collections from "./CollectionScreen";
 import FriendsLookup from "./friends-lookup";
 import SearchPage from "./SearchPage";
 import LoginRedirect from "./LoginRedirect";
-import ItemPage from './ItemPage';
-import FriendsPage from './FriendsPage';
+import ItemPage from "./ItemPage";
+import FriendsPage from "./FriendsPage";
 
 
 
@@ -30,7 +30,7 @@ let MainScreen = () => {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 export default MainScreen;
