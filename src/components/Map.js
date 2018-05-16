@@ -6,7 +6,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker}
 import { MarkerClusterer } from
   "react-google-maps/lib/components/addons/MarkerClusterer";
 import {connect} from "react-redux";
-import currentPosition from "../actions/currentPositionAction";
+import currentPosition, {setTimer, newBounds} from "../actions/currentPositionAction";
 
 import CacheInfoBox from "./CacheInfoBox";
 
@@ -17,8 +17,10 @@ import ToggleTrackingButton from "./UserTrackingButton";
 import {setUserTracking,
   setActiveCache as setActiveCacheAction} from "../actions/uiActions";
 
-let mapStateToProps = ({caches, currentLat, currentLng, trackUser, activeCache}) => {
-  return {caches, currentLat, currentLng, trackUser, activeCache};
+let mapStateToProps = ({caches, currentLat, currentLng, trackUser, activeCache,
+  debounceTimer}) => {
+  return {caches, currentLat, currentLng, trackUser, activeCache,
+    debounceTimer};
 };
 
 let mapDispatchtoProps = (dispatch) => {
@@ -34,7 +36,15 @@ let mapDispatchtoProps = (dispatch) => {
   let setActiveCache = (id) => {
     dispatch(setActiveCacheAction(id));
   };
-  return {setCurrentPostition, disableTracking, enableTracking, setActiveCache};
+  let setDebounceTimer = (timerID) => {
+    dispatch(setTimer(timerID));
+  };
+  let setBounds = (boundsObject) => {
+    dispatch(newBounds(boundsObject));
+  };
+
+  return {setCurrentPostition, disableTracking, enableTracking, setActiveCache,
+    setDebounceTimer, setBounds};
 };
 
 let connection = connect(mapStateToProps, mapDispatchtoProps);
@@ -56,16 +66,40 @@ let locationManagmentHooks = lifecycle({
   }
 });
 
+let boundsChangedDebouncer = (debounceTimer, map, timeoutFunction,
+  timerMangerFunction, boundsManagement) => {
+  if (debounceTimer) {
+    clearTimeout(debounceTimer);
+  }
+  timerMangerFunction(setTimeout(timeoutFunction,2000,map, boundsManagement));
+};
+
+let boundChangeHandler = (map, boundsManagement) => {
+  let bounds = map.getBounds();
+  let northEast = bounds.getNorthEast();
+  let southWest = bounds.getSouthWest();
+  let north = northEast.lat();
+  let south = southWest.lat();
+  let east = northEast.lng();
+  let west = southWest.lng();
+  boundsManagement({north, south, east, west});
+};
+
 let mapComponent = ({caches=[], currentLat=33.848460,
-  currentLng=-84.37360, trackUser, disableTracking, enableTracking, setActiveCache,
-  activeCache }) => {
+  currentLng=-84.37360, trackUser, disableTracking, enableTracking,
+  setActiveCache, activeCache, debounceTimer, setDebounceTimer, setBounds}) => {
   return [
     <ToggleTrackingButton key="ToggleButton"/>,
     <GoogleMap
-      defaultZoom={15}
-      defaultCenter={{ lat: currentLat, lng: currentLng }}
+      defaultZoom={15} defaultCenter={{ lat: currentLat, lng: currentLng }}
       {...trackUser ? {center:{lat:currentLat,lng:currentLng}} : {}} key="Map"
-      onDragStart={disableTracking} onDragEnd={dragEndHandler} onZoomChanged={dragEndHandler} ref={(ref) => {this.map = ref;}}>
+      onDragStart={disableTracking} ref={(ref) => {this.map = ref;}}
+      onBoundsChanged={
+        () => {
+          console.log(setBounds);
+          boundsChangedDebouncer(debounceTimer, this.map, boundChangeHandler,
+            setDebounceTimer, setBounds)
+        }}>
 
       <Marker position={{lat:currentLat, lng:currentLng}}
         icon="/UserLocation.svg" onClick={enableTracking}/>
@@ -91,8 +125,8 @@ let mapComponent = ({caches=[], currentLat=33.848460,
   ];
 };
 
-let dragEndHandler = () => {
-  let bounds = this.map.getBounds();
+let dragEndHandler = (map) => {
+  let bounds = map.getBounds();
   let northEast = bounds.getNorthEast();
   let southWest = bounds.getSouthWest();
   let north = northEast.lat();
@@ -100,7 +134,8 @@ let dragEndHandler = () => {
   let east = northEast.lng();
   let west = southWest.lng();
   console.log({north, south, east, west});
-}
+};
+
 
 mapComponent.propTypes = {
   caches: PropTypes.array,
