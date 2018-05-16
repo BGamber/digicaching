@@ -3,9 +3,8 @@ import Spinner from "./loaders/Spinner";
 
 let InventoryList = ( user ) => {
   let itemsList = user.user.inventory.map(item => (
-    <li key={item.id}>
-      <div
-        className="itemImage"
+    <li key={item.item_name}>
+      <div className="itemImage"
         style={{ backgroundImage: "url(" + item.image_url + ")" }}
         alt={item.item_name}
       />
