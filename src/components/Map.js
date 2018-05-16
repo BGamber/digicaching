@@ -39,6 +39,7 @@ let mapDispatchtoProps = (dispatch) => {
 
 let connection = connect(mapStateToProps, mapDispatchtoProps);
 
+
 let locationManagmentHooks = lifecycle({
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(({coords:{latitude,longitude}}) => {
@@ -64,13 +65,15 @@ let mapComponent = ({caches=[], currentLat=33.848460,
       defaultZoom={15}
       defaultCenter={{ lat: currentLat, lng: currentLng }}
       {...trackUser ? {center:{lat:currentLat,lng:currentLng}} : {}} key="Map"
-      onDragStart={disableTracking} onBoundsChanged={ () => {
-      }}
-    >
+      onDragStart={disableTracking} onDragEnd={dragEndHandler} onZoomChanged={dragEndHandler} ref={(ref) => {this.map = ref;}}>
+
       <Marker position={{lat:currentLat, lng:currentLng}}
         icon="/UserLocation.svg" onClick={enableTracking}/>
+
       <MarkerClusterer>
+
         <Marker position={{ lat: -34.397, lng: 150.644 }} title="Test" />
+
         {caches.map( ({latitude:lat,longitude:lng, id, name, description, image_url}) => {
           if (id === activeCache){
             return <CacheInfoBox lat={lat} lng={lng} key={id} name={name}
@@ -88,6 +91,17 @@ let mapComponent = ({caches=[], currentLat=33.848460,
   ];
 };
 
+let dragEndHandler = () => {
+  let bounds = this.map.getBounds();
+  let northEast = bounds.getNorthEast();
+  let southWest = bounds.getSouthWest();
+  let north = northEast.lat();
+  let south = southWest.lat();
+  let east = northEast.lng();
+  let west = southWest.lng();
+  console.log({north, south, east, west});
+}
+
 mapComponent.propTypes = {
   caches: PropTypes.array,
   currentLat: PropTypes.number,
@@ -103,9 +117,10 @@ const MyMapComponent = compose(
     mapElement: <div style={{ height: "93.2vh" }} />,
   }),
   withScriptjs,
-  withGoogleMap,
   connection,
-  locationManagmentHooks
+  locationManagmentHooks,
+  withGoogleMap,
+
 )(mapComponent);
 
 export default MyMapComponent;
