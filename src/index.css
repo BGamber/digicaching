@@ -152,8 +152,8 @@ h2 {
 }
 
 .profile-photo {
-  width: 250px;
-  height: 250px;
+  max-width: 250px;
+  max-height: 250px;
   border: 1px solid black;
   background: radial-gradient(ellipse at bottom, rgba(255, 245, 246, 0.7), rgb(255, 255, 255));
   position: absolute;
