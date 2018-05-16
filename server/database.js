@@ -38,7 +38,7 @@ let getUserById = async (req, res) => {
     res.status(422).send(JSON.stringify(err));
   };
 
-  let queryString3 = "SELECT i.name as item_name, i.description as item_description, " +
+  let queryString3 = "SELECT i.id, i.name as item_name, i.description as item_description, " +
     "i.image_url as item_image_url, inv.quantity FROM inventories inv " +
     "JOIN items i ON inv.item_id = i.id" +
     " WHERE user_id = $1;";
@@ -63,7 +63,7 @@ let getItems = async (req, res) => {
 };
 
 let getInventories = async (req, res) => {
-  let queryString = "SELECT i.name as item_name, i.description as item_description, " +
+  let queryString = "SELECT i.id, i.name as item_name, i.description as item_description, " +
     "i.image_url as item_image_url, inv.quantity FROM inventories inv " +
     "JOIN items i ON inv.item_id = i.id" +
     (req.params.id !== undefined ? " WHERE user_id = $1" : "") + ";";
@@ -169,10 +169,10 @@ let postNewUser = (name, email, hashPass) => {
 };
 
 let postNewCache = (cache) => {
-  let { item_id, longitude, latitude } = cache;
-  let queryString = "INSERT INTO caches (item_id, longitude, latitude, location) " +
+  let { item_id, latitude, longitude } = cache;
+  let queryString = "INSERT INTO caches (item_id, latitude, longitude, location) " +
     "VALUES ($1, $2, $3, ST_POINT($2, $3));";
-  return db.none(queryString, [item_id, longitude, latitude]);
+  return db.none(queryString, [item_id, latitude, longitude]);
 };
 
 let placeCache = async (req, res) => {
