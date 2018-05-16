@@ -6,11 +6,6 @@ export let setPosition = (newLat, newLng) => {
 
 setPosition.toString = () => "POSITION_SET";
 
-export let setTimer = (newTimer) => {
-  return {type:"POSITION_TIMER", newTimer};
-};
-
-setTimer.toString  = () => "POSITION_TIMER";
 
 export let newBounds = ({east, west, north, south}) => {
   return (dispatch, getState) => {
