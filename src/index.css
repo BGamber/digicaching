@@ -473,14 +473,14 @@ hr {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: auto;
   background: radial-gradient(ellipse at bottom, #495666 0%, #222538 100%);
 }
 
 .friend-card {
   display: flex;
   justify-content: space-between;
-  width: 60%;
+  width: auto;
   height: auto;
   padding: 10px;
   margin: 20px auto;
@@ -545,7 +545,7 @@ hr {
   font-size: 20px;
   border-radius: 5px;
   font-weight: 600;
-  margin: 30px auto;
+  margin: 30px auto 100px auto;
   background: radial-gradient(ellipse at bottom, rgba(87, 89, 172, 0.7), rgb(45, 67, 165));
   color: white;
   border: 1px solid black;
@@ -720,7 +720,7 @@ hr {
   }
 
   .friend-card {
-    width: 80%;
+    width: auto;
   }
 
 }
