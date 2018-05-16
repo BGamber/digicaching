@@ -1,16 +1,38 @@
-import React from 'react';
-import InventoryList from './InventoryList';
+import React, { Component } from "react";
+import CollectionList from "./CollectionList";
+import ItemPage from "./ItemPage";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {setActiveUserToken} from "../actions/userActions";
+import InventoryList from "./InventoryList";
 
-let RightProfilePage = (props) => (
-  <div className="right-profile-side">
-    <div className="my-inventory left-values">
-      <h4>Inventory</h4>
-      <InventoryList userId={props.userId} />
-    </div>
-    <div className="logout">
-      <p>Log Out</p>
-    </div>
-  </div>
-);
+class RightProfilePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inventory: ["blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal",]
+    };
+  }
+  render(){
+    return (
+      <div className="right-profile-side">
+        <div className="my-inventory">
+          <h4 className="inventory-title">Inventory</h4>
+          <div className="showing-items">
+                <InventoryList user={this.props.user} />
+              </div>
+       
+        </div>
+        <div onClick={() => this.props.removeToken()} className="logout">
+          <Link className="links" to='/login'><p className="log-out-button-text">Log Out</p></Link>
+        </div>
+      </div>);
+  }
+}
 
-export default RightProfilePage;
+const mapDispatchToProps = {
+  removeToken:setActiveUserToken
+};
+
+
+export default connect(null, mapDispatchToProps)(RightProfilePage);

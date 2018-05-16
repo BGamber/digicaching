@@ -8,6 +8,8 @@ import Collections from "./CollectionScreen";
 import FriendsLookup from "./friends-lookup";
 import SearchPage from "./SearchPage";
 import LoginRedirect from "./LoginRedirect";
+import ItemPage from './ItemPage';
+import FriendsPage from './FriendsPage';
 
 
 
@@ -17,10 +19,12 @@ let MainScreen = () => {
       <div className="content-container">
         <LoginRedirect/>
         <Switch>
+          <Route path='/friends' component={FriendsPage}/>
           <Route path='/profile/:id' component={ProfilePage}/>
           <Route path='/collections' component={Collections} />
           <Route path='/friends-lookup' component={FriendsLookup} />
           <Route path='/search' component={SearchPage} />
+          <Route exact path='/item' component={ItemPage} />
           <Route path='/(map)?' component={MyMapComponent} />
         </Switch>
       </div>

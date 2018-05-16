@@ -1,7 +1,7 @@
 export const setTokenConst = "ACTIVE_USER_TOKEN";
 export const setIDConst = "ACTIVE_USER_ID";
 
-let setActiveUserToken = (token) => {
+export let setActiveUserToken = (token) => {
   return {type:setTokenConst, token};
 };
 
@@ -12,6 +12,3 @@ export let setActiveUserID = (id) => {
 };
 
 setActiveUserID.toString = () => setIDConst;
-
-
-export default setActiveUserToken;

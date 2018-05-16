@@ -5,12 +5,17 @@ import UpperProfilePage from "./UpperProfilePage";
 import LeftProfilePage from "./LeftProfilePage";
 import RightProfilePage from "./RightProfilePage";
 import Footer from "./Footer";
+import Spinner from "./loaders/Spinner";
 import "../index.css";
 import { withRouter } from "react-router-dom";
 
 class ProfilePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   async componentDidMount() {
-    let userPropsId = this.props.users[0].id;
     let userRouterId = this.props.match.params.id;
     let authToken = this.props.auth;
 
@@ -28,16 +33,7 @@ class ProfilePage extends Component {
   render() {
     let profileContent;
     if (!this.props.users) {
-      profileContent = (
-        <div>
-          <h3>...Loading...</h3>
-          <img
-            className="loading-photo"
-            src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"
-            alt="...loading..."
-          />
-        </div>
-      );
+      profileContent = <Spinner />;
     } else {
       let currentUser = this.props.users[0];
       profileContent = (
@@ -45,7 +41,7 @@ class ProfilePage extends Component {
           <UpperProfilePage user={currentUser} />
           <div className="left-and-right">
             <LeftProfilePage user={currentUser} />
-            <RightProfilePage userId={currentUser.id} />
+            <RightProfilePage user={currentUser} />
           </div>
           <Footer />
         </div>
