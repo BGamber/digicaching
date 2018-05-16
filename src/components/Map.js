@@ -108,14 +108,14 @@ let mapComponent = ({caches=[], currentLat=33.848460,
         <Marker position={{ lat: -34.397, lng: 150.644 }} title="Test" />
 
         {caches.map( ({latitude:lat,longitude:lng, id, item_name, createdon,
-          item_description, item_image_url, openedon}) => {
+          item_description, item_image_url, openedon, distance}) => {
           if (item_name === "Mystery Box") {
             item_image_url = "/Mystery.svg";
           }
           if (id === activeCache){
             return <CacheInfoBox lat={lat} lng={lng} key={id} name={item_name}
               description={item_description} image_url={item_image_url}
-              createdOn={createdon} claimedOn={openedon}/>;
+              createdOn={createdon} claimedOn={openedon} distance={distance}/>;
           }
           else {
             let icon;
