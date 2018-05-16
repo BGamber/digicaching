@@ -14,6 +14,7 @@ import PropTypes from "prop-types";
 
 
 import ToggleTrackingButton from "./UserTrackingButton";
+import PlaceCacheButton from "./PlaceCacheButton";
 import {setUserTracking,
   setActiveCache as setActiveCacheAction} from "../actions/uiActions";
 
@@ -89,7 +90,7 @@ let mapComponent = ({caches=[], currentLat=33.848460,
   currentLng=-84.37360, trackUser, disableTracking, enableTracking,
   setActiveCache, activeCache, debounceTimer, setDebounceTimer, setBounds}) => {
   return [
-    <ToggleTrackingButton key="ToggleButton"/>,
+    <ToggleTrackingButton key="ToggleButton"/>, <PlaceCacheButton />,
     <GoogleMap
       defaultZoom={15} defaultCenter={{ lat: currentLat, lng: currentLng }}
       {...trackUser ? {center:{lat:currentLat,lng:currentLng}} : {}} key="Map"
