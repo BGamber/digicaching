@@ -92,7 +92,8 @@ let getCaches = async (req, res) => {
   else if (req.query.bounds) {
     let boundsParams = req.query.bounds.split(",");
     let bounds = boundsParams.map(coord => parseFloat(coord));
-    queryString += "WHERE latitude BETWEEN $3 AND $4 AND longitude BETWEEN $5 AND $6;";
+    console.log(bounds);
+    queryString += "WHERE latitude BETWEEN $4 AND $3 AND longitude BETWEEN $5 AND $6;";
     caches = await db.query(queryString, [
       location[0],
       location[1],
