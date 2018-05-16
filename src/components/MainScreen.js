@@ -1,7 +1,6 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
 import Footer from "./Footer";
-// import ProfileScreen from "./ProfileScreen";
 import ProfilePage from "./profilePage";
 import MyMapComponent from "./Map";
 import Collections from "./CollectionScreen";
@@ -25,7 +24,7 @@ let MainScreen = () => {
           <Route path='/collections' component={Collections} />
           <Route path='/friends-lookup' component={FriendsLookup} />
           <Route path='/search' component={SearchPage} />
-          <Route exact path='/item' component={ItemPage} />
+          <Route exact path='/item/:id' component={ItemPage} />
           <Route path='/(map)?' component={MyMapComponent} />
         </Switch>
       </div>
