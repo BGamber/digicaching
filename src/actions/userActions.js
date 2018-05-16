@@ -12,3 +12,5 @@ export let setActiveUserID = (id) => {
 };
 
 setActiveUserID.toString = () => setIDConst;
+
+export default setActiveUserToken;

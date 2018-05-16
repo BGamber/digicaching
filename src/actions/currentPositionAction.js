@@ -15,8 +15,8 @@ setTimer.toString  = () => "POSITION_TIMER";
 export let newBounds = ({east, west, north, south}) => {
   return (dispatch, getState) => {
     let {currentLat, currentLng, activeUserToken} = getState();
-    fetch(`${process.env.REACT_APP_BACKEND}/api/caches?loc=${currentLng},`+
-      `${currentLat}&bounds=${west},${east},${north},${south}`,
+    fetch(`${process.env.REACT_APP_BACKEND}/api/caches?loc=${currentLat},`+
+      `${currentLng}&bounds=${north},${south},${west},${east}`,
     {
       "headers": {
         "authorization": `Bearer ${activeUserToken}`
