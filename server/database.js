@@ -1,7 +1,8 @@
 const pgp = require("pg-promise")();
 const db = pgp(process.env.DATABASE_URL);
 pgp.pg.defaults.ssl = true;
-const moment = require('moment');
+const moment = require("moment");
+const { generateCoordinates } = require("./coordinates");
 
 let getUserByEmail = async email => {
   let queryString = "SELECT id, name, password FROM users WHERE email = $1;";
@@ -109,6 +110,13 @@ let getCaches = async (req, res) => {
   res.send(JSON.stringify(caches));
 };
 
+let getRandomItem = () =>
+  db.one("SELECT i.id FROM items i " +
+    "LEFT OUTER JOIN recipes r ON i.id = r.item_id " +
+    "WHERE r.ingredients IS NULL " +
+    "AND i.id != 1 " +
+    "ORDER BY RANDOM() LIMIT 1;");
+
 let claimCache = async (req, res) => {
   let claimedCheck = await db.any("SELECT * FROM claims WHERE cache_id = $1;", [req.params.id]);
   if (claimedCheck.length > 0) {
@@ -121,13 +129,8 @@ let claimCache = async (req, res) => {
       let { item_id } = await db.one("SELECT item_id FROM caches WHERE id = $1", [req.params.id]);
       let cacheItem = item_id;
       if (item_id === 1) {
-        let randomItem = await db.one("SELECT i.id FROM items i " +
-          "LEFT OUTER JOIN recipes r ON i.id = r.item_id " +
-          //"WHERE i.theme_id = {USER'S CURRENT THEME} (Send theme in request when implemented) 
-          "WHERE r.ingredients IS NULL " +
-          "AND i.id != 1 " +
-          "ORDER BY RANDOM() LIMIT 1;");
-        cacheItem = randomItem;
+        let randomItem = await getRandomItem();
+        cacheItem = randomItem.id;
       };
       let queryString = "UPDATE caches " +
         "SET item_id = $1, openedon = $2 WHERE id = $3 " +
@@ -170,15 +173,47 @@ let postNewUser = (name, email, hashPass) => {
   return insert;
 };
 
-let postNewCache = (cache) => {
-  let { item_id, latitude, longitude } = cache;
+let serverPlaceCache = async () => {
+  let item_id = await getRandomItem();
+  let { latitude, longitude } = generateCoordinates();
   let queryString = "INSERT INTO caches (item_id, latitude, longitude, location) " +
     "VALUES ($1, $2, $3, ST_POINT($2, $3));";
   return db.none(queryString, [item_id, latitude, longitude]);
 };
 
 let placeCache = async (req, res) => {
-
+  let { item_id, latitude, longitude } = req.body;
+  let queryString = "SELECT quantity FROM inventories " +
+    "WHERE user_id = $1 AND item_id = $2;";
+  let result = await db.oneOrNone(queryString, [req.jwt.userId, item_id]);
+  if (result !== null && result.quantity > 0) {
+    let queryString2 = "INSERT INTO caches (item_id, latitude, longitude, location, user_id) " +
+      "VALUES ($1, $2, $3, ST_POINT($2, $3), $4) RETURNING id;";
+    let newCache;
+    try {
+      newCache = await db.one(queryString2, [item_id, latitude, longitude, req.jwt.userId]);
+    } catch (err) {
+      res.send(JSON.stringify(err));
+    };
+    let queryString3 = "INSERT INTO claims (user_id, cache_id) " +
+      "VALUES ($1, $2);";
+    try {
+      await db.none(queryString3, [req.jwt.userId, newCache.id]);
+    } catch (err) {
+      res.send(JSON.stringify(err));
+    };
+    let queryString4 = "UPDATE inventories SET quantity = inventories.quantity - 1 " +
+      "WHERE user_id = $1 AND item_id = $2;";
+    try {
+      await db.none(queryString4, [req.jwt.userId, item_id]);
+    } catch (err) {
+      res.send(JSON.stringify(err));
+    };
+    res.send("Cache Placed");
+  } else {
+    res.setHeader("Content-Type", "application/json");
+    res.status(422).send("Item Missing, Cannot Create Cache");
+  };
 };
 
 module.exports = {
@@ -190,6 +225,7 @@ module.exports = {
   getCollections,
   getCaches,
   claimCache,
+  serverPlaceCache,
   placeCache,
   postNewUser
 };
