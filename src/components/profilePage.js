@@ -23,8 +23,8 @@ class ProfilePage extends Component {
         res.json()
           .then((data) => {
             this.props.getCurrentProfile(data);
-          })
-      })
+          });
+      });
   }
 
   render() {
