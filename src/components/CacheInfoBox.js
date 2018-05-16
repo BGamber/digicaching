@@ -37,7 +37,7 @@ let CacheInfoBox = ({createdOn, claimedOn, name, lat, lng, description,
         <div className="infoBox_header">
           <h3>{name}</h3>
           <button type="button" className="close_button" onClick={closePopup}>
-            <img src="/close.svg"/></button>
+            <img src="/close.svg" alt="IMG" /></button>
         </div>
         <h4>{description}</h4>
         <img className="item_pic" src={image_url} alt=""/>
