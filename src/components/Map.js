@@ -124,17 +124,6 @@ let mapComponent = ({caches=[], currentLat=33.848460,
   ];
 };
 
-let dragEndHandler = (map) => {
-  let bounds = map.getBounds();
-  let northEast = bounds.getNorthEast();
-  let southWest = bounds.getSouthWest();
-  let north = northEast.lat();
-  let south = southWest.lat();
-  let east = northEast.lng();
-  let west = southWest.lng();
-  console.log({north, south, east, west});
-};
-
 
 mapComponent.propTypes = {
   caches: PropTypes.array,
