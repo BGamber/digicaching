@@ -103,17 +103,30 @@ let mapComponent = ({caches=[], currentLat=33.848460,
       <Marker position={{lat:currentLat, lng:currentLng}}
         icon="/UserLocation.svg" onClick={enableTracking}/>
 
-      <MarkerClusterer>
+      <MarkerClusterer maxZoom={18}>
 
         <Marker position={{ lat: -34.397, lng: 150.644 }} title="Test" />
 
-        {caches.map( ({latitude:lat,longitude:lng, id, name, description, image_url}) => {
+        {caches.map( ({latitude:lat,longitude:lng, id, item_name, createdon,
+          item_description, item_image_url, openedon}) => {
+          if (item_name === "Mystery Box") {
+            item_image_url = "/Mystery.svg";
+          }
           if (id === activeCache){
-            return <CacheInfoBox lat={lat} lng={lng} key={id} name={name}
-              description={description} image_url={image_url}/>;
+            return <CacheInfoBox lat={lat} lng={lng} key={id} name={item_name}
+              description={item_description} image_url={item_image_url}
+              createdOn={createdon} claimedOn={openedon}/>;
           }
           else {
-            return <Marker position={{lat, lng}} title={name} key={id}
+            let icon;
+            if (openedon){
+              icon = "/chest_open.png";
+            }
+            else {
+              icon = "/chest_closed.png";
+            }
+            return <Marker position={{lat, lng}} title={item_name} key={id}
+              icon={icon}
               onClick={() => {
                 setActiveCache(id);
               }}/>;
