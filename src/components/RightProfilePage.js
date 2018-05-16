@@ -7,12 +7,7 @@ import {setActiveUserToken} from "../actions/userActions";
 import InventoryList from "./InventoryList";
 
 class RightProfilePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inventory: ["blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal","blablablabal",]
-    };
-  }
+  
   render(){
     return (
       <div className="right-profile-side">
