@@ -2,8 +2,6 @@ import React from "react";
 import Spinner from "./loaders/Spinner";
 
 let InventoryList = ( user ) => {
-console.log('userINventory: ', user);
-
   let itemsList = user.user.inventory.map(item => (
     <li key={item.id}>
       <div
