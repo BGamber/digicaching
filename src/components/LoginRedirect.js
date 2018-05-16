@@ -7,7 +7,7 @@ let mapStateToProps = ({activeUserToken}) => {
   return {activeUserToken};
 };
 
-let loginRedirect = ({location:{pathname:path}, activeUserToken }) => {
+let loginRedirect = ({location:{pathname:path}, activeUserToken= localStorage.getItem('token') }) => {
   if (!activeUserToken) {
     return <Redirect to={{pathname:"/login",
       state:{prevPath:path}}}/>;

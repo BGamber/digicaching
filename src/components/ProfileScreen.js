@@ -15,10 +15,7 @@ class ProfileScreen extends Component {
     fetch(`${process.env.REACT_APP_BACKEND}/api/users/${uid}`)
       .then((res) => {
         res.json()
-        .then((data) => {
-          console.log('data: ', data); 
-          console.log('this.props: ', this.props);
-          
+        .then((data) => {       
           this.props.setCurrentProfile(data)}
       )
        
@@ -26,8 +23,6 @@ class ProfileScreen extends Component {
 }
 
   render() {
-    console.log("this.props::: ", this.props);
-
     let testDataItemsList = [{
       name: "robot body",
       id: 3,
@@ -43,9 +38,7 @@ class ProfileScreen extends Component {
       profileContent = <div>
         <h3>...Loading...</h3>
         <img className="loading-photo" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="...loading..." /></div>;
-    } else {
-      console.log('this.props.profile: ', this.props.profile);
-      
+    } else {      
       profileContent =
         <main className="user-profile">
           <header>
