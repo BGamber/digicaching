@@ -1,0 +1,39 @@
+
+.placeCacheButton {
+
+    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
+    border-color: rgb(255, 255, 255);
+    border-color: rgba(255, 255, 255, 0);
+    left: 1.15%;
+    position: absolute;
+    top:16%;
+    fill: #94d31b; 
+}
+
+.placeCacheIcon {
+  max-height: 25px;
+    width: 25px;
+}
+
+.placeCacheIcon .svg_25:hover {
+    fill: #94d31b; 
+}
+
+.inventory-chooser {
+  position: absolute;
+  top: 4rem;
+  left: 6rem;
+  background: rgba(255,255,255,.9);
+  border: 1px solid #ccc;
+  padding: 1rem;
+  box-shadow: #333 2px 2px 2px;
+}
+.inventory-chooser li {
+  cursor: pointer;
+}
+
+
+.inventory-chooser.show {
+  display:block;
+}
