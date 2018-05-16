@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import BasicTemplate from "./BasicTemplate";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import setActiveUserToken from "../actions/userActions";
+import {setActiveUserToken} from "../actions/userActions";
 
 let mapDispatchToProps = (dispatch) => {
   let setToken = (token) => {

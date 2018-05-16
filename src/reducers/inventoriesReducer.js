@@ -5,18 +5,12 @@ let inventories =  {};
 let inventoriesReducer = (state=inventories, action) => {
   let type = action.type.replace(INVENTORIES, "");
   switch (type) {
-  case "GET":
+  case "SET":
     return {
       ...state,
-      users: action.payload,
-      loading: false
+      inventories: action.payload,
     };
-  case "SET":
-    return action.payload;
-  default:
-    return state;
   }
-  
 };
 
 

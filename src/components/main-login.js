@@ -3,7 +3,7 @@ import BasicTemplate from "./BasicTemplate";
 import "../index.css";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import setActiveUserToken, {setActiveUserID} from "../actions/userActions";
+import {setActiveUserToken, setActiveUserID} from "../actions/userActions";
 import {decode} from "jsonwebtoken";
 
 let mapDispatchToProps = (dispatch) => {
