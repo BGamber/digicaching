@@ -1,8 +1,8 @@
 const INVENTORIES_SET = "INVENTORIES_SET";
-const INVENTORIES_GET = "INVENTORIES_GET";
+// const INVENTORIES_GET = "INVENTORIES_GET";
 
 export let setUserInventories = (id) => ({
-  type: 'SET',
+  type: 'INVENTORIES_SET',
   payload: id
 });
 
