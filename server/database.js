@@ -177,7 +177,7 @@ let postNewCache = (cache) => {
 };
 
 let placeCache = async (req, res) => {
-
+  let { item_id, latitude, longitude } = req.body;
 };
 
 module.exports = {
