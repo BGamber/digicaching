@@ -12,8 +12,8 @@ let profileReducer = (state=profile, action) => {
     };
   case "GET":
     return {
-      
-      
+
+
       ...state,
       users: action.payload,
       loading: false
