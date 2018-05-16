@@ -3,6 +3,7 @@ import currentPositionReducer from "./currentPositionReducer";
 import userReducer from "./userReducer";
 import uiReducer from "./uiReducer";
 import inventoriesReducer from "./inventoriesReducer";
+import friendsReducer from './friendsReducer';
 
 import initialState from "../store";
 
@@ -18,15 +19,17 @@ let reducers ={
   [userReducer]:userReducer,
   [inventoriesReducer]:inventoriesReducer,
   [uiReducer]: uiReducer,
-  [reset]: reset
+  [reset]: reset,
+  [friendsReducer]: friendsReducer
 };
 
+console.log(reducers);
+
 let mainReducer = (state, action) => {
-  console.log('aaction:',action.type);
   let newState = state;
   Object.keys(reducers).forEach( (prefix) => {
     if (action.type.startsWith(prefix)){
-      newState = reducers[prefix](state, action); 
+      newState = reducers[prefix](state, action);
     }
   });
   return newState;

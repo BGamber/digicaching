@@ -7,6 +7,9 @@ const {
 
 let checkToken = async (req, res, next) => {
   let { authorization: Bearertoken } = req.headers;
+  if (Bearertoken === undefined) {
+    res.send(401);
+  }
   let token = Bearertoken.split(" ")[1];
   let payload;
   try {

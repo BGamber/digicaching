@@ -18,18 +18,39 @@ let getUserByName = async name => {
 let getUserById = async (req, res) => {
   let queryString = "SELECT id, email, name, image_url FROM users" +
     (req.params.id !== undefined ? " WHERE id = $1" : "") + ";";
-  let users = await db.query(queryString, [req.params.id]);
+
+  let users;
+  try {
+    users = await db.query(queryString, [req.params.id]);
+  } catch (err) {
+    res.setHeader("Content-Type", "application/json");
+    res.status(422).send(JSON.stringify(err));
+  };
+
   let queryString2 = "SELECT u.name, u.image_url FROM users u " +
     "JOIN friends f ON u.id = f.friend_id " +
     "WHERE f.user_id = $1;";
-  await Promise.all(users.map(async user =>
-    user.friends = await db.query(queryString2, [user.id])));
-  let queryString3 = "SELECT i.name as item_name, i.description as item_description, " +
+
+  try {
+    await Promise.all(users.map(async user =>
+      user.friends = await db.query(queryString2, [user.id])));
+  } catch (err) {
+    res.setHeader("Content-Type", "application/json");
+    res.status(422).send(JSON.stringify(err));
+  };
+
+  let queryString3 = "SELECT i.id, i.name as item_name, i.description as item_description, " +
     "i.image_url as item_image_url, inv.quantity FROM inventories inv " +
     "JOIN items i ON inv.item_id = i.id" +
     " WHERE user_id = $1;";
-  await Promise.all(users.map(async user =>
-    user.inventory = await db.query(queryString3, [user.id])));
+  try {
+    await Promise.all(users.map(async user =>
+      user.inventory = await db.query(queryString3, [user.id])));
+  } catch (err) {
+    res.setHeader("Content-Type", "application/json");
+    res.status(422).send(JSON.stringify(err));
+  };
+
   res.setHeader("Content-Type", "application/json");
   res.send(JSON.stringify(users));
 };
@@ -43,7 +64,7 @@ let getItems = async (req, res) => {
 };
 
 let getInventories = async (req, res) => {
-  let queryString = "SELECT i.name as item_name, i.description as item_description, " +
+  let queryString = "SELECT i.id, i.name as item_name, i.description as item_description, " +
     "i.image_url as item_image_url, inv.quantity FROM inventories inv " +
     "JOIN items i ON inv.item_id = i.id" +
     (req.params.id !== undefined ? " WHERE user_id = $1" : "") + ";";
@@ -60,7 +81,7 @@ let getCaches = async (req, res) => {
   let locationParams = req.query.loc.split(",");
   let location = locationParams.map(coord => parseFloat(coord));
   let queryString = "SELECT c.id, i.name as item_name, i.description as item_description, " +
-    "i.image_url as item_image_url, c.createdon, c.openedon, c.longitude, c.latitude, " +
+    "i.image_url as item_image_url, c.createdon, c.openedon, c.latitude, c.longitude, " +
     "ST_DISTANCE(ST_POINT($1, $2), c.location) as distance " +
     "FROM caches c JOIN items i ON c.item_id = i.id ";
   let caches;
@@ -71,7 +92,7 @@ let getCaches = async (req, res) => {
   else if (req.query.bounds) {
     let boundsParams = req.query.bounds.split(",");
     let bounds = boundsParams.map(coord => parseFloat(coord));
-    queryString += "WHERE longitude BETWEEN $3 AND $4 AND latitude BETWEEN $5 AND $6;";
+    queryString += "WHERE latitude BETWEEN $3 AND $4 AND longitude BETWEEN $5 AND $6;";
     caches = await db.query(queryString, [
       location[0],
       location[1],
@@ -149,11 +170,14 @@ let postNewUser = (name, email, hashPass) => {
 };
 
 let postNewCache = (cache) => {
-  let { item_id, longitude, latitude } = cache;
-  let queryString = "INSERT INTO caches (item_id, longitude, latitude, location) " +
-    "VALUES ($1, $2, $3, ST_POINT($2, $3));"
-  let insert = db.none(queryString, [item_id, longitude, latitude]);
-  return insert;
+  let { item_id, latitude, longitude } = cache;
+  let queryString = "INSERT INTO caches (item_id, latitude, longitude, location) " +
+    "VALUES ($1, $2, $3, ST_POINT($2, $3));";
+  return db.none(queryString, [item_id, latitude, longitude]);
+};
+
+let placeCache = async (req, res) => {
+
 };
 
 module.exports = {
@@ -165,5 +189,6 @@ module.exports = {
   getCollections,
   getCaches,
   claimCache,
+  placeCache,
   postNewUser
 };

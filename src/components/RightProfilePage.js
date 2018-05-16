@@ -4,6 +4,7 @@ import ItemPage from "./ItemPage";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {setActiveUserToken} from "../actions/userActions";
+import InventoryList from "./InventoryList";
 
 class RightProfilePage extends Component {
   constructor(props) {
@@ -18,8 +19,9 @@ class RightProfilePage extends Component {
         <div className="my-inventory">
           <h4 className="inventory-title">Inventory</h4>
           <div className="showing-items">
-            {this.state.inventory.map( (item,i) => <p key={i} className="inventory-items">{item},</p>) }
-          </div>
+                <InventoryList user={this.props.user} />
+              </div>
+       
         </div>
         <div onClick={() => this.props.removeToken()} className="logout">
           <Link className="links" to='/login'><p className="log-out-button-text">Log Out</p></Link>

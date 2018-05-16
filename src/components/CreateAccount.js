@@ -63,7 +63,6 @@ class CreateAccount extends Component {
     return(
       <form onSubmit={(event) => this.handleSubmit(event)} className="create-new-account">
         <BasicTemplate />
-        {/* <h1>Create new account:</h1>  */}
         <div className="create-account">
           <input
             type="text"
@@ -85,16 +84,6 @@ class CreateAccount extends Component {
             className="user-input2"
             placeholder='Confirm Password'
             name="confirmPassword" required/>
-          {/* <input
-                        type="file"
-                        className="user-input-photo"
-                        onChange={(event) => {
-                            let file = event.target.files[0];
-                            let url = URL.createObjectURL(file);
-                            console.log(file)
-                            this.setState({ image: url }) }} />
-                        {console.log(this.state.image)}
-                    <img alt="profile-img" src={this.state.image} />  */}
           <div className="create-profile-buttons">
             <button
               className="login-page-button submit-button"

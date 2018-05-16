@@ -5,57 +5,67 @@ import UpperProfilePage from "./UpperProfilePage";
 import LeftProfilePage from "./LeftProfilePage";
 import RightProfilePage from "./RightProfilePage";
 import Footer from "./Footer";
+import Spinner from "./loaders/Spinner";
 import "../index.css";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class ProfilePage extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {};
-
   }
 
   async componentDidMount() {
     let userRouterId = this.props.match.params.id;
     let authToken = this.props.auth;
+    
+    if (userRouterId === undefined) {
+      this.props.history.push("/friends-lookup");
+    }
 
     fetch(`${process.env.REACT_APP_BACKEND}/api/users/${userRouterId}`, {
-      "headers": {
-        "authorization": "Bearer "+ authToken
+      headers: {
+        authorization: "Bearer " + authToken
       }
-    })
-      .then((res) => {
-        res.json()
-          .then((data) => {
-            this.props.getCurrentProfile(data);
-          });
+    }).then(res => {
+      res.json().then(data => {
+        this.props.getCurrentProfile(data);
       });
+    });
   }
 
   render() {
-    let currentUser = this.props.users?this.props.users[0]:[];
-    return (
-      <div className="profile-page" >
-        <UpperProfilePage user={currentUser} />
-        <div className="left-and-right">
-          <LeftProfilePage user={currentUser} />
-          <RightProfilePage userId={currentUser.id} />
+    let profileContent;
+    if (!this.props.users) {
+      profileContent = <Spinner />;
+    } else {
+      let currentUser = this.props.users[0];
+      profileContent = (
+        <div className="profile-page">
+          <UpperProfilePage user={currentUser} />
+          <div className="left-and-right">
+            <LeftProfilePage user={currentUser} />
+            <RightProfilePage user={currentUser} />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    );
+      );
+    }
+    return profileContent;
   }
 }
 
-let mapStateToProps = ({users, activeUserToken}) => {
-  return {users, auth:activeUserToken};
+let mapStateToProps = ({users, activeUserToken,activeUserID}) => {
+  return {users, auth:activeUserToken, activeUserID};
 };
 
-let mapDispatchToProps = (dispatch) => {
-  let getCurrentProfile = (user) => {
+let mapDispatchToProps = dispatch => {
+  let getCurrentProfile = user => {
     dispatch(getCurrentUserProfile(user));
   };
   return { getCurrentProfile };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfilePage));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ProfilePage)
+);
