@@ -3,6 +3,7 @@ import currentPositionReducer from "./currentPositionReducer";
 import userReducer from "./userReducer";
 import uiReducer from "./uiReducer";
 import inventoriesReducer from "./inventoriesReducer";
+import friendsReducer from './friendsReducer';
 
 import initialState from "../store";
 
@@ -18,8 +19,11 @@ let reducers ={
   [userReducer]:userReducer,
   [inventoriesReducer]:inventoriesReducer,
   [uiReducer]: uiReducer,
-  [reset]: reset
+  [reset]: reset,
+  [friendsReducer]: friendsReducer
 };
+
+console.log(reducers);
 
 let mainReducer = (state, action) => {
   let newState = state;
