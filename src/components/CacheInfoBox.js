@@ -37,7 +37,7 @@ let CacheInfoBox = ({createdOn, claimedOn, name, lat, lng, description,
         <div className="infoBox_header">
           <h3>{name}</h3>
           <button type="button" className="close_button" onClick={closePopup}>
-            <img src="/close.svg"/></button>
+            <img src="/close.svg" alt="Close Button"/></button>
         </div>
         <h4>{description}</h4>
         <img className="item_pic" src={image_url} alt=""/>
@@ -61,7 +61,8 @@ CacheInfoBox.propTypes = {
   description: PropTypes.string.isRequired,
   image_url: PropTypes.string,
   closePopup: PropTypes.func.isRequired,
-  distance: PropTypes.number.isRequired
+  distance: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired
 };
 
 let connectedCacheInfoBox = connect(null, mapDispatchtoProps)(CacheInfoBox);
