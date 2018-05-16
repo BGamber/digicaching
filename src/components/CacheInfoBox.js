@@ -20,7 +20,7 @@ let mapDispatchtoProps = dispatch => {
 };
 
 let CacheInfoBox = ({createdOn, claimedOn, name, lat, lng, description,
-  image_url="/No_image_available.svg", closePopup}) => {
+  image_url="/No_image_available.svg", closePopup, distance}) => {
   //Database will return null if an image is not set but defualt parameter
   //triggers only on undefined
   if (image_url === null) {
@@ -37,7 +37,7 @@ let CacheInfoBox = ({createdOn, claimedOn, name, lat, lng, description,
         <div className="infoBox_header">
           <h3>{name}</h3>
           <button type="button" className="close_button" onClick={closePopup}>
-            <img src="/close.svg"/></button>
+            <img src="/close.svg" alt="IMG" /></button>
         </div>
         <h4>{description}</h4>
         <img className="item_pic" src={image_url} alt=""/>
@@ -46,7 +46,7 @@ let CacheInfoBox = ({createdOn, claimedOn, name, lat, lng, description,
         {claimedOn ? <p className="timestamp claim">Cached claimed:
           <time dateTime={claimedOn}>{moment(claimedOn).fromNow()}</time></p> :
           <p> This cache has not been claimed</p>}
-        <ClaimButton lat={lat} lng={lng}/>
+        <ClaimButton distance={distance}/>
       </div>
     </OverlayView>
   );
@@ -60,7 +60,8 @@ CacheInfoBox.propTypes = {
   lng: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   image_url: PropTypes.string,
-  closePopup: PropTypes.func.isRequired
+  closePopup: PropTypes.func.isRequired,
+  distance: PropTypes.number.isRequired
 };
 
 let connectedCacheInfoBox = connect(null, mapDispatchtoProps)(CacheInfoBox);

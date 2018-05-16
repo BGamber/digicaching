@@ -9,25 +9,31 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, #cfd7ff 0%,#9baefb 60%,rgb(134, 168, 255) 100%);
 }
 
 .App {
-  height: 100vh;
   box-sizing: border-box;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-image: url('/coverPhoto.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment:fixed;
+  background: radial-gradient(ellipse at bottom, #495666 0%, #222538 100%);
   margin: auto;
 }
 
 .main-login {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  background-image: url('/coverPhoto.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment:fixed;
+}
+
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
 }
 
 .big-logo {
@@ -40,14 +46,12 @@ body {
   color: rgb(165, 143, 23);
   font-family: 'UnifrakturMaguntia', cursive;
   font-size: 100px;
-  margin: 200px 0 30px 0;
+  margin: 0;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .logo1 {
   width: 250px;
-  position: absolute;
-  top: 10px;
 }
 
 .login-input {
@@ -71,8 +75,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: auto;
 }
 
 .login-buttons {
@@ -263,6 +265,10 @@ h2 {
   background-position: center;
 }
 
+.inventory-empty {
+  margin-bottom: 30px;
+}
+
 
 /*------------------*/
 /*-----FOOTER-------*/
@@ -312,14 +318,26 @@ h2 {
   align-items: center;
 }
 
+.create-new-account {
+  background-image: url('/coverPhoto.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment:fixed;
+  height: 100vh;
+}
+
 .user-input2 {
   opacity: 0.6;
   padding: 12px;
+  margin: 6px 0;
   font-size: 22px;
   border-radius: 5px;
   width: 320px;
-  margin: 5px 0;
   height: 32px;
+}
+
+.create-profile-buttons {
+  display: flex;
 }
 
 /*------------------*/
@@ -460,6 +478,10 @@ hr {
 /*---SEARCH-FRIEND--*/
 /*------------------*/
 
+.route-container {
+  height: 100vh;
+}
+
 .Players {
   color: rgb(165, 143, 23);
   font-family: 'UnifrakturMaguntia', cursive;
@@ -474,7 +496,6 @@ hr {
   flex-direction: column;
   align-items: center;
   height: auto;
-  background: radial-gradient(ellipse at bottom, #495666 0%, #222538 100%);
 }
 
 .friend-card {
@@ -785,7 +806,6 @@ hr {
 
   .app-name {
     font-size: 55px;
-    margin: 220px 0 30px 0;
   }
 
   .profile-photo {
@@ -797,6 +817,5 @@ hr {
     position: absolute;
     left: 15%;
   }
-
 
 }

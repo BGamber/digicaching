@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setCurrentFriends } from '../actions/friendActions';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class FriendsLookup extends Component {
   constructor(props){
@@ -22,14 +22,10 @@ class FriendsLookup extends Component {
     .then(data => { 
       return data.json()})
     .then(users => {
-      let theUser = users.filter(user => user.name.toUpperCase() === this.state.friendName.toUpperCase())
-      if(!theUser){
-        return alert("User not found")
-      } else {
-        console.log(theUser)
-        this.props.setSearchedFriend(theUser)
+      let theUsers = users.filter(user => user.name.toUpperCase() === this.state.friendName.toUpperCase())
+        console.log(theUsers)
+        this.props.setSearchedFriend(theUsers)
         this.props.history.push('/friends');
-      }
     })
   }
 

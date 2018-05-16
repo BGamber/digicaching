@@ -12,8 +12,8 @@ const FriendCall = ({friend: {name,email,image_url}}) =>
         </div>
         {
           (image_url)?
-          <img className="friend-image" alt="user-image" src={image_url} />:
-          <img className="friend-image-notFound" alt="user-image" src={image_url} />
+          <img className="friend-image" alt="user-IMG" src={image_url} />:
+          <img className="friend-image-notFound" alt="user-IMG" src={image_url} />
         } 
       </div>
     </div>
