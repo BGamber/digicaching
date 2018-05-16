@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import CollectionList from "./CollectionList";
-import ItemPage from "./ItemPage";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {setActiveUserToken} from "../actions/userActions";

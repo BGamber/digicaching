@@ -62,7 +62,7 @@ CacheInfoBox.propTypes = {
   image_url: PropTypes.string,
   closePopup: PropTypes.func.isRequired,
   distance: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired
+  id: PropTypes.string.isRequired
 };
 
 let connectedCacheInfoBox = connect(null, mapDispatchtoProps)(CacheInfoBox);

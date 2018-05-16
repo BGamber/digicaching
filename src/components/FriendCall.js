@@ -12,11 +12,16 @@ const FriendCall = ({friend: {name,email,image_url}}) =>
       </div>
       {
         (image_url)?
-          <img className="friend-image" alt="user profile" src={image_url} />:
-          <img className="friend-image-notFound"
-            alt="" src={image_url} />
+          <img className="friend-image" alt="user-IMG" src={image_url} />:
+          <img className="friend-image-notFound" alt="user-IMG" src={image_url} />
       }
     </div>
+    {
+      (image_url)?
+        <img className="friend-image" alt="user profile" src={image_url} />:
+        <img className="friend-image-notFound"
+          alt="" src={image_url} />
+    }
   </div>;
 
 export default FriendCall;
