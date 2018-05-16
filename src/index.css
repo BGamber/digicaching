@@ -27,13 +27,13 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment:fixed;
-  padding: 30px;
 }
 
 .logo-area {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 30px;
 }
 
 .big-logo {
@@ -319,7 +319,6 @@ h2 {
   background-size: cover;
   background-position: center;
   background-attachment:fixed;
-  padding: 30px;
   height: 100vh;
 }
 
@@ -331,6 +330,10 @@ h2 {
   border-radius: 5px;
   width: 320px;
   height: 32px;
+}
+
+.create-profile-buttons {
+  display: flex;
 }
 
 /*------------------*/

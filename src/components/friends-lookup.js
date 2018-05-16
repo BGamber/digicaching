@@ -23,13 +23,9 @@ class FriendsLookup extends Component {
       return data.json()})
     .then(users => {
       let theUsers = users.filter(user => user.name.toUpperCase() === this.state.friendName.toUpperCase())
-      if(theUsers === []){
-        return alert("User not found")
-      } else {
         console.log(theUsers)
         this.props.setSearchedFriend(theUsers)
         this.props.history.push('/friends');
-      }
     })
   }
 
