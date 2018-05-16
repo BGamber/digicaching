@@ -6,7 +6,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker}
 import { MarkerClusterer } from
   "react-google-maps/lib/components/addons/MarkerClusterer";
 import {connect} from "react-redux";
-import currentPosition from "../actions/currentPositionAction";
+import currentPosition, {setTimer, newBounds} from "../actions/currentPositionAction";
 
 import CacheInfoBox from "./CacheInfoBox";
 
@@ -17,8 +17,10 @@ import ToggleTrackingButton from "./UserTrackingButton";
 import {setUserTracking,
   setActiveCache as setActiveCacheAction} from "../actions/uiActions";
 
-let mapStateToProps = ({caches, currentLat, currentLng, trackUser, activeCache}) => {
-  return {caches, currentLat, currentLng, trackUser, activeCache};
+let mapStateToProps = ({caches, currentLat, currentLng, trackUser, activeCache,
+  debounceTimer}) => {
+  return {caches, currentLat, currentLng, trackUser, activeCache,
+    debounceTimer};
 };
 
 let mapDispatchtoProps = (dispatch) => {
@@ -34,10 +36,19 @@ let mapDispatchtoProps = (dispatch) => {
   let setActiveCache = (id) => {
     dispatch(setActiveCacheAction(id));
   };
-  return {setCurrentPostition, disableTracking, enableTracking, setActiveCache};
+  let setDebounceTimer = (timerID) => {
+    dispatch(setTimer(timerID));
+  };
+  let setBounds = (boundsObject) => {
+    dispatch(newBounds(boundsObject));
+  };
+
+  return {setCurrentPostition, disableTracking, enableTracking, setActiveCache,
+    setDebounceTimer, setBounds};
 };
 
 let connection = connect(mapStateToProps, mapDispatchtoProps);
+
 
 let locationManagmentHooks = lifecycle({
   componentDidMount() {
@@ -55,28 +66,67 @@ let locationManagmentHooks = lifecycle({
   }
 });
 
+let boundsChangedDebouncer = (debounceTimer, map, timeoutFunction,
+  timerMangerFunction, boundsManagement) => {
+  if (debounceTimer) {
+    clearTimeout(debounceTimer);
+  }
+  timerMangerFunction(setTimeout(timeoutFunction,2000,map, boundsManagement));
+};
+
+let boundChangeHandler = (map, boundsManagement) => {
+  let bounds = map.getBounds();
+  let northEast = bounds.getNorthEast();
+  let southWest = bounds.getSouthWest();
+  let north = northEast.lat();
+  let south = southWest.lat();
+  let east = northEast.lng();
+  let west = southWest.lng();
+  boundsManagement({north, south, east, west});
+};
+
 let mapComponent = ({caches=[], currentLat=33.848460,
-  currentLng=-84.37360, trackUser, disableTracking, enableTracking, setActiveCache,
-  activeCache }) => {
+  currentLng=-84.37360, trackUser, disableTracking, enableTracking,
+  setActiveCache, activeCache, debounceTimer, setDebounceTimer, setBounds}) => {
   return [
     <ToggleTrackingButton key="ToggleButton"/>,
     <GoogleMap
-      defaultZoom={15}
-      defaultCenter={{ lat: currentLat, lng: currentLng }}
+      defaultZoom={15} defaultCenter={{ lat: currentLat, lng: currentLng }}
       {...trackUser ? {center:{lat:currentLat,lng:currentLng}} : {}} key="Map"
-      onDragStart={disableTracking}
-    >
+      onDragStart={disableTracking} ref={(ref) => {this.map = ref;}}
+      onBoundsChanged={
+        () => {
+          boundsChangedDebouncer(debounceTimer, this.map, boundChangeHandler,
+            setDebounceTimer, setBounds);
+        }}>
+
       <Marker position={{lat:currentLat, lng:currentLng}}
         icon="/UserLocation.svg" onClick={enableTracking}/>
-      <MarkerClusterer>
+
+      <MarkerClusterer maxZoom={18}>
+
         <Marker position={{ lat: -34.397, lng: 150.644 }} title="Test" />
-        {caches.map( ({latitude:lat,longitude:lng, id, name, description, image_url}) => {
+
+        {caches.map( ({latitude:lat,longitude:lng, id, item_name, createdon,
+          item_description, item_image_url, openedon, distance}) => {
+          if (item_name === "Mystery Box") {
+            item_image_url = "/Mystery.svg";
+          }
           if (id === activeCache){
-            return <CacheInfoBox lat={lat} lng={lng} key={id} name={name}
-              description={description} image_url={image_url}/>;
+            return <CacheInfoBox lat={lat} lng={lng} key={id} name={item_name}
+              description={item_description} image_url={item_image_url}
+              createdOn={createdon} claimedOn={openedon} distance={distance}/>;
           }
           else {
-            return <Marker position={{lat, lng}} title={name} key={id}
+            let icon;
+            if (openedon){
+              icon = "/chest_open.png";
+            }
+            else {
+              icon = "/chest_closed.png";
+            }
+            return <Marker position={{lat, lng}} title={item_name} key={id}
+              icon={icon}
               onClick={() => {
                 setActiveCache(id);
               }}/>;
@@ -86,6 +136,7 @@ let mapComponent = ({caches=[], currentLat=33.848460,
     </GoogleMap>
   ];
 };
+
 
 mapComponent.propTypes = {
   caches: PropTypes.array,
@@ -102,9 +153,10 @@ const MyMapComponent = compose(
     mapElement: <div style={{ height: "93.2vh" }} />,
   }),
   withScriptjs,
-  withGoogleMap,
   connection,
-  locationManagmentHooks
+  locationManagmentHooks,
+  withGoogleMap,
+
 )(mapComponent);
 
 export default MyMapComponent;
