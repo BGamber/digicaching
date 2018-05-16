@@ -1,23 +1,23 @@
 import React from 'react';
 
-let LeftProfilePage = (props) => (
-  <div className="left-profile-side">
+let LeftProfilePage = (user) => {
+return   <div className="left-profile-side">
     <div className="user-name left-values">
       <p>User Name:</p>
-      <p>{props.user.name}</p>
+      <p>{user.user.name}</p>
     </div>
     <div className="friends-list left-values">
       <p>Friends</p>
-      <p>({props.user.friendsCount})</p>
+      <p>({user.user.friendsCount})</p>
     </div>
     <div className="ranking left-values">
       <p>World Ranking</p>
-      <p>({props.user.ranking})</p>
+      <p>({user.user.ranking})</p>
     </div>
     <div className="points left-values">
       <p>Personal Score</p>
-      <p>{props.user.score}</p>
+      <p>{user.user.score}</p>
     </div>
-  </div>);
+  </div>};
 
 export default LeftProfilePage;

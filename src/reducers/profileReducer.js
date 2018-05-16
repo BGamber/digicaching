@@ -4,7 +4,6 @@ const PROFILE ="PROFILE_";
 let profile =  {}
 
 let profileReducer = (state=profile, action) => {
-  console.error('reducer4');
   let type = action.type.replace(PROFILE, "");
   switch (type) {
   case "LOADING":
