@@ -30,6 +30,7 @@ let getUserById = async (req, res) => {
   let queryString2 = "SELECT u.name, u.image_url FROM users u " +
     "JOIN friends f ON u.id = f.friend_id " +
     "WHERE f.user_id = $1;";
+
   try {
     await Promise.all(users.map(async user =>
       user.friends = await db.query(queryString2, [user.id])));
