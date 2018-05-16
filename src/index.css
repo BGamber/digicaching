@@ -471,6 +471,10 @@ hr {
 /*---SEARCH-FRIEND--*/
 /*------------------*/
 
+.route-container {
+  height: 100vh;
+}
+
 .Players {
   color: rgb(165, 143, 23);
   font-family: 'UnifrakturMaguntia', cursive;
