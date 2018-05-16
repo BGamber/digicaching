@@ -18,18 +18,39 @@ let getUserByName = async name => {
 let getUserById = async (req, res) => {
   let queryString = "SELECT id, email, name, image_url FROM users" +
     (req.params.id !== undefined ? " WHERE id = $1" : "") + ";";
-  let users = await db.query(queryString, [req.params.id]);
+
+  let users;
+  try {
+    users = await db.query(queryString, [req.params.id]);
+  } catch (err) {
+    res.setHeader("Content-Type", "application/json");
+    res.status(422).send(JSON.stringify(err));
+  };
+
   let queryString2 = "SELECT u.name, u.image_url FROM users u " +
     "JOIN friends f ON u.id = f.friend_id " +
     "WHERE f.user_id = $1;";
-  await Promise.all(users.map(async user =>
-    user.friends = await db.query(queryString2, [user.id])));
+
+  try {
+    await Promise.all(users.map(async user =>
+      user.friends = await db.query(queryString2, [user.id])));
+  } catch (err) {
+    res.setHeader("Content-Type", "application/json");
+    res.status(422).send(JSON.stringify(err));
+  };
+
   let queryString3 = "SELECT i.name as item_name, i.description as item_description, " +
     "i.image_url as item_image_url, inv.quantity FROM inventories inv " +
     "JOIN items i ON inv.item_id = i.id" +
     " WHERE user_id = $1;";
-  await Promise.all(users.map(async user =>
-    user.inventory = await db.query(queryString3, [user.id])));
+  try {
+    await Promise.all(users.map(async user =>
+      user.inventory = await db.query(queryString3, [user.id])));
+  } catch (err) {
+    res.setHeader("Content-Type", "application/json");
+    res.status(422).send(JSON.stringify(err));
+  };
+
   res.setHeader("Content-Type", "application/json");
   res.send(JSON.stringify(users));
 };

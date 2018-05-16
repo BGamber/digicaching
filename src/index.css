@@ -350,7 +350,7 @@ h2 {
 }
 
 .friends {
-  background-image: url('/Forest.jpg');
+  background-image: url('/Fantasy-Forest-widescreen.jpg');
   height: 100vh;
   opacity: 1;
   background-size: cover;
@@ -492,24 +492,39 @@ hr {
   display: flex;
   flex-direction: column;
   align-content: flex-start;
-  padding: 0px 40px 20px 40px;
+  padding: 0px 40px 0px 40px;
 
 }
 
-.friend-name {
+.friend-name,
+.friend-email {
+  margin: 6px 0;
+  font-size: 15px;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.user-name,
+.user-email {
+  margin: 6px 0;
   font-size: 25px;
-  padding: 5px;
 }
 
-.friend-image {
-  width: 150px;
-  height: 150px;
+.friend-image,
+.friend-image-notFound {
+  width: 220px;
+  height: 220px;
   border-radius: 5px;
+  margin: 10px;
   box-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
+.friend-image-notFound {
+  background: white;
+}
+
 .add-friend-button {
-  margin: 100px 50px 100px 10px;
+  margin: 10px -1px;
   width: 150px;
   height: 50px;
   border-radius: 5px;
@@ -755,6 +770,12 @@ hr {
 
   .add-friend-button {
     margin: 20px 0;
+  }
+
+  .friend-properties {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
 }
