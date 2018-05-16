@@ -7,7 +7,7 @@ let InventoryList = ( {user} ) => {
   if (user === undefined || user.inventory === undefined) {
     inventoryContent = <Spinner />;
   } else {
-    
+
     let itemsList = user.inventory.map(item => (
       <li key={item.id}>
         <div

@@ -18,8 +18,8 @@ class ProfilePage extends Component {
   async componentDidMount() {
     let userRouterId = this.props.match.params.id;
     let authToken = this.props.auth;
-
-    if (!userRouterId) {
+    
+    if (userRouterId === undefined) {
       this.props.history.push("/friends-lookup");
     }
 

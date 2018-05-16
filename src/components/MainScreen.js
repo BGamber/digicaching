@@ -19,7 +19,8 @@ let MainScreen = () => {
       <div className="content-container">
         <LoginRedirect/>
         <Switch>
-          <Route path='/profile(/:id)?' component={ProfilePage}/>
+          <Route path='/profile/:id' component={ProfilePage}/>
+          <Route path="/profile" component={ProfilePage}/>
           <Route path='/friends' component={FriendsPage}/>
           <Route path='/collections' component={Collections} />
           <Route path='/friends-lookup' component={FriendsLookup} />
