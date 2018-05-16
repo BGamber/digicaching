@@ -92,7 +92,8 @@ let getCaches = async (req, res) => {
   else if (req.query.bounds) {
     let boundsParams = req.query.bounds.split(",");
     let bounds = boundsParams.map(coord => parseFloat(coord));
-    queryString += "WHERE latitude BETWEEN $3 AND $4 AND longitude BETWEEN $5 AND $6;";
+    console.log(bounds);
+    queryString += "WHERE latitude BETWEEN $4 AND $3 AND longitude BETWEEN $5 AND $6;";
     caches = await db.query(queryString, [
       location[0],
       location[1],
@@ -113,9 +114,9 @@ let claimCache = async (req, res) => {
   if (claimedCheck.length > 0) {
     res.status(422).send("Cache Already Claimed By User");
   } else {
-    let { longitude, latitude } = req.body;
+    let { latitude, longitude } = req.body;
     let { distancecheck } = await db.one("SELECT (ST_DISTANCE(ST_POINT($1, $2), location) < 50) as distancecheck " +
-      "FROM caches WHERE id = $3;", [longitude, latitude, req.params.id]);
+      "FROM caches WHERE id = $3;", [latitude, longitude, req.params.id]);
     if (distancecheck) {
       let { item_id } = await db.one("SELECT item_id FROM caches WHERE id = $1", [req.params.id]);
       let cacheItem = item_id;

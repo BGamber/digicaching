@@ -22,7 +22,7 @@ class FriendsLookup extends Component {
     .then(data => { 
       return data.json()})
     .then(users => {
-      let theUser = users.find(user => user.name.toUpperCase() === this.state.friendName.toUpperCase())
+      let theUser = users.filter(user => user.name.toUpperCase() === this.state.friendName.toUpperCase())
       if(!theUser){
         return alert("User not found")
       } else {
