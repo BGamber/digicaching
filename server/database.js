@@ -118,7 +118,7 @@ let getRandomItem = () =>
     "ORDER BY RANDOM() LIMIT 1;");
 
 let claimCache = async (req, res) => {
-  let claimedCheck = await db.any("SELECT * FROM claims WHERE cache_id = $1;", [req.params.id]);
+  let claimedCheck = await db.any("SELECT * FROM claims WHERE cache_id = $1 AND user_id = $2;", [req.params.id, req.jwt.userId]);
   if (claimedCheck.length > 0) {
     res.status(422).send("Cache Already Claimed By User");
   } else {
