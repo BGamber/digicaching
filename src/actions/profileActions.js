@@ -6,9 +6,7 @@ export let getCurrentUserProfile = (user) => {
   type: PROFILE_GET,
   payload: user}
 };
-export let setProfileLoading = () => {
-  
-  
+export let setProfileLoading = () => { 
   return {
     type: PROFILE_LOADING
   };

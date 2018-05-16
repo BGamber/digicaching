@@ -496,16 +496,24 @@ hr {
 
 }
 
-.friend-name {
-  font-size: 25px;
-  padding: 5px;
+.friend-name,
+.friend-email, {
+  font-size: 20px;
+  padding: 10px 0;
+  margin: 5px 0;
 }
 
-.friend-image {
+.friend-image,
+.friend-image-notFound {
   width: 150px;
   height: 150px;
   border-radius: 5px;
+  margin: 5px 0;
   box-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.friend-image-notFound {
+  background: white;
 }
 
 .add-friend-button {
@@ -755,6 +763,12 @@ hr {
 
   .add-friend-button {
     margin: 20px 0;
+  }
+
+  .friend-properties {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
 }
