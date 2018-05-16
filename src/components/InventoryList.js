@@ -1,15 +1,17 @@
 import React from "react";
 import Spinner from "./loaders/Spinner";
+import { Link } from "react-router-dom";
 
 let InventoryList = ( {user} ) => {
   let inventoryContent;
+  let itemsList;
 
   if (user === undefined || user.inventory === undefined) {
-    inventoryContent = <Spinner />;
+    return <Spinner />;
   } else {
 
-    let itemsList = user.inventory.map(item => (
-      <li key={item.id}>
+    itemsList = user.inventory.map(item => (
+      <Link to={`/item/${item.id}`} style={{ textDecoration: 'none' }}> <li className="inventoryList" key={item.id}>
         <div
           className="itemImage"
           style={{ backgroundImage: "url(" + item.image_url + ")" }}
@@ -18,16 +20,10 @@ let InventoryList = ( {user} ) => {
         <span>
           {item.item_name} ({item.quantity})
         </span>
-      </li>
+      </li></Link> 
     ));
-    inventoryContent = <ul>
-      { itemsList }
-    </ul>;
+    return itemsList;
   }
-
-
-
-  return inventoryContent;
 };
 
 export default InventoryList;
