@@ -17,7 +17,10 @@ export let newBounds = ({east, west, north, south}) => {
     let {currentLat, currentLng, activeUserToken} = getState();
     fetch(`${process.env.REACT_APP_BACKEND}/api/caches?loc=${currentLng},`+
       `${currentLat}&bounds=${west},${east},${north},${south}`,
-    {headers:new Headers({Authorzation: `Bearer ${activeUserToken}`})
+    {
+      "headers": {
+        "authorization": `Bearer ${activeUserToken}`
+      }
     }).then(res => {
       if (res.status === 200) {
         res.json().then((caches) => {

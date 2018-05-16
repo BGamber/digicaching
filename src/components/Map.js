@@ -96,9 +96,8 @@ let mapComponent = ({caches=[], currentLat=33.848460,
       onDragStart={disableTracking} ref={(ref) => {this.map = ref;}}
       onBoundsChanged={
         () => {
-          console.log(setBounds);
           boundsChangedDebouncer(debounceTimer, this.map, boundChangeHandler,
-            setDebounceTimer, setBounds)
+            setDebounceTimer, setBounds);
         }}>
 
       <Marker position={{lat:currentLat, lng:currentLng}}
