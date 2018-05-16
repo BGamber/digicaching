@@ -10,9 +10,12 @@ import {withRouter} from "react-router-dom";
 
 class ProfilePage extends Component {
   async componentDidMount() {
-    let userPropsId = this.props.users[0].id;
     let userRouterId = this.props.match.params.id;
     let authToken = this.props.auth;
+    console.log(userRouterId);
+    if (userRouterId === undefined) {
+      this.props.history.push(`/profile/${this.props.activeUserID}`);
+    }
 
     fetch(`${process.env.REACT_APP_BACKEND}/api/users/${userRouterId}`, {
       "headers": {
@@ -42,8 +45,8 @@ class ProfilePage extends Component {
   }
 }
 
-let mapStateToProps = ({users, activeUserToken}) => {
-  return {users, auth:activeUserToken};
+let mapStateToProps = ({users, activeUserToken,activeUserID}) => {
+  return {users, auth:activeUserToken, activeUserID};
 };
 
 let mapDispatchToProps = (dispatch) => {
