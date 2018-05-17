@@ -6,9 +6,11 @@ let isChooserShowing = true;
 
 class InventoryChooser extends Component {
   
+  
   makeChoice = (chosenItem, currentLat, currentLng, authToken) => {
+    console.log('id,', chosenItem.id);
 
-    fetch(`${process.env.REACT_APP_BACKEND}/api/caches/place/${chosenItem.id}`, {
+    fetch(`${process.env.REACT_APP_BACKEND}/api/caches/place`, {
       method:'POST',
       headers: {
         authorization: "Bearer " + authToken
