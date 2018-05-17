@@ -6,8 +6,7 @@ const { generateCoordinates } = require("./coordinates");
 
 let getUserByEmail = async email => {
   let queryString = "SELECT id, name, password FROM users WHERE email = $1;";
-  let user = await db.one(queryString, [email]);
-  return user;
+  return db.one(queryString, [email]);
 };
 
 let getUserByName = async name => {
