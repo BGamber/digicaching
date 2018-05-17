@@ -83,7 +83,8 @@ let mapComponent = ({caches=[], currentLat=33.848460,
   let debounced = debounce(boundChangeHandler, 2000);
 
   return [
-    <ToggleTrackingButton key="ToggleButton"/>, <PlaceCacheButton />,
+    <ToggleTrackingButton key="ToggleButton"/>,
+    <PlaceCacheButton key="PlaceCacheButton"/>,
     <GoogleMap
       defaultZoom={15} defaultCenter={{ lat: currentLat, lng: currentLng }}
       {...trackUser ? {center:{lat:currentLat,lng:currentLng}} : {}} key="Map"

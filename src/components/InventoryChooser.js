@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import Spinner from "./loaders/Spinner";
 import authFetch from "../lib/authFetch";
 
-let isChooserShowing = true;
 
 class InventoryChooser extends Component {
 
@@ -42,7 +41,7 @@ class InventoryChooser extends Component {
           />
           <span
             className="inventory-item"
-            onClick={value =>
+            onClick={() =>
               this.makeChoice(item, currentLat, currentLng)
             }
           >

@@ -1,4 +1,3 @@
-import setActiveUserToken from "./userActions";
 import authFetch from "../lib/authFetch";
 
 export let setPosition = (newLat, newLng) => {
@@ -28,8 +27,5 @@ export let setCaches = (newCaches) => {
 
 setCaches.toString = () => "POSITION_CACHES";
 
-// let getNewBounds = (newEast, newWest, newNorth, newSouth) => {
-//
-// };
 
 export default setPosition;
