@@ -106,6 +106,15 @@ let getCaches = async (req, res) => {
   } else {
     caches = await db.query(queryString + ";", [location[0], location[1]]);
   };
+  queryString2 = "SELECT user_id FROM claims WHERE cache_id = $1;";
+  try {
+    await Promise.all(caches.map(async cache => {
+      let claims = await db.query(queryString2, [cache.id]);
+      return cache.claims = claims.map(claim => claim["user_id"]);
+    }));
+  } catch (err) {
+    res.send(JSON.stringify(err));
+  };
   res.setHeader("Content-Type", "application/json");
   res.send(JSON.stringify(caches));
 };
