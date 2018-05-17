@@ -7,24 +7,17 @@ import { setUserInventories } from "../actions/inventoriesActions";
 
 class InventoryChooser extends Component {
   componentDidMount(){
-    console.log('compDIDmount');
-    
-    authFetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${this.props.activeUserID}`, {
-      method: "GET"
-       }).then((res) => {
-        return res.json().then(data => {
-          this.props.setInventories(data);
-        })
-      })
-  }
-  componentDidUpdate(){
-    console.log('compunmount');
     
   }
-
+ updateInventory = authFetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${this.props.activeUserID}`, {
+  method: "GET"
+   }).then((res) => {
+     res.json().then(data => {
+      this.props.setInventories(data);
+    })
+  });
   makeChoice(chosenItem, currentLat, currentLng) {
 console.log('id: ', chosenItem.id);
-
     authFetch(`${process.env.REACT_APP_BACKEND}/api/caches/place`, {
       "method":"POST",
       "headers": {
@@ -35,12 +28,9 @@ console.log('id: ', chosenItem.id);
         "latitude": currentLat,
         "longitude": currentLng
       })
-    }).then(this.props.closer)
-    // .then(res => {
-    //   res.json().then(data => {
-    //     // ...data
-    //   });
-    // });
+    }).then(this.updateInventory);
+    // .then(this.props.closer)
+
   }
 
   render() {
