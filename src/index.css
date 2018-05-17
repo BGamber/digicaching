@@ -581,7 +581,7 @@ hr {
 
 .back-button2:hover,
 .back-button:hover {
-  color: grey;
+  color: rgb(255, 202, 89);
   cursor: pointer;
 }
 
