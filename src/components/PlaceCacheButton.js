@@ -40,8 +40,6 @@ class PlaceCacheButton extends Component {
         {
           (this.state.isChooserShowing)?
           <div>
-          <div className="close-x" 
-          onClick={this.showChooser.bind(this)}>X</div> 
             <InventoryChooser closer={this.showChooser.bind(this)} /></div>
           :
           null
