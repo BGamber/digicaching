@@ -99,8 +99,7 @@ let mapComponent = ({caches=[], currentLat=33.848460,
 
       <MarkerClusterer maxZoom={18}>
 
-
-        {caches.map( ({latitude:lat,longitude:lng, id, item_name, createdon,
+        {caches && caches.length ? caches.map( ({latitude:lat,longitude:lng, id, item_name, createdon,
           item_description, item_image_url, openedon, distance}) => {
           if (item_name === "Mystery Box") {
             item_image_url = "/Mystery.svg";
@@ -124,7 +123,9 @@ let mapComponent = ({caches=[], currentLat=33.848460,
                 setActiveCache(id);
               }}/>;
           }
-        })}
+        }):
+          null
+        }
       </MarkerClusterer>
     </GoogleMap>
   ];
