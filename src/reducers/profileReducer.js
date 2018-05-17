@@ -15,7 +15,7 @@ let profileReducer = (state=profile, action) => {
 
 
       ...state,
-      users: action.payload,
+      currentUser: action.payload,
       loading: false
     };
 

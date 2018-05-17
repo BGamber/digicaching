@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 
 let LeftProfilePage = ({user, friends}) => {
   let content;
-
-  if (user === undefined || user.name === undefined || friends === undefined) {
+if (!friends) friends = ['-'];
+  if (user[0] === undefined || user[0].name === undefined) {
     content = <Spinner />;
   } else {
 
     content =<div className="left-profile-side">
     <div className="user-name left-values">
       <p>User Name:</p>
-      <p>{user.name}</p>
+      <p>{user[0].name}</p>
     </div>
     <div className="friends-list left-values">
       <p>Friends</p>
@@ -20,11 +20,11 @@ let LeftProfilePage = ({user, friends}) => {
     </div>
     <div className="ranking left-values">
       <p>World Ranking</p>
-      <p>({user.ranking})</p>
+      <p>({user[0].ranking})</p>
     </div>
     <div className="points left-values">
       <p>Personal Score</p>
-      <p>{user.score}</p>
+      <p>{user[0].score}</p>
     </div>
   </div>
 } 
@@ -33,7 +33,8 @@ return content;
 
 let mapStateToProps = (state) => {
   return {
-    friends: state.users[0].friends
+    friends: state.currentUser.friends,
+    user:state.currentUser
   }
 }
 
