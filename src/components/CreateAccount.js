@@ -2,13 +2,17 @@ import React, { Component } from "react";
 import BasicTemplate from "./BasicTemplate";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {setActiveUserToken} from "../actions/userActions";
+import {setActiveUserToken, setActiveUserID} from "../actions/userActions";
+import {decode} from "jsonwebtoken";
 
 let mapDispatchToProps = (dispatch) => {
   let setToken = (token) => {
     dispatch(setActiveUserToken(token));
   };
-  return {setToken};
+  let setID = (id) => {
+    dispatch(setActiveUserID(id));
+  };
+  return {setToken, setID};
 };
 
 class CreateAccount extends Component {
@@ -47,6 +51,8 @@ class CreateAccount extends Component {
       );
       let {token} = await res.json();
       this.props.setToken(token);
+      let {userId} = decode(token);
+      this.props.setID(userId);
       if (prevPath && prevPath !== "/login" && prevPath !==
       "/create-account") {
         this.props.history.replace(prevPath);
