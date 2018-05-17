@@ -15,6 +15,7 @@ import PropTypes from "prop-types";
 import debounce from "lodash/debounce";
 
 import ToggleTrackingButton from "./UserTrackingButton";
+import PlaceCacheButton from "./PlaceCacheButton";
 import {setUserTracking,
   setActiveCache as setActiveCacheAction} from "../actions/uiActions";
 
@@ -82,7 +83,7 @@ let mapComponent = ({caches=[], currentLat=33.848460,
   let debounced = debounce(boundChangeHandler, 2000);
   
   return [
-    <ToggleTrackingButton key="ToggleButton"/>,
+    <ToggleTrackingButton key="ToggleButton"/>, <PlaceCacheButton />,
     <GoogleMap
       defaultZoom={15} defaultCenter={{ lat: currentLat, lng: currentLng }}
       {...trackUser ? {center:{lat:currentLat,lng:currentLng}} : {}} key="Map"
