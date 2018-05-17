@@ -42,7 +42,7 @@ let getUserById = async (req, res) => {
   let queryString3 = "SELECT i.id, i.name as item_name, i.description as item_description, " +
     "i.image_url as item_image_url, inv.quantity FROM inventories inv " +
     "JOIN items i ON inv.item_id = i.id" +
-    " WHERE user_id = $1;";
+    " WHERE inv.quantity > 0 AND user_id = $1;";
   try {
     await Promise.all(users.map(async user =>
       user.inventory = await db.query(queryString3, [user.id])));
@@ -67,14 +67,28 @@ let getInventories = async (req, res) => {
   let queryString = "SELECT i.id, i.name as item_name, i.description as item_description, " +
     "i.image_url as item_image_url, inv.quantity FROM inventories inv " +
     "JOIN items i ON inv.item_id = i.id" +
-    (req.params.id !== undefined ? " WHERE user_id = $1" : "") + ";";
+    "WHERE inv.quantity > 0" +
+    (req.params.id !== undefined ? " AND user_id = $1;" : ";");
   let inventories = await db.query(queryString, [req.params.id]);
   res.send(inventories);
 };
 
-let getCollections = (req, res) => {
-  console.log(req.params);
-  res.send("Collections");
+let getCollections = async (req, res) => {
+  let queryString = "SELECT i.id, i.name as item_name, i.description as item_description, " +
+    "i.image_url as item_image_url FROM items i " +
+    "JOIN recipes r WHERE i.id = r.item_id" +
+    (req.params.id !== undefined ? " WHERE i.id = $1;" : ";");
+  let collections = await db.query(queryString, [req.params.id]);
+  let queryString2 = "SELECT i.id, i.name, i.image_url as item_image_url " +
+    "FROM items i JOIN recipes r WHERE r.item_id = $1 AND r.ingredients LIKE '%/' || i.id || '/%';";
+  try {
+    await Promises.all(collections.map(async collection => 
+      collection.ingredients = await db.query(queryString2, [collection.id])));
+  } catch (err) {
+    res.send(JSON.stringify(err));
+  };
+  res.setHeader("Content-Type", "application/json");
+  res.send(JSON.stringify(collections));
 };
 
 let getCaches = async (req, res) => {
@@ -92,7 +106,6 @@ let getCaches = async (req, res) => {
   else if (req.query.bounds) {
     let boundsParams = req.query.bounds.split(",");
     let bounds = boundsParams.map(coord => parseFloat(coord));
-    console.log(bounds);
     queryString += "WHERE latitude BETWEEN $4 AND $3 AND longitude BETWEEN $5 AND $6;";
     caches = await db.query(queryString, [
       location[0],
