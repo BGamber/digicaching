@@ -581,7 +581,7 @@ hr {
 
 .back-button2:hover,
 .back-button:hover {
-  color: grey;
+  color: rgb(255, 202, 89);
   cursor: pointer;
 }
 
@@ -613,7 +613,7 @@ hr {
   font-size: 70px;
   font-family: 'UnifrakturMaguntia', cursive;
   color: rgb(165, 143, 23);
-  margin: 30px;
+  margin: 10px 0;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
@@ -627,6 +627,8 @@ hr {
 .item-description {
   font-size: 25px;
   color: rgb(0, 0, 0);
+  text-align: center;
+  margin: 0 10px;
 }
 
 .items-use-for {
@@ -837,6 +839,10 @@ hr {
 
   .content-container {
     max-height: 2000px;
+  }
+
+  .item-name {
+    font-size: 50px;
   }
 
 }
