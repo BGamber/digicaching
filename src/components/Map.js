@@ -81,7 +81,7 @@ let mapComponent = ({caches=[], currentLat=33.848460,
   setActiveCache, activeCache, setBounds}) => {
 
   let debounced = debounce(boundChangeHandler, 2000);
-  
+
   return [
     <ToggleTrackingButton key="ToggleButton"/>, <PlaceCacheButton />,
     <GoogleMap
