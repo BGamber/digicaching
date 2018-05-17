@@ -56,5 +56,4 @@ let mapDispatchToProps = dispatch => ({
   }
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FriendsLookup));
-
+export default withRouter(connect(null, mapDispatchToProps)(FriendsLookup));
