@@ -133,8 +133,9 @@ let getCaches = async (req, res) => {
 
 let getRandomItem = () =>
   db.one("SELECT i.id FROM items i " +
-    "LEFT OUTER JOIN recipes r ON i.id = r.item_id " +
-    "WHERE r.ingredients IS NULL " +
+    // "LEFT OUTER JOIN recipes r ON i.id = r.item_id " +
+    // "WHERE r.ingredients IS NULL " +
+    "WHERE i.theme_id = 2 " +
     "AND i.id != 1 " +
     "ORDER BY RANDOM() LIMIT 1;");
 
