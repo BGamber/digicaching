@@ -23,8 +23,6 @@ let reducers ={
   [friendsReducer]: friendsReducer
 };
 
-console.log(reducers);
-
 let mainReducer = (state, action) => {
   let newState = state;
   Object.keys(reducers).forEach( (prefix) => {
