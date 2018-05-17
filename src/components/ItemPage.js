@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {Link} from "react-router-dom";
 import { connect } from 'react-redux';
 
@@ -15,8 +15,9 @@ class ItemPage extends Component {
         <p className="item-description">{theItem.item_description}</p>
         <Link to={`/profile/${this.props.user.id}`}><button className="back-button">Back</button></Link>
       </div>
-    )
+    );
   }
+
 
   render (){
     return (
@@ -33,4 +34,3 @@ let mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps)(ItemPage);
-

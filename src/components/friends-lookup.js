@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { setCurrentFriends } from "../actions/friendActions";
 import { withRouter } from "react-router-dom";
 import authFetch from "../lib/authFetch";
+import PropTypes from "prop-types";
+
 
 class FriendsLookup extends Component {
   constructor(props){
@@ -14,6 +16,7 @@ class FriendsLookup extends Component {
 
   submitHandler(event) {
     event.preventDefault();
+
     authFetch("http://localhost:5000/api/users")
 
       .then(data => {
@@ -42,6 +45,10 @@ class FriendsLookup extends Component {
   }
 }
 
+FriendsLookup.propTypes = {
+  setSearchedFriend: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+};
 
 let mapDispatchToProps = dispatch => ({
   setSearchedFriend: (friend) => {
@@ -49,5 +56,5 @@ let mapDispatchToProps = dispatch => ({
   }
 });
 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FriendsLookup));
 
-export default withRouter(connect(null, mapDispatchToProps)(FriendsLookup));

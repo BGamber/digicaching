@@ -7,13 +7,6 @@ let setPosition = (state, action) => {
 
 setPosition.toString = () => "POSITION_SET";
 
-let setTimer = (state, action) => {
-  let {newTimer} = action;
-  return {...state, debounceTimer:newTimer};
-};
-
-setTimer.toString = () => "POSITION_TIMER";
-
 let setCaches = (state, action) => {
   let {newCaches} = action;
   return {...state, caches:newCaches};
@@ -23,7 +16,6 @@ setCaches.toString = () => "POSITION_CACHES";
 
 
 let reducers = {
-  [setTimer]: setTimer,
   [setPosition]: setPosition,
   [setCaches]: setCaches
 };
