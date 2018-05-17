@@ -75,12 +75,14 @@ class LoginPage extends Component {
         }}>
           <div className="login-input">
             <input
+              autoComplete="email"
               type="email"
               className="user-input"
               placeholder='Email'
               success="right" required
               onChange={(event) => this.setState({ email: event.target.value })}/>
             <input
+              autoComplete="current-password"
               type="password"
               className="user-input"
               placeholder="Password"
@@ -89,9 +91,9 @@ class LoginPage extends Component {
           </div>
           <div className="login-buttons">
             <button
-              type="button"
-              className="login-page-button submit-button"
-              onClick={() => this.submitLogin()}>Sign In</button>
+              type="submit"
+              className="login-page-button submit-button">
+              Sign In</button>
             {/* <p className="new-user-link">Don't have an account yet? Sign up </p> */}
             <button className="login-page-button"><Link
               to={{pathname:"/create-account", state:{prevPath}}}

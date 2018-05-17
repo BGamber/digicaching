@@ -74,16 +74,19 @@ class CreateAccount extends Component {
             placeholder='User Name'
             name="userName" required/>
           <input
+            autoComplete="email"
             type="email"
             className="user-input2"
             placeholder='Email'
             name="email" required/>
           <input
+            autoComplete="new-password"
             type="password"
             className="user-input2"
             placeholder='Password'
             name="password" required/>
           <input
+            autoComplete="confirm-password"
             type="password"
             className="user-input2"
             placeholder='Confirm Password'
