@@ -491,7 +491,7 @@ hr {
 
 .Players {
   color: rgb(165, 143, 23);
-  font-family: 'UnifrakturMaguntia', cursive;
+  font-family: 'UnifrakturCook', cursive;
   font-size: 100px;
   text-align: center;
   margin: 30px 0;
@@ -809,7 +809,6 @@ hr {
 
 }
 
-
 @media only screen and (max-width: 600px) {
 
   .app-name {
@@ -824,6 +823,10 @@ hr {
   .photo-choose {
     position: absolute;
     left: 15%;
+  }
+
+  .content-container {
+    max-height: 2000px;
   }
 
 }
