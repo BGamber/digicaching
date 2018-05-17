@@ -7,24 +7,19 @@ import { setUserInventories } from "../actions/inventoriesActions";
 
 class InventoryChooser extends Component {
   componentDidMount(){
-    console.log('compDIDmount');
+    console.log('cdm');
     
-    authFetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${this.props.activeUserID}`, {
-      method: "GET"
-       }).then((res) => {
-        return res.json().then(data => {
-          this.props.setInventories(data);
-        })
-      })
+    this.updateInventory;
   }
-  componentDidUpdate(){
-    console.log('compunmount');
-    
-  }
-
+ updateInventory = authFetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${this.props.activeUserID}`, {
+  method: "GET"
+   }).then((res) => {
+     res.json().then(data => {
+      this.props.setInventories(data);
+    })
+  });
   makeChoice(chosenItem, currentLat, currentLng) {
 console.log('id: ', chosenItem.id);
-
     authFetch(`${process.env.REACT_APP_BACKEND}/api/caches/place`, {
       "method":"POST",
       "headers": {
@@ -36,24 +31,23 @@ console.log('id: ', chosenItem.id);
         "longitude": currentLng
       })
     }).then(this.props.closer)
-    // .then(res => {
-    //   res.json().then(data => {
-    //     // ...data
-    //   });
-    // });
+    
+    // 
+
   }
 
   render() {
 
     let currentUser = this.props.currentUser[0];
+    let inventory = this.props.inventories;
     let { currentLat, currentLng } = this.props;
 
     let inventoryContent;
 
-    if (!currentUser|| !currentUser.inventory) {
+    if (!currentUser|| !inventory) {
       inventoryContent = <Spinner />;
     } else {
-      let itemsList = currentUser.inventory.map(item => (
+      let itemsList = inventory.map(item => (
         <li key={item.id}>
           <div
             className="itemImage"
@@ -72,6 +66,7 @@ console.log('id: ', chosenItem.id);
       ));
       inventoryContent = (
         <aside className="inventory-chooser">
+          <div className="close-x" onClick={ this.props.closer }>X</div>
           <h3>Drop a Cache</h3>
           <span>WHICH ITEM WOULD YOU LIKE TO DROP?</span>
           <ul>{itemsList}</ul>
@@ -93,13 +88,15 @@ let mapStateToProps = ({
   currentUser,
   currentLat,
   currentLng,
-  activeUserID
+  activeUserID,
+  inventories
 }) => {
   return {
     currentUser,
     currentLat,
     currentLng,
-    activeUserID
+    activeUserID,
+    inventories
   };
 };
 
