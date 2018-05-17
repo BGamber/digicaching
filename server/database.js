@@ -79,6 +79,16 @@ let getCollections = async (req, res) => {
     "JOIN recipes r WHERE i.id = r.item_id" +
     (req.params.id !== undefined ? " WHERE i.id = $1;" : ";");
   let collections = await db.query(queryString, [req.params.id]);
+  let queryString2 = "SELECT i.id, i.name, i.image_url as item_image_url " +
+    "FROM items i JOIN recipes r WHERE r.item_id = $1 AND r.ingredients LIKE '%/' || i.id || '/%';";
+  try {
+    await Promises.all(collections.map(async collection => 
+      collection.ingredients = await db.query(queryString2, [collection.id])));
+  } catch (err) {
+    res.send(JSON.stringify(err));
+  };
+  res.setHeader("Content-Type", "application/json");
+  res.send(JSON.stringify(collections));
 };
 
 let getCaches = async (req, res) => {
@@ -96,7 +106,6 @@ let getCaches = async (req, res) => {
   else if (req.query.bounds) {
     let boundsParams = req.query.bounds.split(",");
     let bounds = boundsParams.map(coord => parseFloat(coord));
-    console.log(bounds);
     queryString += "WHERE latitude BETWEEN $4 AND $3 AND longitude BETWEEN $5 AND $6;";
     caches = await db.query(queryString, [
       location[0],
