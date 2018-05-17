@@ -83,7 +83,8 @@ let mapComponent = ({caches=[], currentLat=33.848460,
   let debounced = debounce(boundChangeHandler, 2000);
 
   return [
-    <ToggleTrackingButton key="ToggleButton"/>, <PlaceCacheButton />,
+    <ToggleTrackingButton key="ToggleButton"/>,
+    <PlaceCacheButton key="PlaceCacheButton"/>,
     <GoogleMap
       defaultZoom={15} defaultCenter={{ lat: currentLat, lng: currentLng }}
       {...trackUser ? {center:{lat:currentLat,lng:currentLng}} : {}} key="Map"
@@ -94,7 +95,7 @@ let mapComponent = ({caches=[], currentLat=33.848460,
         }}>
 
       <Marker position={{lat:currentLat, lng:currentLng}}
-        icon="/UserLocation.svg" onClick={enableTracking}/>
+        icon="/map-knight.png" onClick={enableTracking}/>
 
       <MarkerClusterer maxZoom={18}>
 

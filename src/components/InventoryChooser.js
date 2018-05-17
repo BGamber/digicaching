@@ -5,7 +5,6 @@ import authFetch from "../lib/authFetch";
 // import { currentId } from "async_hooks";
 import { setUserInventories } from "../actions/inventoriesActions";
 
-let isChooserShowing = true;
 
 class InventoryChooser extends Component {
   componentDidMount(){
@@ -59,7 +58,7 @@ console.log('id: ', chosenItem.id);
           />
           <span
             className="inventory-item"
-            onClick={value =>
+            onClick={() =>
               this.makeChoice(item, currentLat, currentLng)
             }
           >

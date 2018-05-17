@@ -8,9 +8,14 @@ class FriendsPage extends Component {
     return (
       <div className="listOfFriends">
           <h1 className="Players">Active Players</h1>
-          {this.props.searchedUsers.map((friend)=> {
-            return <FriendCall friend={friend} />
-          })}
+          {
+            (this.props.searchedUsers.length > 0) ?
+            this.props.searchedUsers.map((friend)=> {
+              return <FriendCall friend={friend} />
+            }) :
+            <div className="no-users"> No users found </div>
+          }
+          
           <Link to="/friends-lookup"><button className="back-button2">Back</button></Link>
       </div>
     );
