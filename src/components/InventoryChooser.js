@@ -7,7 +7,9 @@ import { setUserInventories } from "../actions/inventoriesActions";
 
 class InventoryChooser extends Component {
   componentDidMount(){
+    console.log('cdm');
     
+    this.updateInventory;
   }
  updateInventory = authFetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${this.props.activeUserID}`, {
   method: "GET"
@@ -28,10 +30,7 @@ console.log('id: ', chosenItem.id);
         "latitude": currentLat,
         "longitude": currentLng
       })
-    }).then(()=>{
-      this.updateInventory;
-      this.props.closer;
-    })
+    }).then(this.props.closer)
     
     // 
 
@@ -40,14 +39,15 @@ console.log('id: ', chosenItem.id);
   render() {
 
     let currentUser = this.props.currentUser[0];
+    let inventory = this.props.inventories;
     let { currentLat, currentLng } = this.props;
 
     let inventoryContent;
 
-    if (!currentUser|| !currentUser.inventory) {
+    if (!currentUser|| !inventory) {
       inventoryContent = <Spinner />;
     } else {
-      let itemsList = currentUser.inventory.map(item => (
+      let itemsList = inventory.map(item => (
         <li key={item.id}>
           <div
             className="itemImage"
@@ -88,13 +88,15 @@ let mapStateToProps = ({
   currentUser,
   currentLat,
   currentLng,
-  activeUserID
+  activeUserID,
+  inventories
 }) => {
   return {
     currentUser,
     currentLat,
     currentLng,
-    activeUserID
+    activeUserID,
+    inventories
   };
 };
 
