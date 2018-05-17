@@ -2,20 +2,40 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Spinner from "./loaders/Spinner";
 import authFetch from "../lib/authFetch";
+import { setUserInventories } from "../actions/inventoriesActions";
 
 
 class InventoryChooser extends Component {
+  componentDidMount(){
+    console.log('compDIDmount');
+    
+    authFetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${this.props.activeUserID}`, {
+      method: "GET"
+       }).then((res) => {
+        return res.json().then(data => {
+          this.props.setInventories(data);
+        })
+      })
+  }
+  componentDidUpdate(){
+    console.log('compunmount');
+    
+  }
 
   makeChoice(chosenItem, currentLat, currentLng) {
+console.log('id: ', chosenItem.id);
 
-    authFetch(`${process.env.REACT_APP_BACKEND}/api/caches/place/${chosenItem.id}`, {
-      method:"POST",
-      body: {
-        item_id: chosenItem.id,
-        latitude: currentLat,
-        longitude: currentLng
-      }
-    });
+    authFetch(`${process.env.REACT_APP_BACKEND}/api/caches/place`, {
+      "method":"POST",
+      "headers": {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        "item_id": chosenItem.id,
+        "latitude": currentLat,
+        "longitude": currentLng
+      })
+    }).then(this.props.closer)
     // .then(res => {
     //   res.json().then(data => {
     //     // ...data
@@ -24,12 +44,13 @@ class InventoryChooser extends Component {
   }
 
   render() {
-    let currentUser = this.props.users[0];
+
+    let currentUser = this.props.currentUser[0];
     let { currentLat, currentLng } = this.props;
 
     let inventoryContent;
 
-    if (currentUser === undefined || currentUser.inventory === undefined) {
+    if (!currentUser|| !currentUser.inventory) {
       inventoryContent = <Spinner />;
     } else {
       let itemsList = currentUser.inventory.map(item => (
@@ -61,18 +82,25 @@ class InventoryChooser extends Component {
   }
 }
 
+let mapDispatchToProps = dispatch => {
+  let setInventories = inventories => {
+    dispatch(setUserInventories(inventories));
+  };
+  return { setInventories };
+};
+
 let mapStateToProps = ({
-  users,
+  currentUser,
   currentLat,
   currentLng,
   activeUserID
 }) => {
   return {
-    users,
+    currentUser,
     currentLat,
     currentLng,
     activeUserID
   };
 };
 
-export default connect(mapStateToProps)(InventoryChooser);
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryChooser);
