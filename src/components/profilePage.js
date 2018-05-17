@@ -30,18 +30,19 @@ class ProfilePage extends Component {
         });
       });
   }
+ 
 
   render() {
     let profileContent;
-    if (!this.props.users) {
+    if (!this.props.currentUser) {
       profileContent = <Spinner />;
     } else {
-      let currentUser = this.props.users[0];
+      let currentUser = this.props.currentUser;      
       profileContent = (
         <div className="profile-page">
           <UpperProfilePage user={currentUser} />
           <div className="left-and-right">
-            <LeftProfilePage user={currentUser} />
+            <LeftProfilePage  />
             <RightProfilePage user={currentUser} />
           </div>
           <Footer />
@@ -52,8 +53,8 @@ class ProfilePage extends Component {
   }
 }
 
-let mapStateToProps = ({users, activeUserID}) => {
-  return {users, activeUserID};
+let mapStateToProps = ({currentUser, activeUserID}) => {
+  return {currentUser, activeUserID};
 };
 
 let mapDispatchToProps = dispatch => {

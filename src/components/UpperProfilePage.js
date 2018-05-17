@@ -1,11 +1,11 @@
 import React from "react";
 
-let UpperProfilePage = (user) => {
+let UpperProfilePage = (user) => {  
   return   <div className="upper-profile-div">
     <img
       className="profile-photo"
-      alt={user.user.name + " profile image"}
-      src={user.user.image_url ? user.user.image_url : "/Logo-text.png"}
+      alt={user.user[0].name + " profile image"}
+      src={user.user[0].image_url ? user.user[0].image_url : "/Logo-text.png"}
     />
   </div>;
 };
