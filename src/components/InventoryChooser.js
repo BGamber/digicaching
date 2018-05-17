@@ -1,35 +1,47 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Spinner from "./loaders/Spinner";
+import authFetch from "../lib/authFetch";
+// import { currentId } from "async_hooks";
+import { setUserInventories } from "../actions/inventoriesActions";
 
 let isChooserShowing = true;
 
 class InventoryChooser extends Component {
+  componentDidMount(){
+    authFetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${this.props.activUserId}`, {
+      method:"GET"
+       })
+       .then(res => {
+        res.json().then(data => {
+          this.props.setInventories(data);
+        });
+      });
+  }
   
-  
-  makeChoice = (chosenItem, currentLat, currentLng, authToken) => {
-    console.log('id,', chosenItem.id);
 
-    fetch(`${process.env.REACT_APP_BACKEND}/api/caches/place`, {
-      method:'POST',
-      headers: {
-        authorization: "Bearer " + authToken
+  makeChoice(chosenItem, currentLat, currentLng) {
+console.log('id: ', chosenItem.id);
+
+    authFetch(`${process.env.REACT_APP_BACKEND}/api/caches/place`, {
+      "method":"POST",
+      "headers": {
+        "content-type": "application/json"
       },
-      body: {
-        item_id: chosenItem.id,
-        latitude: currentLat,
-        longitude: currentLng
-      }
-    })
-    // .then(res => { 
+      body: JSON.stringify({
+        "item_id": chosenItem.id,
+        "latitude": currentLat,
+        "longitude": currentLng
+      })
+    });
+    // .then(res => {
     //   res.json().then(data => {
     //     // ...data
     //   });
     // });
-  };
+  }
 
   render() {
-    let authToken = this.props.auth;
     let currentUser = this.props.users[0];
     let { currentLat, currentLng } = this.props;
 
@@ -48,7 +60,7 @@ class InventoryChooser extends Component {
           <span
             className="inventory-item"
             onClick={value =>
-              this.makeChoice(item, currentLat, currentLng, authToken)
+              this.makeChoice(item, currentLat, currentLng)
             }
           >
             {item.item_name} ({item.quantity})
@@ -58,7 +70,7 @@ class InventoryChooser extends Component {
       inventoryContent = (
         <aside className="inventory-chooser">
           <h3>Drop a Cache</h3>
-          <span>WHICH ITEM WOULD YOU LIKE TO DROP?</span>  
+          <span>WHICH ITEM WOULD YOU LIKE TO DROP?</span>
           <ul>{itemsList}</ul>
         </aside>
       );
@@ -67,20 +79,25 @@ class InventoryChooser extends Component {
   }
 }
 
+let mapDispatchToProps = dispatch => {
+  let setInventories = inventories => {
+    dispatch(setUserInventories(inventories));
+  };
+  return { setInventories };
+};
+
 let mapStateToProps = ({
   users,
   currentLat,
   currentLng,
-  activeUserToken,
   activeUserID
 }) => {
   return {
     users,
     currentLat,
     currentLng,
-    auth: activeUserToken,
     activeUserID
   };
 };
 
-export default connect(mapStateToProps)(InventoryChooser);
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryChooser);

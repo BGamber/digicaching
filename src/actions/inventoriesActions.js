@@ -6,9 +6,9 @@ export let dropCache = () => ({
   payload: 'cache dropped'
 })
 
-export let setUserInventories = (id) => ({
+export let setUserInventories = (inventory) => ({
   type: 'INVENTORIES_SET',
-  payload: id
+  payload: inventory
 });
 
 setUserInventories.toString = () => INVENTORIES_SET;

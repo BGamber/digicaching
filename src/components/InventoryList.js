@@ -11,7 +11,7 @@ let InventoryList = ( {user} ) => {
   } else {
 
     itemsList = user.inventory.map(item => (
-      <Link to={`/item/${item.id}`} style={{ textDecoration: 'none' }}> <li className="inventoryList" key={item.id}>
+      <Link key={item.id} to={`/item/${item.id}`} style={{ textDecoration: 'none' }}> <li className="inventoryList" key={item.id}>
         <div
           className="itemImage"
           style={{ backgroundImage: "url(" + item.image_url + ")" }}
@@ -20,7 +20,7 @@ let InventoryList = ( {user} ) => {
         <span>
           {item.item_name} ({item.quantity})
         </span>
-      </li></Link> 
+      </li></Link>
     ));
     return itemsList;
   }

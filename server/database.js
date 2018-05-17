@@ -6,8 +6,7 @@ const { generateCoordinates } = require("./coordinates");
 
 let getUserByEmail = async email => {
   let queryString = "SELECT id, name, password FROM users WHERE email = $1;";
-  let user = await db.one(queryString, [email]);
-  return user;
+  return db.one(queryString, [email]);
 };
 
 let getUserByName = async name => {
@@ -106,6 +105,15 @@ let getCaches = async (req, res) => {
   } else {
     caches = await db.query(queryString + ";", [location[0], location[1]]);
   };
+  queryString2 = "SELECT user_id FROM claims WHERE cache_id = $1;";
+  try {
+    await Promise.all(caches.map(async cache => {
+      let claims = await db.query(queryString2, [cache.id]);
+      return cache.claims = claims.map(claim => claim["user_id"]);
+    }));
+  } catch (err) {
+    res.send(JSON.stringify(err));
+  };
   res.setHeader("Content-Type", "application/json");
   res.send(JSON.stringify(caches));
 };
@@ -182,6 +190,8 @@ let serverPlaceCache = async () => {
 };
 
 let placeCache = async (req, res) => {
+  console.log('reqbody: ', req.body);
+  
   let { item_id, latitude, longitude } = req.body;
   let queryString = "SELECT quantity FROM inventories " +
     "WHERE user_id = $1 AND item_id = $2;";

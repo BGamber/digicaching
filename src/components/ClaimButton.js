@@ -1,25 +1,31 @@
 import React from "react";
-import {claimCache} from "../actions/cacheActions";
 import {connect} from "react-redux";
+import {claimCache} from "../actions/cacheActions";
 
-let mapDispatchToProps = ({currentLat, currentLng, activeUserToken}) => {
-  return {currentLat, currentLng, activeUserToken};
+let mapStateToProps = ({activeUserID, currentLat, currentLng,
+  activeUserToken}) => {
+  return {activeUserID, currentLat, currentLng, activeUserToken};
 };
 
-let ClaimButton = ({distance, id , currentLat, currentLng, activeUserToken}) => {
-  if (distance <= 50) {
+let ClaimButton = ({distance, activeUserID, claims=[], currentLat, currentLng,
+  activeUserToken , id}) => {
+  if (distance > 50) {
+    return <button disabled={true} className="claimButton">
+      This Cache is not in range</button>;
+  }
+  else if (claims.includes(activeUserID)) {
+    return <button disabled={true} className="claimButton">
+      You have already Claimed this cache</button>;
+  }
+  else {
+
     return <button type="button" className="claimButton"
       onClick={() => {
         claimCache(id, currentLat, currentLng, activeUserToken);
-      }}
-    >Claim Cache</button>;
-  }
-  else {
-    return <p>This Cache is not in range</p>;
+      }}>Claim Cache</button>;
   }
 };
 
-let connectedButton = connect(mapDispatchToProps)(ClaimButton);
+let connectedClaimButton = connect(mapStateToProps)(ClaimButton);
 
-
-export default connectedButton;
+export default connectedClaimButton;
