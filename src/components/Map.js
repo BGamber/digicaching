@@ -95,7 +95,7 @@ let mapComponent = ({caches=[], currentLat=33.848460,
         }}>
 
       <Marker position={{lat:currentLat, lng:currentLng}}
-        icon="/UserLocation.svg" onClick={enableTracking}/>
+        icon="/map-knight.png" onClick={enableTracking}/>
 
       <MarkerClusterer maxZoom={18}>
 
