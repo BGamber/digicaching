@@ -5,21 +5,8 @@ import Spinner from "./loaders/Spinner";
 let isChooserShowing = true;
 
 class InventoryChooser extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isChooserShowing: true
-    };
-  }
-
-  showChooser = () => {
-    console.log('isChooserShowing',isChooserShowing);
-    
-    this.setState({ isChooserShowing: isChooserShowing=!isChooserShowing });
-  };
   
   makeChoice = (chosenItem, currentLat, currentLng, authToken) => {
-    this.state.chooserShowing = !this.state.chooserShowing;
 
     fetch(`${process.env.REACT_APP_BACKEND}/api/caches/place/${chosenItem.id}`, {
       method:'POST',
@@ -32,7 +19,7 @@ class InventoryChooser extends Component {
         longitude: currentLng
       }
     })
-    // .then(res => {
+    // .then(res => { 
     //   res.json().then(data => {
     //     // this.props.getCurrentProfile(data);
     //     console.log("data", data);
