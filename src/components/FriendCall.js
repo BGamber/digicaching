@@ -3,7 +3,6 @@ import React from "react";
 const FriendCall = ({friend}) =>{
   
   let renderHelper = () => {
-    if(friend.length > 0){
       return <div className="friend-card">
         <div className="friend-properties">
           <h1 className="user-name">User Name:</h1>
@@ -18,9 +17,6 @@ const FriendCall = ({friend}) =>{
             <img className="friend-image-notFound" alt="user-IMG" src={friend.image_url} />
         }
       </div>
-    } else {
-        return <div> no users found </div>
-    }
   }
    
   return renderHelper()

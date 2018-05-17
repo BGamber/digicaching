@@ -5,7 +5,7 @@ let UpperProfilePage = (user) => {
     <img
       className="profile-photo"
       alt={user.user.name + " profile image"}
-      src={user.user ? user.user.image_url : "/Logo-text.png"}
+      src={user.user.image_url ? user.user.image_url : "/Logo-text.png"}
     />
   </div>;
 };

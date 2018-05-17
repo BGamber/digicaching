@@ -585,6 +585,16 @@ hr {
   cursor: pointer;
 }
 
+.no-users {
+  font-weight: 600;
+  color: rgb(128, 90, 90);
+  padding: 15px;
+  background: #495666;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: 50px;
+}
+
 
 /*------------------*/
 /*-----ITEM-PAGE----*/
