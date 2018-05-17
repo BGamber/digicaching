@@ -189,9 +189,7 @@ let serverPlaceCache = async () => {
   return db.none(queryString, [item_id, latitude, longitude]);
 };
 
-let placeCache = async (req, res) => {
-  console.log('reqbody: ', req.body);
-  
+let placeCache = async (req, res) => {  
   let { item_id, latitude, longitude } = req.body;
   let queryString = "SELECT quantity FROM inventories " +
     "WHERE user_id = $1 AND item_id = $2;";

@@ -37,9 +37,7 @@ class ProfilePage extends Component {
     if (!this.props.currentUser) {
       profileContent = <Spinner />;
     } else {
-      let currentUser = this.props.currentUser;
-      console.log('currentUser: ',currentUser);
-      
+      let currentUser = this.props.currentUser;      
       profileContent = (
         <div className="profile-page">
           <UpperProfilePage user={currentUser} />
