@@ -17,6 +17,7 @@ const {
   getCollections,
   getCaches,
   claimCache,
+  serverPlaceCache,
   placeCache
 } = require("./database");
 
@@ -27,6 +28,14 @@ let auth = new Router();
 auth.post("/login", userLogin);
 auth.post("/register", userRegister);
 
+let populateCaches = () => {
+  let spawnList = [];
+  for (let i=0; i < 10; i++) {
+    spawnList.append(serverPlaceCache());
+  };
+  await Promise.all(spawnList);
+};
+
 let api = new Router();
 api.get("/users/:id?", getUserById);
 api.get("/items/:id?", getItems);
@@ -35,6 +44,7 @@ api.get("/collections/:id?", getCollections);
 api.get("/caches/:id?", getCaches);
 api.put("/caches/:id/claim", claimCache);
 api.post("/caches/place", placeCache);
+api.post("/newcaches", populateCaches);
 
 app.use(cors());
 
