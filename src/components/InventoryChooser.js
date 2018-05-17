@@ -2,35 +2,42 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Spinner from "./loaders/Spinner";
 
+let isChooserShowing = true;
+
 class InventoryChooser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chooserShowing: false
+      isChooserShowing: true
     };
   }
 
+  showChooser = () => {
+    console.log('isChooserShowing',isChooserShowing);
+    
+    this.setState({ isChooserShowing: isChooserShowing=!isChooserShowing });
+  };
+  
   makeChoice = (chosenItem, currentLat, currentLng, authToken) => {
-    console.log("XY: ", chosenItem, currentLat, currentLng, authToken);
-
     this.state.chooserShowing = !this.state.chooserShowing;
 
-    fetch(`${process.env.REACT_APP_BACKEND}/api/caches/${chosenItem.item_id}`, {
+    fetch(`${process.env.REACT_APP_BACKEND}/api/caches/place/${chosenItem.id}`, {
       method:'POST',
       headers: {
         authorization: "Bearer " + authToken
       },
       body: {
-        item_id: chosenItem.item_id,
+        item_id: chosenItem.id,
         latitude: currentLat,
         longitude: currentLng
       }
-    }).then(res => {
-      res.json().then(data => {
-        // this.props.getCurrentProfile(data);
-        console.log("data", data);
-      });
-    });
+    })
+    // .then(res => {
+    //   res.json().then(data => {
+    //     // this.props.getCurrentProfile(data);
+    //     console.log("data", data);
+    //   });
+    // });
   };
 
   render() {
@@ -53,7 +60,7 @@ class InventoryChooser extends Component {
           <span
             className="inventory-item"
             onClick={value =>
-              this.makeChoice(item.item_name, currentLat, currentLng, authToken)
+              this.makeChoice(item, currentLat, currentLng, authToken)
             }
           >
             {item.item_name} ({item.quantity})
@@ -62,8 +69,8 @@ class InventoryChooser extends Component {
       ));
       inventoryContent = (
         <aside className="inventory-chooser">
-          <h2>Drop a Cache</h2>
-          WHICH ITEM WOULD YOU LIKE TO DROP?
+          <h3>Drop a Cache</h3>
+          <span>WHICH ITEM WOULD YOU LIKE TO DROP?</span>  
           <ul>{itemsList}</ul>
         </aside>
       );

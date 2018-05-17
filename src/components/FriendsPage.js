@@ -3,8 +3,6 @@ import FriendCall from './FriendCall';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-
-
 class FriendsPage extends Component {
   render() {  
     return (

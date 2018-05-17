@@ -46,8 +46,10 @@ class PlaceCacheButton extends Component {
         </button>
         {
           (isChooserShowing)?
-          
-            <InventoryChooser />
+          <div>
+          <div className="close-x" 
+          onClick={this.showChooser}>X</div> 
+            <InventoryChooser /></div>
           :
           null
         }
