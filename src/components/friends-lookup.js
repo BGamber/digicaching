@@ -14,7 +14,7 @@ class FriendsLookup extends Component {
     };
   }
 
-  submitHandler(event) {
+  submitHandler = (event) => {
     event.preventDefault();
 
     authFetch("http://localhost:5000/api/users")
