@@ -1,10 +1,11 @@
 import React from 'react';
 import Spinner from './loaders/Spinner';
+import { connect } from 'react-redux';
 
-let LeftProfilePage = ({user}) => {
+let LeftProfilePage = ({user, friends}) => {
   let content;
 
-  if (user === undefined || user.name === undefined) {
+  if (user === undefined || user.name === undefined || friends === undefined) {
     content = <Spinner />;
   } else {
 
@@ -15,7 +16,7 @@ let LeftProfilePage = ({user}) => {
     </div>
     <div className="friends-list left-values">
       <p>Friends</p>
-      <p>({user.friendsCount})</p>
+      <p>({friends.length})</p>
     </div>
     <div className="ranking left-values">
       <p>World Ranking</p>
@@ -30,4 +31,10 @@ let LeftProfilePage = ({user}) => {
 return content;  
 };
 
-export default LeftProfilePage;
+let mapStateToProps = (state) => {
+  return {
+    friends: state.users[0].friends
+  }
+}
+
+export default connect(mapStateToProps)(LeftProfilePage);
