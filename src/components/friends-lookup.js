@@ -17,7 +17,7 @@ class FriendsLookup extends Component {
   submitHandler = (event) => {
     event.preventDefault();
 
-    authFetch("http://localhost:5000/api/users")
+    authFetch(`${process.env.REACT_APP_BACKEND}/api/users`)
 
       .then(data => {
         return data.json();})
