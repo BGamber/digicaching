@@ -32,12 +32,16 @@ class CreateAccount extends Component {
       let post = {
         name: userName.value,
         email: email.value,
-        pass: password.value
+        password: password.value
       };
+      let body = JSON.stringify(post);
       let res = await fetch(url,
         {
+          headers:{
+            "Content-Type": "application/json"
+          },
           method: "POST",
-          body: JSON.stringify(post),
+          body
         }
 
       );
