@@ -44,7 +44,8 @@ console.log('id: ', chosenItem.id);
   }
 
   render() {
-    let currentUser = this.props.currentUser;
+
+    let currentUser = this.props.currentUser[0];
     let { currentLat, currentLng } = this.props;
 
     let inventoryContent;

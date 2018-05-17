@@ -7,9 +7,7 @@ import InventoryList from "./InventoryList";
 
 class RightProfilePage extends Component {
 
-  render(){
-    console.log('rightuser: ', this.props.user[0].name);
-    
+  render(){    
     return (
       <div className="right-profile-side">
         <div className="my-inventory">
