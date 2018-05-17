@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import "../img/default_avatar.png";
 import { setCurrentUserProfile } from "../actions/profileActions";
 import CollectionList from "./CollectionList";
+import authFetch from "../lib/authFetch";
 
 let avatarUrl = "../img/default_avatar.png";
 
@@ -12,13 +13,13 @@ class ProfileScreen extends Component {
     // let itemsList = await getInventory();
     let uid = "096780a6-3347-410c-98d4-48db176ce9b1";
     // let profileData = this.props.setCurrentUserProfileWrapped(uid);
-    fetch(`${process.env.REACT_APP_BACKEND}/api/users/${uid}`)
+    authFetch(`${process.env.REACT_APP_BACKEND}/api/users/${uid}`)
       .then((res) => {
         res.json()
-        .then((data) => {       
+        .then((data) => {
           this.props.setCurrentProfile(data)}
       )
-       
+
   })
 }
 
@@ -38,7 +39,7 @@ class ProfileScreen extends Component {
       profileContent = <div>
         <h3>...Loading...</h3>
         <img className="loading-photo" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="...loading..." /></div>;
-    } else {      
+    } else {
       profileContent =
         <main className="user-profile">
           <header>

@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import Spinner from "./loaders/Spinner";
 import "../index.css";
 import { withRouter } from "react-router-dom";
+import authFetch from "../lib/authFetch";
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -17,21 +18,17 @@ class ProfilePage extends Component {
 
   async componentDidMount() {
     let userRouterId = this.props.match.params.id;
-    let authToken = this.props.auth;
-    
+
     if (userRouterId === undefined) {
       this.props.history.push("/friends-lookup");
     }
 
-    fetch(`${process.env.REACT_APP_BACKEND}/api/users/${userRouterId}`, {
-      headers: {
-        authorization: "Bearer " + authToken
-      }
-    }).then(res => {
-      res.json().then(data => {
-        this.props.getCurrentProfile(data);
+    authFetch(`${process.env.REACT_APP_BACKEND}/api/users/${userRouterId}`)
+      .then(res => {
+        res.json().then(data => {
+          this.props.getCurrentProfile(data);
+        });
       });
-    });
   }
 
   render() {
@@ -55,8 +52,8 @@ class ProfilePage extends Component {
   }
 }
 
-let mapStateToProps = ({users, activeUserToken,activeUserID}) => {
-  return {users, auth:activeUserToken, activeUserID};
+let mapStateToProps = ({users, activeUserID}) => {
+  return {users, activeUserID};
 };
 
 let mapDispatchToProps = dispatch => {
