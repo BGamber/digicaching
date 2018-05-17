@@ -12,7 +12,7 @@ class FriendsLookup extends Component {
     };
   }
 
-  submitHandler(event) {
+  submitHandler = (event) => {
     event.preventDefault();
     fetch("http://localhost:5000/api/users", {
       headers: {
