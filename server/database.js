@@ -74,19 +74,21 @@ let getInventories = async (req, res) => {
 };
 
 let getCollections = async (req, res) => {
-  let queryString = "SELECT i.id, i.name as item_name, i.description as item_description, " +
-    "i.image_url as item_image_url FROM items i " +
-    "JOIN recipes r WHERE i.id = r.item_id" +
-    (req.params.id !== undefined ? " WHERE i.id = $1;" : ";");
+  let queryString = "SELECT i.id, i.name as item_name, " +
+    "i.description as item_description, i.image_url as item_image_url " +
+    "FROM recipes r JOIN items i ON r.item_id = i.id " +
+    "WHERE r.ingredients IS NOT NULL " +
+    (req.params.id !== undefined ? "AND i.id = $1 " : "") +
+    "AND i.theme_id = 1;";
   let collections = await db.query(queryString, [req.params.id]);
-  let queryString2 = "SELECT i.id, i.name, i.image_url as item_image_url " +
-    "FROM items i JOIN recipes r WHERE r.item_id = $1 AND r.ingredients LIKE '%/' || i.id || '/%';";
-  try {
-    await Promises.all(collections.map(async collection => 
-      collection.ingredients = await db.query(queryString2, [collection.id])));
-  } catch (err) {
-    res.send(JSON.stringify(err));
-  };
+  // let queryString2 = "SELECT i.id, i.name, i.image_url as item_image_url " +
+  //   "FROM items i JOIN recipes r ON i.id = r.item_id WHERE r.item_id = $1 AND r.ingredients ILIKE '%/' || i.id || '/%';";
+  // try {
+  //   await Promises.all(collections.map(async collection => 
+  //     collection.ingredients = await db.query(queryString2, [collection.id])));
+  // } catch (err) {
+  //   res.send(JSON.stringify(err));
+  // };
   res.setHeader("Content-Type", "application/json");
   res.send(JSON.stringify(collections));
 };
