@@ -42,7 +42,7 @@ let getUserById = async (req, res) => {
   let queryString3 = "SELECT i.id, i.name as item_name, i.description as item_description, " +
     "i.image_url as item_image_url, inv.quantity FROM inventories inv " +
     "JOIN items i ON inv.item_id = i.id" +
-    " WHERE user_id = $1;";
+    " WHERE inv.quantity > 0 AND user_id = $1;";
   try {
     await Promise.all(users.map(async user =>
       user.inventory = await db.query(queryString3, [user.id])));
@@ -67,14 +67,18 @@ let getInventories = async (req, res) => {
   let queryString = "SELECT i.id, i.name as item_name, i.description as item_description, " +
     "i.image_url as item_image_url, inv.quantity FROM inventories inv " +
     "JOIN items i ON inv.item_id = i.id" +
-    (req.params.id !== undefined ? " WHERE user_id = $1" : "") + ";";
+    "WHERE inv.quantity > 0" +
+    (req.params.id !== undefined ? " AND user_id = $1;" : ";");
   let inventories = await db.query(queryString, [req.params.id]);
   res.send(inventories);
 };
 
-let getCollections = (req, res) => {
-  console.log(req.params);
-  res.send("Collections");
+let getCollections = async (req, res) => {
+  let queryString = "SELECT i.id, i.name as item_name, i.description as item_description, " +
+    "i.image_url as item_image_url FROM items i " +
+    "JOIN recipes r WHERE i.id = r.item_id" +
+    (req.params.id !== undefined ? " WHERE i.id = $1;" : ";");
+  let collections = await db.query(queryString, [req.params.id]);
 };
 
 let getCaches = async (req, res) => {
