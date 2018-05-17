@@ -28,8 +28,12 @@ console.log('id: ', chosenItem.id);
         "latitude": currentLat,
         "longitude": currentLng
       })
-    }).then(this.updateInventory);
-    // .then(this.props.closer)
+    }).then(()=>{
+      this.updateInventory;
+      this.props.closer;
+    })
+    
+    // 
 
   }
 
@@ -62,6 +66,7 @@ console.log('id: ', chosenItem.id);
       ));
       inventoryContent = (
         <aside className="inventory-chooser">
+          <div className="close-x" onClick={ this.props.closer }>X</div>
           <h3>Drop a Cache</h3>
           <span>WHICH ITEM WOULD YOU LIKE TO DROP?</span>
           <ul>{itemsList}</ul>

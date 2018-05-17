@@ -59,8 +59,9 @@
 .close-x {
   float: right;
   color: #777;
-  left: calc(3rem + 3%);
-  top: 4.5rem;
+  /* left: calc(3rem + 3%); */
+  right: .6rem;
+  top: .5rem;
   position: absolute;
   z-index: 11;
 }
