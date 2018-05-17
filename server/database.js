@@ -66,9 +66,9 @@ let getItems = async (req, res) => {
 let getInventories = async (req, res) => {
   let queryString = "SELECT i.id, i.name as item_name, i.description as item_description, " +
     "i.image_url as item_image_url, inv.quantity FROM inventories inv " +
-    "JOIN items i ON inv.item_id = i.id" +
+    "JOIN items i ON inv.item_id = i.id " +
     "WHERE inv.quantity > 0" +
-    (req.params.id !== undefined ? " AND user_id = $1;" : ";");
+    (req.params.id !== undefined ? " AND inv.user_id = $1;" : ";");
   let inventories = await db.query(queryString, [req.params.id]);
   res.send(inventories);
 };
