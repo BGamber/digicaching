@@ -19,8 +19,7 @@ class InventoryChooser extends Component {
     });
     // .then(res => {
     //   res.json().then(data => {
-    //     // this.props.getCurrentProfile(data);
-    //     console.log("data", data);
+    //     // ...data
     //   });
     // });
   }

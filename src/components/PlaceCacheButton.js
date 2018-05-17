@@ -22,9 +22,7 @@ class PlaceCacheButton extends Component {
     };
   }
 
-  showChooser = () => {
-    console.log('isChooserShowing',isChooserShowing);
-    
+  showChooser = () => {    
     this.setState({ isChooserShowing: isChooserShowing=!isChooserShowing });
   };
 
