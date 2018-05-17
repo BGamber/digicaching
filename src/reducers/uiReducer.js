@@ -19,10 +19,16 @@ let setActiveCache = (state, action) => {
   return {...state, activeCache:newCache};
 };
 
+let previousBounds = (state, action) => {
+  let {bounds} = action;
+  return {...state, bounds};
+};
+
 let reducers = {
   UI_TOGGLE_TRACKING: toggleUserTracking,
   "UI_SET_TRACKING": setUserTracking,
-  "UI_SET_ACTIVE_CACHE":setActiveCache
+  "UI_SET_ACTIVE_CACHE":setActiveCache,
+  "UI_SET_PREVIOUS_BOUNDS": previousBounds
 };
 
 let uiReducer = (state, action) => {

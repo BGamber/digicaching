@@ -36,7 +36,13 @@ const initialState = {
     image_url: "https://cdn2.bigcommerce.com/server4400/ccf39/products/1423"+
     "/images/5032/BR_C__18316.1368217244.1280.1280.jpg?c=2" }],
   loading: false,
-  trackUser:true
+  trackUser:true,
+  bounds:{
+    north:0,
+    south:0,
+    west:0,
+    east:0
+  }
 };
 
 const store = createStore(mainReducer, {...initialState, ...hydratedState}, composeEnhancers(
