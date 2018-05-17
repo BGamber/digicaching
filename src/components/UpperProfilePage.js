@@ -7,7 +7,8 @@ let UpperProfilePage = (user) => {
       // alt={user.user.name + " profile image"}
       src={user.user ? user.user.image_url : "/Logo-text.png"}
     />
-  </div>}
-;
+  </div>;
+};
+
 
 export default UpperProfilePage;

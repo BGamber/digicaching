@@ -9,6 +9,8 @@ import SearchPage from "./SearchPage";
 import LoginRedirect from "./LoginRedirect";
 import ItemPage from "./ItemPage";
 import FriendsPage from "./FriendsPage";
+import Spinner from "./loaders/Spinner";
+
 
 
 
