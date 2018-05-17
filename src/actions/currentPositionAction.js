@@ -11,7 +11,7 @@ setPosition.toString = () => "POSITION_SET";
 export let newBounds = ({east, west, north, south}) => {
   return (dispatch, getState) => {
     let {currentLat, currentLng, bounds} = getState();
-    let {northP, southP, eastP, westP} = bounds;
+    let {north:northP, south:southP, east:eastP, west:westP} = bounds;
     if (northP !== north && southP !== south && eastP !== east
       && westP !== west) {
       dispatch(previousBounds({north,south,east,west}));
