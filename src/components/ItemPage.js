@@ -29,8 +29,8 @@ class ItemPage extends Component {
 };
 
 let mapStateToProps = (state) => ({
-  inventory: state.users[0].inventory,
-  user: state.users[0]
+  inventory: state.currentUser.inventory,
+  user: state.currentUser
 })
 
 export default connect(mapStateToProps)(ItemPage);

@@ -7,7 +7,7 @@ import InventoryChooser from "./InventoryChooser";
 //   e.target.classList.add('show');
 // }
 
-let isChooserShowing = false;
+
 
 class PlaceCacheButton extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class PlaceCacheButton extends Component {
   }
 
   showChooser() {
-    this.setState({ isChooserShowing: isChooserShowing=!isChooserShowing });
+    this.setState({ isChooserShowing: !this.state.isChooserShowing });
   }
 
   render() {
@@ -28,7 +28,7 @@ class PlaceCacheButton extends Component {
       <div>
         <button
           type="button"
-          onClick={this.showChooser}
+          onClick={this.showChooser.bind(this)}
           className="placeCacheButton"
         >
           <img
@@ -38,13 +38,13 @@ class PlaceCacheButton extends Component {
           />
         </button>
         {
-          (isChooserShowing)?
-            <div>
-              <div className="close-x"
-                onClick={this.showChooser}>X</div>
-              <InventoryChooser /></div>
-            :
-            null
+          (this.state.isChooserShowing)?
+          <div>
+          <div className="close-x" 
+          onClick={this.showChooser.bind(this)}>X</div> 
+            <InventoryChooser closer={this.showChooser.bind(this)} /></div>
+          :
+          null
         }
       </div>
     );

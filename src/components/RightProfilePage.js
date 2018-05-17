@@ -7,13 +7,13 @@ import InventoryList from "./InventoryList";
 
 class RightProfilePage extends Component {
 
-  render(){
+  render(){    
     return (
       <div className="right-profile-side">
         <div className="my-inventory">
           <h4 className="inventory-title">Inventory</h4>
           <div className="showing-items">
-            <InventoryList user={this.props.user} />
+            <InventoryList user={this.props.user[0]} />
           </div>
 
         </div>

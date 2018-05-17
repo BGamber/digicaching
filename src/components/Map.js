@@ -99,16 +99,16 @@ let mapComponent = ({caches=[], currentLat=33.848460,
 
       <MarkerClusterer maxZoom={18}>
 
-
-        {caches.map( ({latitude:lat,longitude:lng, id, item_name, createdon,
-          item_description, item_image_url, openedon, distance}) => {
+        {Array.isArray(caches) ? caches.map( ({latitude:lat,longitude:lng, id, item_name, createdon,
+          item_description, item_image_url, openedon, distance, claims}) => {
           if (item_name === "Mystery Box") {
             item_image_url = "/Mystery.svg";
           }
           if (id === activeCache){
             return <CacheInfoBox lat={lat} lng={lng} key={id} name={item_name}
               description={item_description} image_url={item_image_url} id={id}
-              createdOn={createdon} claimedOn={openedon} distance={distance} />;
+              createdOn={createdon} claimedOn={openedon} distance={distance}
+              claims={claims}/>;
           }
           else {
             let icon;
@@ -124,7 +124,9 @@ let mapComponent = ({caches=[], currentLat=33.848460,
                 setActiveCache(id);
               }}/>;
           }
-        })}
+        }):
+          null
+        }
       </MarkerClusterer>
     </GoogleMap>
   ];
