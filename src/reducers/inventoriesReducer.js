@@ -10,6 +10,8 @@ let inventoriesReducer = (state=inventories, action) => {
       ...state,
       inventories: action.payload,
     };
+  default:
+    return state;
   }
 };
 

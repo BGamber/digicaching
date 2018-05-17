@@ -54,13 +54,13 @@ let userLogin = async (req, res) => {
 
 let userRegister = async (req, res) => {
   let {
-    username,
+    name,
     email,
     password
   } = req.body;
   let hashPass = await bcrypt.hash(password, 10);
 
-  let insertPromise = postNewUser(username, email, hashPass);
+  let insertPromise = postNewUser(name, email, hashPass);
   insertPromise
     .then(() => { userLogin(req, res); })
     .catch(err => {

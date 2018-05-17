@@ -1,34 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Spinner from "./loaders/Spinner";
+import authFetch from "../lib/authFetch";
 
-let isChooserShowing = true;
 
 class InventoryChooser extends Component {
-  
-  makeChoice = (chosenItem, currentLat, currentLng, authToken) => {
 
-    fetch(`${process.env.REACT_APP_BACKEND}/api/caches/place/${chosenItem.id}`, {
-      method:'POST',
-      headers: {
-        authorization: "Bearer " + authToken
-      },
+  makeChoice(chosenItem, currentLat, currentLng) {
+
+    authFetch(`${process.env.REACT_APP_BACKEND}/api/caches/place/${chosenItem.id}`, {
+      method:"POST",
       body: {
         item_id: chosenItem.id,
         latitude: currentLat,
         longitude: currentLng
       }
-    })
-    // .then(res => { 
+    });
+    // .then(res => {
     //   res.json().then(data => {
-    //     // this.props.getCurrentProfile(data);
-    //     console.log("data", data);
+    //     // ...data
     //   });
     // });
-  };
+  }
 
   render() {
-    let authToken = this.props.auth;
     let currentUser = this.props.users[0];
     let { currentLat, currentLng } = this.props;
 
@@ -46,8 +41,8 @@ class InventoryChooser extends Component {
           />
           <span
             className="inventory-item"
-            onClick={value =>
-              this.makeChoice(item, currentLat, currentLng, authToken)
+            onClick={() =>
+              this.makeChoice(item, currentLat, currentLng)
             }
           >
             {item.item_name} ({item.quantity})
@@ -57,7 +52,7 @@ class InventoryChooser extends Component {
       inventoryContent = (
         <aside className="inventory-chooser">
           <h3>Drop a Cache</h3>
-          <span>WHICH ITEM WOULD YOU LIKE TO DROP?</span>  
+          <span>WHICH ITEM WOULD YOU LIKE TO DROP?</span>
           <ul>{itemsList}</ul>
         </aside>
       );
@@ -70,14 +65,12 @@ let mapStateToProps = ({
   users,
   currentLat,
   currentLng,
-  activeUserToken,
   activeUserID
 }) => {
   return {
     users,
     currentLat,
     currentLng,
-    auth: activeUserToken,
     activeUserID
   };
 };

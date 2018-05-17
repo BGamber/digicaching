@@ -81,9 +81,10 @@ let mapComponent = ({caches=[], currentLat=33.848460,
   setActiveCache, activeCache, setBounds}) => {
 
   let debounced = debounce(boundChangeHandler, 2000);
-  
+
   return [
-    <ToggleTrackingButton key="ToggleButton"/>, <PlaceCacheButton />,
+    <ToggleTrackingButton key="ToggleButton"/>,
+    <PlaceCacheButton key="PlaceCacheButton"/>,
     <GoogleMap
       defaultZoom={15} defaultCenter={{ lat: currentLat, lng: currentLng }}
       {...trackUser ? {center:{lat:currentLat,lng:currentLng}} : {}} key="Map"
@@ -98,7 +99,6 @@ let mapComponent = ({caches=[], currentLat=33.848460,
 
       <MarkerClusterer maxZoom={18}>
 
-        <Marker position={{ lat: -34.397, lng: 150.644 }} title="Test" />
 
         {caches.map( ({latitude:lat,longitude:lng, id, item_name, createdon,
           item_description, item_image_url, openedon, distance}) => {
