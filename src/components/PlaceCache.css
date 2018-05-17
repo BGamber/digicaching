@@ -1,0 +1,66 @@
+
+.placeCacheButton {
+    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
+    border-color: rgb(255, 255, 255);
+    border-color: rgba(255, 255, 255, 0);
+    left: calc(1% + 3px);
+    position: absolute;
+    top:16%;
+    fill: #94d31b; 
+}
+
+.placeCacheIcon {
+  max-height: 25px;
+}
+
+.placeCacheIcon .svg_25:hover {
+    fill: #94d31b; 
+}
+
+.inventory-chooser {
+  position: absolute;
+  top: 4rem;
+  background: rgba(255,255,255,.9);
+  border: 1px solid #ccc;
+  padding: 1rem;
+  -webkit-box-shadow: #333 2px 2px 2px;
+  box-shadow: #333 2px 2px 2px;
+  border-radius: .4rem;
+  width: calc(100% - 20rem);
+  min-width: 205px;
+  max-width: 450px;
+  margin-left: calc(2.4rem + 3%);
+}
+
+.inventory-chooser h3 {
+  text-align: center;
+  margin: .5rem .5rem 1rem;
+}
+
+.inventory-chooser li {
+  cursor: pointer;
+  list-style: none;
+  margin: 5px;
+  margin-left: -2rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 1px 1px 1px 3px;
+}
+
+.inventory-chooser li:hover {
+  background: #ddf;
+}
+
+.inventory-chooser.show {
+  display:block;
+}
+
+.close-x {
+  float: right;
+  color: #777;
+  left: calc(3rem + 3%);
+  top: 4.5rem;
+  position: absolute;
+  z-index: 11;
+}

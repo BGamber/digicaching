@@ -3,7 +3,6 @@ import Spinner from './loaders/Spinner';
 
 let LeftProfilePage = ({user}) => {
   let content;
-console.log('lpp:', user);
 
   if (user === undefined || user.name === undefined) {
     content = <Spinner />;
