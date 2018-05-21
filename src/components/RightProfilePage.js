@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import {setActiveUserToken} from "../actions/userActions";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { setActiveUserToken } from "../actions/userActions";
 import InventoryList from "./InventoryList";
 
 class RightProfilePage extends Component {
-
-  render(){    
+  render() {
     return (
       <div className="right-profile-side">
         <div className="my-inventory">
@@ -15,22 +14,24 @@ class RightProfilePage extends Component {
           <div className="showing-items">
             <InventoryList user={this.props.user[0]} />
           </div>
-
         </div>
         <div onClick={() => this.props.removeToken()} className="logout">
-          <Link className="links" to='/login'><p className="log-out-button-text">Log Out</p></Link>
+          <Link className="links" to="/login">
+            <p className="log-out-button-text">Log Out</p>
+          </Link>
         </div>
-      </div>);
+      </div>
+    );
   }
 }
 
 const mapDispatchToProps = {
-  removeToken:setActiveUserToken
+  removeToken: setActiveUserToken
 };
 
 RightProfilePage.propTypes = {
   removeToken: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired
-}
+};
 
 export default connect(null, mapDispatchToProps)(RightProfilePage);
