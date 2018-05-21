@@ -34,7 +34,7 @@ let CacheInfoBox = ({createdOn, claimedOn, name, lat, lng, description,
       mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
       getPixelPositionOffset={getPixelPositionOffset}
     >
-      <div className="infoBox">
+      <div className="infoBox zoom">
         <div className="infoBox_header">
           <h3>{name}</h3>
           <button type="button" className="close_button" onClick={closePopup}>
