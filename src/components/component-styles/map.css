@@ -1,0 +1,100 @@
+.placeCacheButton {
+  /* background-color: rgb(255, 255, 255); */
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgb(255, 255, 255);
+  border-color: rgba(255, 255, 255, 0);
+  left: calc(1% + 3px);
+  position: absolute;
+  top: 16%;
+  fill: #94d31b;
+}
+
+.placeCacheIcon {
+  max-height: 25px;
+}
+
+.placeCacheIcon .svg_25:hover {
+  fill: #94d31b;
+}
+
+.inventory-chooser {
+  position: absolute;
+  top: 4rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  padding: 1rem;
+  -webkit-box-shadow: #333 2px 2px 2px;
+  box-shadow: #333 2px 2px 2px;
+  border-radius: 0.4rem;
+  width: calc(100% - 20rem);
+  min-width: 205px;
+  max-width: 450px;
+  margin-left: calc(2.4rem + 3%);
+}
+
+.inventory-chooser h3 {
+  text-align: center;
+  margin: 0.5rem 0.5rem 1rem;
+}
+
+.inventory-chooser li {
+  cursor: pointer;
+  list-style: none;
+  margin: 5px;
+  margin-left: -2rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 1px 1px 1px 3px;
+}
+
+.inventory-chooser li:hover {
+  background: #ddf;
+}
+
+.inventory-chooser.show {
+  display: block;
+}
+
+.close-x {
+  float: right;
+  color: #777;
+  /* left: calc(3rem + 3%); */
+  right: 0.6rem;
+  top: 0.5rem;
+  position: absolute;
+  z-index: 11;
+}
+
+.close-x:hover {
+  cursor: pointer;
+}
+
+@keyframes infoBoxPop {
+  0% {
+    transform: scale(.01);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.0);
+  }
+}
+
+.infoBox {
+  background: rgba(223, 222, 235, 0.9);
+  border: 1px solid #ccc;
+  padding: 1rem;
+  -webkit-box-shadow: #333 2px 2px 2px;
+  box-shadow: #333 2px 2px 2px;
+  border-radius: 0.4rem;
+  width: calc(100% - 20rem);
+  min-width: 205px;
+  max-width: 450px;
+  margin-left: calc(2.4rem + 3%);
+  position: absolute;
+  font-size: 1.3em;
+}
+.infoBox.zoom {
+  animation: infoBoxPop 0.4s;
+}
