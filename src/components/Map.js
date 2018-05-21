@@ -110,7 +110,7 @@ let mapComponent = ({
     <PlaceCacheButton key="PlaceCacheButton" />,
     <GoogleMap
       defaultZoom={15}
-      gestureHandling="greedy"
+      options={{gestureHandling: 'greedy'}} // Removes need for two-finger dragging on mobile
       defaultCenter={{ lat: currentLat, lng: currentLng }}
       {...(trackUser ? { center: { lat: currentLat, lng: currentLng } } : {})}
       key="Map"
