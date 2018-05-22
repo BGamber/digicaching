@@ -1,5 +1,5 @@
 .placeCacheButton {
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
   background-color: rgba(255, 255, 255, 0);
   border-color: rgb(255, 255, 255);
   border-color: rgba(255, 255, 255, 0);
@@ -67,4 +67,34 @@
 
 .close-x:hover {
   cursor: pointer;
+}
+
+@keyframes infoBoxPop {
+  0% {
+    transform: scale(.01);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.0);
+  }
+}
+
+.infoBox {
+  background: rgba(223, 222, 235, 0.9);
+  border: 1px solid #ccc;
+  padding: 1rem;
+  -webkit-box-shadow: #333 2px 2px 2px;
+  box-shadow: #333 2px 2px 2px;
+  border-radius: 0.4rem;
+  width: calc(100% - 20rem);
+  min-width: 205px;
+  max-width: 450px;
+  margin-left: calc(2.4rem + 3%);
+  position: absolute;
+  font-size: 1.3em;
+}
+.infoBox.zoom {
+  animation: infoBoxPop 0.4s;
 }

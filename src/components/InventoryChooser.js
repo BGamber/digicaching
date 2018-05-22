@@ -4,47 +4,44 @@ import Spinner from "./loaders/Spinner";
 import authFetch from "../lib/authFetch";
 import { setUserInventories } from "../actions/inventoriesActions";
 
-
 class InventoryChooser extends Component {
-  componentDidMount(){
-    console.log('cdm');
-    
+  componentDidMount() {
     this.updateInventory;
   }
- updateInventory = authFetch(`${process.env.REACT_APP_BACKEND}/api/inventories/${this.props.activeUserID}`, {
-  method: "GET"
-   }).then((res) => {
-     res.json().then(data => {
+  updateInventory = authFetch(
+    `${process.env.REACT_APP_BACKEND}/api/inventories/${
+      this.props.activeUserID
+    }`,
+    {
+      method: "GET"
+    }
+  ).then(res => {
+    res.json().then(data => {
       this.props.setInventories(data);
-    })
+    });
   });
   makeChoice(chosenItem, currentLat, currentLng) {
-console.log('id: ', chosenItem.id);
     authFetch(`${process.env.REACT_APP_BACKEND}/api/caches/place`, {
-      "method":"POST",
-      "headers": {
+      method: "POST",
+      headers: {
         "content-type": "application/json"
       },
       body: JSON.stringify({
-        "item_id": chosenItem.id,
-        "latitude": currentLat,
-        "longitude": currentLng
+        item_id: chosenItem.id,
+        latitude: currentLat,
+        longitude: currentLng
       })
-    }).then(this.props.closer)
-    
-    // 
-
+    }).then(this.props.closer);
   }
 
   render() {
-
     let currentUser = this.props.currentUser[0];
     let inventory = this.props.inventories;
     let { currentLat, currentLng } = this.props;
 
     let inventoryContent;
 
-    if (!currentUser|| !inventory) {
+    if (!currentUser || !inventory) {
       inventoryContent = <Spinner />;
     } else {
       let itemsList = inventory.map(item => (
@@ -56,9 +53,7 @@ console.log('id: ', chosenItem.id);
           />
           <span
             className="inventory-item"
-            onClick={() =>
-              this.makeChoice(item, currentLat, currentLng)
-            }
+            onClick={() => this.makeChoice(item, currentLat, currentLng)}
           >
             {item.item_name} ({item.quantity})
           </span>
@@ -66,7 +61,9 @@ console.log('id: ', chosenItem.id);
       ));
       inventoryContent = (
         <aside className="inventory-chooser">
-          <div className="close-x" onClick={ this.props.closer }>X</div>
+          <div className="close-x" onClick={this.props.closer}>
+            X
+          </div>
           <h3>Drop a Cache</h3>
           <span>WHICH ITEM WOULD YOU LIKE TO DROP?</span>
           <ul>{itemsList}</ul>
