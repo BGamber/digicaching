@@ -5,12 +5,15 @@ import {connect} from "react-redux";
 import ClaimButton from "./ClaimButton";
 import {OverlayView} from "react-google-maps";
 import {setActiveCache} from "../actions/uiActions";
+import { compose, withState } from "recompose";
+
+
 
 import "./CacheInfoBox.css";
 
 let getPixelPositionOffset = (width, height) => ({
-  x: 16,
-  y: -(height / 2),
+  x: -(width+182),
+  y: -(height +222),
 });
 let mapDispatchtoProps = dispatch => {
   let closePopup = () => {
@@ -20,13 +23,14 @@ let mapDispatchtoProps = dispatch => {
 };
 
 let CacheInfoBox = ({createdOn, claimedOn, name, lat, lng, description,
-  image_url="/No_image_available.svg", closePopup, distance, claims, id}) => {
+  image_url="/No_image_available.svg", closePopup, distance, claims, id, infoBoxShowing, setInfoBoxShowing}) => {
 
   //Database will return null if an image is not set but defualt parameter
   //triggers only on undefined
   if (image_url === null) {
     image_url =  "/No_image_available.svg";
   }
+console.log('this.infoBoxShowing: ', infoBoxShowing);
 
   return (
     <OverlayView
@@ -34,7 +38,10 @@ let CacheInfoBox = ({createdOn, claimedOn, name, lat, lng, description,
       mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
       getPixelPositionOffset={getPixelPositionOffset}
     >
-      <div className="infoBox zoom">
+      <div className={infoBoxShowing ? 'infoBox zoom' : 'infoBox nozoom'}
+      onAnimationStart={() => setInfoBoxShowing(true)}
+      onAnimationEnd={() => setInfoBoxShowing(false)}
+      >
         <div className="infoBox_header">
           <h3>{name}</h3>
           <button type="button" className="close_button" onClick={closePopup}>
@@ -69,6 +76,10 @@ CacheInfoBox.propTypes = {
 
 };
 
-let connectedCacheInfoBox = connect(null, mapDispatchtoProps)(CacheInfoBox);
+let connectedCacheInfoBox = connect(null, mapDispatchtoProps);
+let enhancedConnectedCacheInfoBox = compose(
+  withState('infoBoxShowing','setInfoBoxShowing',true),
+  connectedCacheInfoBox
+)(CacheInfoBox);
 
-export default connectedCacheInfoBox;
+export default enhancedConnectedCacheInfoBox;
