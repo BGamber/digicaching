@@ -23,11 +23,9 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "appstart": "cd server node index.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "appStart"
+    "eject": "react-scripts eject"
   }
 }
