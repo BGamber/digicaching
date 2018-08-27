@@ -15,7 +15,7 @@ let ClaimButton = ({distance, activeUserID, claims=[], currentLat, currentLng,
   }
   else if (claims.includes(activeUserID)) {
     return <button disabled={true} className="claimButton">
-      You have already Claimed this cache</button>;
+      This cache has already been claimed</button>;
   }
   else {
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./PlaceCache.css";
+import "./component-styles/map.css";
 import InventoryChooser from "./InventoryChooser";
 
 

@@ -486,7 +486,7 @@ hr {
 /*------------------*/
 
 .route-container {
-  min-height: 950px;
+  /* min-height: 950px; */
 }
 
 .Players {

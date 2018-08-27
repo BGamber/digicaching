@@ -1,5 +1,6 @@
 # digicaching
 A virtual geocaching app that lets users collect, combine, and cache digital items to complete collections.
+[![Alt text](https://i.imgur.com/eHb0E07.jpg "Video Thumbnail")](https://www.youtube.com/watch?v=PlbsAkes1VU)
 
 ## API
 _All API requests require JWT Authentication_
